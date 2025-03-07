@@ -4,6 +4,7 @@ ScriptsOnlyBuild:
     - PlayerMovement
     - PlayerSetup
     Assembly-CSharp.dll:
+    - Door
     - PlayerMovement
     - PlayerSetup
     - RoomManager
@@ -23,6 +24,8 @@ ScriptsOnlyBuild:
     - Photon.Pun.Demo.PunBasics.PlayerUI
     - Photon.Pun.Demo.SlotRacer.PlayerControl
     - Photon.Pun.Demo.SlotRacer.Utils.SplineWalker
+    PhotonUnityNetworking.Editor.dll:
+    - Photon.Pun.PunSceneSettings
     PhotonUnityNetworking.dll:
     - Photon.Pun.PhotonAnimatorView
     - Photon.Pun.PhotonTransformView
@@ -32,22 +35,20 @@ ScriptsOnlyBuild:
     - Packages.Rider.Editor.RiderScriptEditorData
     - Packages.Rider.Editor.RiderScriptEditorPersistedState
     - Packages.Rider.Editor.UnitTesting.CallbackData
-    UnityEditor.Graphs.dll:
-    - UnityEditor.Graphs.AnimationBlendTree.Graph
-    - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
-    - UnityEditor.Graphs.AnimationStateMachine.Graph
-    - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
-    - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
     - UnityEditor.TestTools.TestRunner.TestRun.TestJobDataHolder
     UnityEngine.UI:
+    - UnityEngine.UI.CanvasScaler
+    - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
     - UnityEngine.UI.Shadow
     - UnityEngine.UI.Slider
+    - UnityEngine.UI.Text
+    UnityEngine.UI.dll:
+    - UnityEngine.UI.CanvasScaler
+    - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Text
   serializedClasses:
     PhotonRealtime:
@@ -111,45 +112,51 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1540}
     - Class: 114
-      Script: {instanceID: 1594}
+      Script: {instanceID: 1548}
     - Class: 114
-      Script: {instanceID: 1638}
+      Script: {instanceID: 1596}
     - Class: 114
-      Script: {instanceID: 1792}
+      Script: {instanceID: 1640}
     - Class: 114
-      Script: {instanceID: 2984}
+      Script: {instanceID: 1794}
     - Class: 114
-      Script: {instanceID: 3106}
+      Script: {instanceID: 2266}
     - Class: 114
-      Script: {instanceID: 3936}
+      Script: {instanceID: 2618}
     - Class: 114
-      Script: {instanceID: 3942}
+      Script: {instanceID: 2890}
     - Class: 114
-      Script: {instanceID: 4106}
+      Script: {instanceID: 2990}
     - Class: 114
-      Script: {instanceID: 4526}
+      Script: {instanceID: 3114}
     - Class: 114
-      Script: {instanceID: 5182}
+      Script: {instanceID: 3944}
     - Class: 114
-      Script: {instanceID: 5198}
+      Script: {instanceID: 3950}
     - Class: 114
-      Script: {instanceID: 5612}
+      Script: {instanceID: 4114}
     - Class: 114
-      Script: {instanceID: 5654}
+      Script: {instanceID: 4534}
     - Class: 114
-      Script: {instanceID: 6350}
+      Script: {instanceID: 5190}
     - Class: 114
-      Script: {instanceID: 6948}
+      Script: {instanceID: 5206}
     - Class: 114
-      Script: {instanceID: 7466}
+      Script: {instanceID: 5620}
     - Class: 114
-      Script: {instanceID: 7822}
+      Script: {instanceID: 5662}
     - Class: 114
-      Script: {instanceID: 7948}
+      Script: {instanceID: 6356}
     - Class: 114
-      Script: {instanceID: 8246}
+      Script: {instanceID: 6954}
     - Class: 114
-      Script: {instanceID: 108942}
+      Script: {instanceID: 7472}
+    - Class: 114
+      Script: {instanceID: 7828}
+    - Class: 114
+      Script: {instanceID: 7954}
+    - Class: 114
+      Script: {instanceID: 8252}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -174,9 +181,15 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 222
       Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
     - Class: 224
       Script: {instanceID: 0}
     - Class: 225
+      Script: {instanceID: 0}
+    - Class: 258
+      Script: {instanceID: 0}
+    - Class: 850595691
       Script: {instanceID: 0}
   scriptHashData:
   - hash:
@@ -203,6 +216,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.UI
     className: HorizontalLayoutGroup
+  - hash:
+      serializedVersion: 2
+      Hash: 540882762544409cc4530e60db00e951
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.UI
+    className: CanvasScaler
   - hash:
       serializedVersion: 2
       Hash: e5ced545fd8a42a1f50e04211216ab80
@@ -361,6 +380,12 @@ ScriptsOnlyBuild:
     className: UnityOnPointerUpMessageListener
   - hash:
       serializedVersion: 2
+      Hash: 64ee98af25985ba3b69782cfb264950a
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PlayerSetup
+  - hash:
+      serializedVersion: 2
       Hash: 7e93247d600e115dac0cdd880de94e99
     assemblyName: UnityEngine.TestRunner
     namespaceName: UnityEngine.TestTools.TestRunner
@@ -431,6 +456,12 @@ ScriptsOnlyBuild:
     assemblyName: PhotonUnityNetworking.Demos
     namespaceName: Photon.Pun.Demo.Cockpit
     className: CurrentRoomPropertiesListedInLobbyProperty
+  - hash:
+      serializedVersion: 2
+      Hash: 0bc3aac4d0281296f98a1f4009952582
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: Door
   - hash:
       serializedVersion: 2
       Hash: 4c6ecaf42be91e35c184f87f3b1d2366
@@ -559,10 +590,16 @@ ScriptsOnlyBuild:
     className: TestResultRendererCallback
   - hash:
       serializedVersion: 2
-      Hash: 8d93db805721706a8f5139da40331feb
+      Hash: 4411e30d564782636c1aa631f59baefa
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: PlayerMovement
+  - hash:
+      serializedVersion: 2
+      Hash: d8b339e73395b2045c816593fcc35105
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: LootManager
   - hash:
       serializedVersion: 2
       Hash: e7fa10a9046588e2962c83a4e2849965
@@ -1285,12 +1322,6 @@ ScriptsOnlyBuild:
     className: InfosPanelPlaceholder
   - hash:
       serializedVersion: 2
-      Hash: 540882762544409cc4530e60db00e951
-    assemblyName: UnityEngine.UI
-    namespaceName: UnityEngine.UI
-    className: CanvasScaler
-  - hash:
-      serializedVersion: 2
       Hash: ef38c1407dba8c1f5d69f5db61a694fe
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
@@ -1895,12 +1926,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
-  - hash:
-      serializedVersion: 2
-      Hash: 64ee98af25985ba3b69782cfb264950a
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: PlayerSetup
   platform: 19
   scenePathNames:
   - Assets/Scenes/Level1.unity

@@ -381,6 +381,7 @@
 "Assets/Photon/PhotonChat/Demos/DemoChat/NamePickGui.cs"
 "Assets/Photon/PhotonRealtime/Demos/DemoLoadBalancing/ConnectAndJoinRandomLb.cs"
 "Assets/_Scripts/Door.cs"
+"Assets/_Scripts/LootManager.cs"
 "Assets/_Scripts/MultiplayerScripts/PlayerSetup.cs"
 "Assets/_Scripts/MultiplayerScripts/RoomManager.cs"
 "Assets/_Scripts/PlayerMovement.cs"
