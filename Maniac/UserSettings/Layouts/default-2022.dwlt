@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1473.6
     height: 820.8
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Game
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -694,9 +694,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -2.1941462, y: 1.0045727, z: -1.4706008}
+    m_Target: {x: 13.531314, y: -1.2578042, z: -5.481165}
     speed: 2
-    m_Value: {x: -2.1941462, y: 1.0045727, z: -1.4706008}
+    m_Value: {x: 13.531314, y: -1.2578042, z: -5.481165}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -742,13 +742,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.01863174, y: -0.9681185, z: 0.0800808, w: 0.24141532}
+    m_Target: {x: 0.026283804, y: 0.96780676, z: -0.07940263, w: 0.24223731}
     speed: 2
-    m_Value: {x: 0.0186104, y: -0.96700966, z: 0.079989076, w: 0.24113882}
+    m_Value: {x: 0.02625331, y: 0.96668386, z: -0.07931051, w: 0.24195626}
   m_Size:
-    m_Target: 5.5872974
+    m_Target: 9.475394
     speed: 2
-    m_Value: 5.5872974
+    m_Value: 9.475394
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -812,18 +812,18 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 2afbffff
+      m_ExpandedIDs: 6272fdffa872fdff1675fdff50b3fdff96b3fdff04b6fdff5cd0fdffa2d0fdff14d3fdffda15feff2016feff9218feff464efeff8c4efefffa50feff8072feffe07afeff9880feffde80feff4c83feff8cdafeffd8dafeff46ddfeff5624ffff6424ffffb62cffffc42cffff8832ffffce32ffff3c35ffffea6affff366bffffa46dffff2afbfffff4ffffffbe4e0300
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: Canvas
-        m_OriginalName: Canvas
+        m_Name: Role
+        m_OriginalName: Role
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 51044
+        m_UserData: 186102
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
         m_OriginalEventType: 0
@@ -881,7 +881,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Resources
+    - Assets/_Scripts/MultiplayerScripts
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -889,15 +889,15 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Resources
+  - Assets/_Scripts/MultiplayerScripts
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Work()\Cs\Maniac\Maniac
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 88910000
-    m_LastClickedID: 37256
+    m_SelectedIDs: 6c910000
+    m_LastClickedID: 37228
     m_ExpandedIDs: 0000000046900000489000004a9000004c9000004e9000005090000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0

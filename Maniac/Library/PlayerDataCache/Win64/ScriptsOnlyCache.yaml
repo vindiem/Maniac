@@ -380,7 +380,7 @@ ScriptsOnlyBuild:
     className: UnityOnPointerUpMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 64ee98af25985ba3b69782cfb264950a
+      Hash: 1e4fe18d67995c4431a1fd9a36879b14
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: PlayerSetup
@@ -590,7 +590,7 @@ ScriptsOnlyBuild:
     className: TestResultRendererCallback
   - hash:
       serializedVersion: 2
-      Hash: 4411e30d564782636c1aa631f59baefa
+      Hash: 6bee9623e03ddcb5828cfd384e6a5162
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: PlayerMovement

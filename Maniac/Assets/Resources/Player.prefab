@@ -5057,15 +5057,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76657b1baebe2a54e816aeefe3d4f9e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  role: victim
-  skins:
-  - {fileID: 882199718480457649}
-  - {fileID: 2692907407981883762}
-  - {fileID: 5882659234047013060}
-  - {fileID: 4382516200823803633}
-  - {fileID: 8594954327323291215}
-  - {fileID: 3837033423328498906}
-  - {fileID: 8011953503599250058}
   speed: 5
   jumpHeight: 1
   gravity: 9.95
@@ -5132,7 +5123,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 1920791655927927025}
   playerCamera: {fileID: 9167539835538345219}
-  playerCanvas: {fileID: 0}
+  playerCanvas: {fileID: 2269841728774130315}
+  role: victim
+  skins:
+  - {fileID: 882199718480457649}
+  - {fileID: 2692907407981883762}
+  - {fileID: 5882659234047013060}
+  - {fileID: 4382516200823803633}
+  - {fileID: 8594954327323291215}
+  - {fileID: 3837033423328498906}
+  - {fileID: 8011953503599250058}
 --- !u!1 &2140993120553957054
 GameObject:
   m_ObjectHideFlags: 0
@@ -5842,7 +5842,7 @@ Canvas:
   m_GameObject: {fileID: 2269841728774130315}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 902148649058922092}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -5854,7 +5854,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!114 &8985777668490256192
 MonoBehaviour:
@@ -14663,7 +14663,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Role: victim'
+  m_Text: 'Role: 000000'
 --- !u!1 &6847673780194146137
 GameObject:
   m_ObjectHideFlags: 0
