@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 using System.Collections;
+using Photon.Pun;
 
-public class Door : MonoBehaviour
+public class Door : MonoBehaviourPun
 {
     public float rotationSpeed = 2f;
     public float activationDistance = 2f;
@@ -11,7 +13,7 @@ public class Door : MonoBehaviour
     private bool isMoving = false;
     private Vector3 closedRotation;
     private Vector3 openRotation;
-    
+
     private Transform nearestPlayer = null;
 
     private void Start()
@@ -33,12 +35,19 @@ public class Door : MonoBehaviour
 
         float distanceToPlayer = Vector3.Distance(transform.position, nearestPlayer.position);
 
-        if (Input.GetKeyDown(KeyCode.E) && distanceToPlayer <= activationDistance && !isMoving 
-            && objectRenderer.material.color != originalColor)
+        if (Input.GetKeyDown(KeyCode.E) && distanceToPlayer <= activationDistance && !isMoving)
         {
-            StartCoroutine(RotateDoor(isOpen ? closedRotation : openRotation));
-            isOpen = !isOpen;
+            photonView.RPC("ToggleDoor", RpcTarget.AllBuffered, !isOpen);
         }
+    }
+
+    [PunRPC]
+    private void ToggleDoor(bool open)
+    {
+        if (isMoving) return;
+
+        isOpen = open;
+        StartCoroutine(RotateDoor(isOpen ? openRotation : closedRotation));
     }
 
     private IEnumerator RotateDoor(Vector3 targetRotation)
@@ -60,9 +69,9 @@ public class Door : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (objectRenderer != null /*&& Vector3.Distance(transform.position, nearestPlayer.position) < activationDistance*/)
+        if (objectRenderer != null)
         {
-            objectRenderer.material.color = Color.red;
+            objectRenderer.material.color = Color.green;
         }
     }
 

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UI;
-using Random = System.Random;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
@@ -12,11 +11,11 @@ public class PlayerMovement : MonoBehaviour
     private int health = 100;
     
     [Header("Movement")]
-    public float speed = 5f;
-    public float jumpHeight = 2f;
-    public float gravity = 9.81f;
-    public float mouseSensitivity = 100f;
-
+    [SerializeField] private float speed = 5f;
+    [SerializeField] private float jumpHeight = 2f;
+    [SerializeField] private float gravity = 9.81f;
+    [SerializeField] private float mouseSensitivity = 100f;
+    
     private CharacterController controller;
     private Vector3 velocity;
     private bool isGrounded;
@@ -25,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     private float xRotation = 0f;
     private float defaultCharacterHeight = 0f;
     
-    [Space]
+    [Space(10)]
     [Header("UI")]
     [SerializeField] private Text healthText;
     [SerializeField] private Text roleText;
@@ -36,7 +35,6 @@ public class PlayerMovement : MonoBehaviour
         cameraTransform = GetComponentInChildren<Camera>().transform;
         animator = GetComponentInChildren<Animator>();
         Cursor.lockState = CursorLockMode.Locked;
-    
         defaultCharacterHeight = controller.height;
     }
 
@@ -45,95 +43,65 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = controller.isGrounded;
         if (isGrounded && velocity.y < 0) velocity.y = -2f;
 
+        HandleMovement();
+        HandleJump();
+        ApplyGravity();
+        HandleCamera();
+        HandleCrouch();
+        
+        healthText.text = $"Health: {health}";
+        
+    }
+    
+    private void HandleMovement()
+    {
         float moveX = Input.GetAxis("Horizontal");
         float moveZ = Input.GetAxis("Vertical");
-        
+
         Vector3 move = transform.right * moveX + transform.forward * moveZ;
         controller.Move(move * speed * Time.deltaTime);
-        
-        // Jump
+
+        animator.SetBool("isRunning", move.magnitude > 0.1f);
+    }
+
+    private void HandleJump()
+    {
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * 2f * gravity);
             StartCoroutine(SetAnimatorBool("Jump"));
         }
-
-        velocity.y -= gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
-        
-        bool isRunning = move.magnitude > 0.1f;
-        animator.SetBool("isRunning", isRunning);
-
-        if (!isRunning && isGrounded)
-            animator.SetBool("isRunning", false);
-        
-        // Crouching
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            animator.SetBool("isCrouching", true);
-            controller.height = 1.0f;
-            controller.center /= 2.0f;
-            speed /= 2.5f;
-        }
-        else if (Input.GetKeyUp(KeyCode.C))
-        {
-            animator.SetBool("isCrouching", false);
-            controller.height = defaultCharacterHeight;
-            controller.center *= 2.0f;
-            speed *= 2.5f;
-        }
-        
-        // Attack
-        /*if (role == "murder")
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                //photonView.RPC("Attack", RpcTarget.All);
-            }
-        }*/
-        
-        // Camera movement
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
-        
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -75f, 75f);
-        
-        cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-        transform.Rotate(Vector3.up * mouseX);
-        
-        // Death
-        
-        healthText.text = "Health: " + health.ToString();
-        
     }
 
-    /*public void SetRoleAndSkin(string role)
+    private void ApplyGravity()
     {
-        this.role = role;
-        Debug.Log($"{role} set to new player");
-        roleText.text = "Role: " + role;
-        
+        velocity.y += Physics.gravity.y * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
+    }
 
-        Random random = new Random();
-        // set role and skin
-        if (role == "victim")
-        {
-            int randomSkin = random.Next(0, 3);
-            skins[randomSkin].gameObject.SetActive(true);
-        }
-        else
-        {
-            int randomSkin = random.Next(3, skins.Length);
-            skins[randomSkin].gameObject.SetActive(true);
-        }
-    }*/
-
-    /*private void SetRole()
+    private void HandleCamera()
     {
-        if (GameObject.FindGameObjectsWithTag("Player").Length > 1) SetRoleAndSkin("victim");
-        else SetRoleAndSkin("murder");
-    }*/
+        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+
+        xRotation = Mathf.Clamp(xRotation - mouseY, -75f, 75f);
+        cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        transform.Rotate(Vector3.up * mouseX);
+    }
+
+    private void HandleCrouch()
+    {
+        if (Input.GetKeyDown(KeyCode.C)) SetCrouchState(true);
+        else if (Input.GetKeyUp(KeyCode.C)) SetCrouchState(false);
+    }
+
+    private void SetCrouchState(bool isCrouching)
+    {
+        animator.SetBool("isCrouching", isCrouching);
+        controller.height = isCrouching ? 1.0f : defaultCharacterHeight;
+        controller.center = isCrouching ? controller.center / 2.0f : controller.center * 2.0f;
+        speed *= isCrouching ? 0.4f : 2.5f;
+    }
     
     private IEnumerator SetAnimatorBool(string nameOfAnimation)
     {
@@ -141,50 +109,5 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.2f);
         animator.SetBool(nameOfAnimation, false);
     }
-
-    /*private IEnumerator attackIEnumerator(float delayTime)
-    {
-        yield return new WaitForSeconds(delayTime / 2);
-        attackTrigger.SetActive(true);
-        yield return new WaitForSeconds(delayTime);
-        attackTrigger.SetActive(false);
-    }*/
-
-    /*private void OnCollisionEnter(Collision other)
-    {
-        // Damage for victims from murder by hand
-        if (other.gameObject.CompareTag("Attack trigger"))
-        {
-            Debug.Log("OnCollisionEnter");
-            if (role == "victim")
-            {
-                photonView.RPC("TakeDamage", RpcTarget.All, 50);
-            }
-        }
-    }*/
-
-    /*[PunRPC]
-    public void TakeDamage(int damage)
-    {
-        health -= damage;
-        healthText.text = "Health: " + health.ToString();
-        Debug.Log($"{role} taken damage");
-        
-        // Death logic
-        if (health <= 0)
-        {
-            gameObject.GetComponent<PlayerMovement>().enabled = false;
-            cameraTransform.position = 
-                new Vector3(cameraTransform.position.x, cameraTransform.position.y + 20f, cameraTransform.position.z);
-            
-        }
-    }*/
-
-    /*[PunRPC]
-    public void Attack()
-    {
-        StartCoroutine(SetAnimatorBool("Attack"));
-        StartCoroutine(attackIEnumerator(0.85f));
-    }*/
     
 }

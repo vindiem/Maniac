@@ -380,7 +380,7 @@ ScriptsOnlyBuild:
     className: UnityOnPointerUpMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 1e4fe18d67995c4431a1fd9a36879b14
+      Hash: e2b57172d2368365fed27aa494912017
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: PlayerSetup

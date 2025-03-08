@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
@@ -12,8 +9,10 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
     public GameObject playerCamera;
     public GameObject playerCanvas;
     
+    [Space(10)]
     [SerializeField] private string role = "victim";
     [SerializeField] private GameObject[] skins;
+    [SerializeField] private Text roleText;
     
     private PhotonView photonView;
 
@@ -22,34 +21,33 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
         photonView = GetComponent<PhotonView>();
     }
 
-    public void IsLocalPlayer()
+    public void SetupLocalPlayer()
     {
-        if (photonView.IsMine)
-        {
-            playerMovement.enabled = true;
-            playerCamera.gameObject.SetActive(true);
-            playerCanvas.SetActive(true);
-            FindPlayersAndSetRole();
-            
-        }
+        if (!photonView.IsMine) return;
+
+        playerMovement.enabled = true;
+        playerCamera.SetActive(true);
+        playerCanvas.SetActive(true);
+
+        FindPlayersAndSetRole();
     }
     
-    public void SetRoleAndSkin(string role)
+    public void SetRoleAndSkin(string newRole)
     {
-        this.role = role;
+        role = newRole;
         Debug.Log($"{role} set to new player");
         
-        Text[] texts = playerCanvas.GetComponentsInChildren<Text>();
-        Text roleText = null;
-        foreach (Text text in texts)
+        if (roleText != null) roleText.text = $"Role: {role}";
+        else Debug.LogWarning("RoleText is not assigned!");
+
+        if (skins == null || skins.Length == 0)
         {
-            if (text.name == "Role") roleText = text;
+            Debug.LogError("No skins assigned!");
+            return;
         }
-        roleText.text = $"Role: {role}";
-        
-        int randomSkin = (role == "victim") ? Random.Range(0, 3) : Random.Range(3, skins.Length);
+
+        int randomSkin = (role == "victim") ? Random.Range(0, 3) : Random.Range(4, skins.Length);
         photonView.RPC("SetSkin_RPC", RpcTarget.AllBuffered, randomSkin);
-        
     }
     
     [PunRPC]
@@ -63,8 +61,7 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
     
     private void FindPlayersAndSetRole()
     {
-        if (GameObject.FindGameObjectsWithTag("Player").Length > 1) 
-            SetRoleAndSkin("victim");
-        else SetRoleAndSkin("murder");
+        int playerCount = PhotonNetwork.PlayerList.Length;
+        SetRoleAndSkin(playerCount > 1 ? "victim" : "murder");
     }
 }
