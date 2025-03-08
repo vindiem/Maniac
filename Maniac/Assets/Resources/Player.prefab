@@ -1989,6 +1989,7 @@ GameObject:
   - component: {fileID: 4014481711902907355}
   - component: {fileID: 1628636996014712445}
   - component: {fileID: 3193515813846084202}
+  - component: {fileID: 6547466937486846335}
   m_Layer: 0
   m_Name: Brain
   m_TagString: Untagged
@@ -2068,6 +2069,24 @@ MonoBehaviour:
   m_SynchronizeLayers:
   - SynchronizeType: 2
     LayerIndex: 0
+--- !u!114 &6547466937486846335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882199718480457649}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 0.8864104, b: 0.427451, a: 1}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &911124951535229688
 GameObject:
   m_ObjectHideFlags: 0
@@ -5051,7 +5070,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2074534809792860959}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76657b1baebe2a54e816aeefe3d4f9e3, type: 3}
   m_Name: 
@@ -5062,6 +5081,8 @@ MonoBehaviour:
   mouseSensitivity: 130
   healthText: {fileID: 835736159649021749}
   roleText: {fileID: 9145772095814037280}
+  health: 100
+  role: victim
 --- !u!114 &8430431883458647491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5123,7 +5144,6 @@ MonoBehaviour:
   playerMovement: {fileID: 1920791655927927025}
   playerCamera: {fileID: 9167539835538345219}
   playerCanvas: {fileID: 2269841728774130315}
-  role: victim
   skins:
   - {fileID: 882199718480457649}
   - {fileID: 2692907407981883762}
@@ -5811,7 +5831,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8877403462855423269
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6610,6 +6630,7 @@ GameObject:
   - component: {fileID: 3320544535636306888}
   - component: {fileID: 8715834707910767026}
   - component: {fileID: 7233635507099194230}
+  - component: {fileID: 8359389725348315300}
   m_Layer: 0
   m_Name: Bryce
   m_TagString: Untagged
@@ -6690,6 +6711,24 @@ MonoBehaviour:
   m_SynchronizeLayers:
   - SynchronizeType: 2
     LayerIndex: 0
+--- !u!114 &8359389725348315300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2692907407981883762}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 0.8864104, b: 0.427451, a: 1}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &2707325907822171893
 GameObject:
   m_ObjectHideFlags: 0
@@ -8381,6 +8420,7 @@ GameObject:
   - component: {fileID: 4500276066626801248}
   - component: {fileID: 7535680966065804314}
   - component: {fileID: 5410587790802053644}
+  - component: {fileID: 9047764590672058842}
   m_Layer: 0
   m_Name: Whiteclown
   m_TagString: Untagged
@@ -8456,6 +8496,24 @@ MonoBehaviour:
   m_SynchronizeLayers:
   - SynchronizeType: 2
     LayerIndex: 0
+--- !u!114 &9047764590672058842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3837033423328498906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 0.4702186, b: 0.30588233, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &3842454696449306051
 GameObject:
   m_ObjectHideFlags: 0
@@ -9539,6 +9597,7 @@ GameObject:
   - component: {fileID: 4006519144719520843}
   - component: {fileID: 7023978502570561073}
   - component: {fileID: 3612206250349269027}
+  - component: {fileID: 6937772395262209392}
   m_Layer: 0
   m_Name: Remy
   m_TagString: Untagged
@@ -9620,6 +9679,24 @@ MonoBehaviour:
   m_SynchronizeLayers:
   - SynchronizeType: 2
     LayerIndex: 0
+--- !u!114 &6937772395262209392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4382516200823803633}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 0.8864104, b: 0.427451, a: 1}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &4407446507261789483
 GameObject:
   m_ObjectHideFlags: 0
@@ -12594,6 +12671,7 @@ GameObject:
   - component: {fileID: 6550687741703318142}
   - component: {fileID: 867113488999690244}
   - component: {fileID: 6747406031492960454}
+  - component: {fileID: 9129229351613634626}
   m_Layer: 0
   m_Name: Elizabeth
   m_TagString: Untagged
@@ -12674,6 +12752,24 @@ MonoBehaviour:
   m_SynchronizeLayers:
   - SynchronizeType: 2
     LayerIndex: 0
+--- !u!114 &9129229351613634626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5882659234047013060}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 0.8864104, b: 0.427451, a: 1}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &5894121597269649132
 GameObject:
   m_ObjectHideFlags: 0
@@ -16595,6 +16691,7 @@ GameObject:
   - component: {fileID: 7240660031824891952}
   - component: {fileID: 3646738375512640074}
   - component: {fileID: 7284818408242181271}
+  - component: {fileID: 8819970855585526475}
   m_Layer: 0
   m_Name: Zombiegirl
   m_TagString: Untagged
@@ -16672,6 +16769,24 @@ MonoBehaviour:
   m_SynchronizeLayers:
   - SynchronizeType: 2
     LayerIndex: 0
+--- !u!114 &8819970855585526475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8011953503599250058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 0.4702186, b: 0.30588233, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &8024342855188182379
 GameObject:
   m_ObjectHideFlags: 0
@@ -18116,6 +18231,7 @@ GameObject:
   - component: {fileID: 8938723597636072693}
   - component: {fileID: 3093010957950135951}
   - component: {fileID: 7637425808095059508}
+  - component: {fileID: 2455520148309744792}
   m_Layer: 0
   m_Name: Skeletonzombie
   m_TagString: Untagged
@@ -18191,6 +18307,24 @@ MonoBehaviour:
   m_SynchronizeLayers:
   - SynchronizeType: 2
     LayerIndex: 0
+--- !u!114 &2455520148309744792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8594954327323291215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 0.4702186, b: 0.30588233, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &8599889831516743003
 GameObject:
   m_ObjectHideFlags: 0
@@ -19122,7 +19256,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8293560877302017715
 Transform:
   m_ObjectHideFlags: 0

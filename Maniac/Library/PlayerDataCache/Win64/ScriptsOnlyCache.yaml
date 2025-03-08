@@ -1,10 +1,12 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp:
+    - Outline
     - PlayerMovement
     - PlayerSetup
     Assembly-CSharp.dll:
     - Door
+    - Outline
     - PlayerMovement
     - PlayerSetup
     - RoomManager
@@ -35,6 +37,14 @@ ScriptsOnlyBuild:
     - Packages.Rider.Editor.RiderScriptEditorData
     - Packages.Rider.Editor.RiderScriptEditorPersistedState
     - Packages.Rider.Editor.UnitTesting.CallbackData
+    UnityEditor.Graphs.dll:
+    - UnityEditor.Graphs.AnimationBlendTree.Graph
+    - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
+    - UnityEditor.Graphs.AnimationStateMachine.Graph
+    - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
+    - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -157,6 +167,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 7954}
     - Class: 114
       Script: {instanceID: 8252}
+    - Class: 114
+      Script: {instanceID: 191462}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -590,7 +602,7 @@ ScriptsOnlyBuild:
     className: TestResultRendererCallback
   - hash:
       serializedVersion: 2
-      Hash: 6bee9623e03ddcb5828cfd384e6a5162
+      Hash: de97c8b2eecbd8e356b9e53fbfab37ae
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: PlayerMovement
@@ -1926,6 +1938,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: a8e3571aa4f5e95dad37cd05688ab442
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: Outline
   platform: 19
   scenePathNames:
   - Assets/Scenes/Level1.unity

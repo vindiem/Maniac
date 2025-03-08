@@ -8,9 +8,9 @@ using UnityEngine.UI;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
-    private int health = 100;
+    private PhotonView photonView;
     
-    [Header("Movement")]
+    [Header("Movement variables")]
     [SerializeField] private float speed = 5f;
     [SerializeField] private float jumpHeight = 2f;
     [SerializeField] private float gravity = 9.81f;
@@ -25,12 +25,23 @@ public class PlayerMovement : MonoBehaviour
     private float defaultCharacterHeight = 0f;
     
     [Space(10)]
-    [Header("UI")]
+    [Header("UI variables")]
     [SerializeField] private Text healthText;
     [SerializeField] private Text roleText;
+    
+    [Space(10)]
+    [Header("Attack and take damage variables")]
+    [HideInInspector] public float health = 100;
+    [HideInInspector] public string role = "victim"; // set in PlayerSetup.cs
+    private bool isAttacking = false;
+    private float attackDistance = 2.5f;
+    private float damage = 50f;
+    
+    private Transform lastHighlightedVictim = null;
 
     private void Start()
     {
+        photonView = GetComponent<PhotonView>();
         controller = GetComponent<CharacterController>();
         cameraTransform = GetComponentInChildren<Camera>().transform;
         animator = GetComponentInChildren<Animator>();
@@ -48,9 +59,69 @@ public class PlayerMovement : MonoBehaviour
         ApplyGravity();
         HandleCamera();
         HandleCrouch();
-        
+        HandleAttack();
+        UpdateUI();
+    }
+
+    private void UpdateUI()
+    {
         healthText.text = $"Health: {health}";
+        roleText.text = $"Role: {role}";
+    }
+
+    private void HandleAttack()
+    {
+        if (role == "murder")
+        {
+            HighlightVictim();
+            
+            if (Input.GetMouseButtonDown(0) && !isAttacking)
+            {
+                StartCoroutine(Attack());
+            }
+        }
+    }
+    
+    private IEnumerator Attack()
+    {
+        isAttacking = true;
+        StartCoroutine(SetAnimatorBool("Attack"));
         
+        RaycastHit hit;
+        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, attackDistance + 0.1f))
+        {
+            // If object - player, and it's not current player
+            if (hit.collider.CompareTag("Player") && hit.collider.gameObject != gameObject)
+            {
+                Transform targetPlayer = hit.collider.transform;
+                float distanceToTarget = Vector3.Distance(transform.position, targetPlayer.position);
+
+                if (distanceToTarget <= attackDistance && targetPlayer.GetComponent<PlayerMovement>().role == "victim")
+                {
+                    // Damage player ("victim")
+                    int viewId = targetPlayer.GetComponent<PhotonView>().ViewID;
+                    photonView.RPC("TakeDamage", RpcTarget.AllBuffered, viewId, damage);
+                }
+            }
+        }
+
+        yield return new WaitForSeconds(3f);
+        isAttacking = false;
+    }
+    
+    [PunRPC]
+    private void TakeDamage(int targetViewID, float damageAmount)
+    {
+        // Find player by ViewID and damage him
+        PhotonView targetPhotonView = PhotonView.Find(targetViewID);
+        if (targetPhotonView != null)
+        {
+            PlayerMovement targetPlayer = targetPhotonView.GetComponent<PlayerMovement>();
+            targetPlayer.health -= damageAmount;
+            Debug.Log($"{targetPlayer.name} took {damageAmount} damage!");
+
+            if (targetPlayer.health <= 0) targetPlayer.Die();
+        }
     }
     
     private void HandleMovement()
@@ -103,6 +174,70 @@ public class PlayerMovement : MonoBehaviour
         speed *= isCrouching ? 0.4f : 2.5f;
     }
     
+    private void Die()
+    {
+        Debug.Log($"{name} died.");
+        gameObject.SetActive(false);
+    }
+
+    // Outline's functions
+    #region Region
+    
+    private void HighlightVictim()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
+        {
+            if (hit.collider.CompareTag("Player") && hit.collider.gameObject != gameObject)
+            {
+                Debug.Log($"{hit.collider.name}, >> {hit.collider}, {hit.collider.gameObject.name}");
+
+                Transform targetPlayer = hit.collider.transform;
+                float distanceToTarget = Vector3.Distance(transform.position, targetPlayer.position);
+
+                if (distanceToTarget <= attackDistance && targetPlayer.GetComponent<PlayerMovement>().role == "victim")
+                {
+                    if (lastHighlightedVictim != targetPlayer)
+                    {
+                        ResetHighlight();
+                        lastHighlightedVictim = targetPlayer;
+                        targetPlayer.GetComponent<PhotonView>().RPC("SetHighlight", RpcTarget.AllBuffered, true);
+                    }
+                    return;
+                }
+            }
+        }
+
+        ResetHighlight();
+    }
+    
+    private void ResetHighlight()
+    {
+        if (lastHighlightedVictim != null)
+        {
+            lastHighlightedVictim.GetComponent<PhotonView>().RPC("SetHighlight", RpcTarget.AllBuffered, false);
+            lastHighlightedVictim = null;
+        }
+    }
+
+    [PunRPC]
+    private void SetHighlight(bool highlight)
+    {
+        Outline outline = GetComponentInChildren<Outline>();
+        if (outline != null)
+        {
+            outline.enabled = highlight;
+        }
+    }
+
+    #endregion
+    
+    public void SetRole(string newRole)
+    {
+        role = newRole;
+    }
+    
+    // Imitation animations' triggers
     private IEnumerator SetAnimatorBool(string nameOfAnimation)
     {
         animator.SetBool(nameOfAnimation, true);

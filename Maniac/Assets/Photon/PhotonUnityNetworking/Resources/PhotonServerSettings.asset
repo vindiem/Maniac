@@ -47,6 +47,8 @@ MonoBehaviour:
   - SetRoleAndSkin_RPC
   - RotateDoor
   - ToggleDoor
+  - SetHighlight
+  - StartOutlining
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

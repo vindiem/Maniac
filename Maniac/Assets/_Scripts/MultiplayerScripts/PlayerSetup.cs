@@ -5,20 +5,27 @@ using Random = UnityEngine.Random;
 
 public class PlayerSetup : MonoBehaviourPunCallbacks
 {
-    public PlayerMovement playerMovement;
-    public GameObject playerCamera;
-    public GameObject playerCanvas;
+    [Header("Player Setup")]
+    [SerializeField] private PlayerMovement playerMovement;
+    [SerializeField] private GameObject playerCamera;
+    [SerializeField] private GameObject playerCanvas;
     
     [Space(10)]
-    [SerializeField] private string role = "victim";
+    [Header("Player skins & ui")]
     [SerializeField] private GameObject[] skins;
     [SerializeField] private Text roleText;
+    private string role = "victim";
     
     private PhotonView photonView;
 
     private void Awake()
     {
         photonView = GetComponent<PhotonView>();
+        
+        // Disable all sets
+        playerMovement.enabled = false;
+        playerCamera.SetActive(false);
+        playerCanvas.SetActive(false);
     }
 
     public void SetupLocalPlayer()
@@ -35,7 +42,8 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
     public void SetRoleAndSkin(string newRole)
     {
         role = newRole;
-        Debug.Log($"{role} set to new player");
+        playerMovement.SetRole(newRole);
+        Debug.Log($"{role.ToUpper()} set to new player");
         
         if (roleText != null) roleText.text = $"Role: {role}";
         else Debug.LogWarning("RoleText is not assigned!");
