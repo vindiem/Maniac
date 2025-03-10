@@ -17,7 +17,8 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
     private string role = "victim";
     
     private PhotonView photonView;
-
+    [SerializeField] private GameObject trapInHands;
+        
     private void Awake()
     {
         photonView = GetComponent<PhotonView>();
@@ -26,6 +27,7 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
         playerMovement.enabled = false;
         playerCamera.SetActive(false);
         playerCanvas.SetActive(false);
+        trapInHands.SetActive(false);
     }
 
     public void SetupLocalPlayer()

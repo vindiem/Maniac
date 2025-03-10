@@ -3,19 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
     private PhotonView photonView;
-    
-    [Header("Movement variables")]
+
+    [Header("Movement variables")] 
     [SerializeField] private float speed = 5f;
     [SerializeField] private float jumpHeight = 2f;
     [SerializeField] private float gravity = 9.81f;
     [SerializeField] private float mouseSensitivity = 100f;
-    
+
+    private float defaultSpeed = 5f;
     private CharacterController controller;
     private Vector3 velocity;
     private bool isGrounded;
@@ -23,21 +25,25 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     private float xRotation = 0f;
     private float defaultCharacterHeight = 0f;
-    
-    [Space(10)]
-    [Header("UI variables")]
+
+    [Space(10)] [Header("UI variables")] 
     [SerializeField] private Text healthText;
     [SerializeField] private Text roleText;
-    
-    [Space(10)]
-    [Header("Attack and take damage variables")]
+
+    [Space(10)] [Header("Attack and take damage variables")] 
     [HideInInspector] public float health = 100;
     [HideInInspector] public string role = "victim"; // set in PlayerSetup.cs
     private bool isAttacking = false;
     private float attackDistance = 2.5f;
     private float damage = 50f;
-    
+
     private Transform lastHighlightedVictim = null;
+
+    [Space(10)] [Header("Trap system variables")]
+    private bool heldTrap = false;
+    [SerializeField] private GameObject trapInHands;
+    [SerializeField] private GameObject trapPrefab;
+    private float distanceTrap = 3f;
 
     private void Start()
     {
@@ -47,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         Cursor.lockState = CursorLockMode.Locked;
         defaultCharacterHeight = controller.height;
+        defaultSpeed = speed;
     }
 
     private void Update()
@@ -59,8 +66,11 @@ public class PlayerMovement : MonoBehaviour
         ApplyGravity();
         HandleCamera();
         HandleCrouch();
-        HandleAttack();
+        if (role == "murder") HandleAttack();
         UpdateUI();
+        if (role == "victim") HandleTrap();
+        CursorVisibility();
+        
     }
 
     private void UpdateUI()
@@ -71,22 +81,19 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleAttack()
     {
-        if (role == "murder")
+        HighlightVictim();
+
+        if (Input.GetMouseButtonDown(0) && !isAttacking)
         {
-            HighlightVictim();
-            
-            if (Input.GetMouseButtonDown(0) && !isAttacking)
-            {
-                StartCoroutine(Attack());
-            }
+            StartCoroutine(Attack());
         }
     }
-    
+
     private IEnumerator Attack()
     {
         isAttacking = true;
         StartCoroutine(SetAnimatorBool("Attack"));
-        
+
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, attackDistance + 0.1f))
         {
@@ -108,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(3f);
         isAttacking = false;
     }
-    
+
     [PunRPC]
     private void TakeDamage(int targetViewID, float damageAmount)
     {
@@ -123,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
             if (targetPlayer.health <= 0) targetPlayer.Die();
         }
     }
-    
+
     private void HandleMovement()
     {
         float moveX = Input.GetAxis("Horizontal");
@@ -173,7 +180,7 @@ public class PlayerMovement : MonoBehaviour
         controller.center = isCrouching ? controller.center / 2.0f : controller.center * 2.0f;
         speed *= isCrouching ? 0.4f : 2.5f;
     }
-    
+
     private void Die()
     {
         Debug.Log($"{name} died.");
@@ -181,8 +188,9 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Outline's functions
+
     #region Region
-    
+
     private void HighlightVictim()
     {
         RaycastHit hit;
@@ -203,6 +211,7 @@ public class PlayerMovement : MonoBehaviour
                         lastHighlightedVictim = targetPlayer;
                         targetPlayer.GetComponent<PhotonView>().RPC("SetHighlight", RpcTarget.AllBuffered, true);
                     }
+
                     return;
                 }
             }
@@ -210,7 +219,7 @@ public class PlayerMovement : MonoBehaviour
 
         ResetHighlight();
     }
-    
+
     private void ResetHighlight()
     {
         if (lastHighlightedVictim != null)
@@ -231,12 +240,21 @@ public class PlayerMovement : MonoBehaviour
     }
 
     #endregion
+
+    private void CursorVisibility()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Cursor.visible = !Cursor.visible;
+            CursorLockMode mode = Cursor.visible ? CursorLockMode.Locked : CursorLockMode.None;
+        }
+    }
     
     public void SetRole(string newRole)
     {
         role = newRole;
     }
-    
+
     // Imitation animations' triggers
     private IEnumerator SetAnimatorBool(string nameOfAnimation)
     {
@@ -244,5 +262,111 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.2f);
         animator.SetBool(nameOfAnimation, false);
     }
-    
+
+    // Trap system
+    private void OnTriggerEnter(Collider other)
+    {
+        if (role == "murder" && other.CompareTag("Trap"))
+        {
+            int viewId = GetComponent<PhotonView>().ViewID;
+            photonView.RPC("TakeDamage", RpcTarget.AllBuffered, viewId, damage);
+            StunMurder();
+        }
+    }
+
+    private void StunMurder()
+    {
+        Debug.Log($"{gameObject.name} stunned.");
+        StartCoroutine(Stun(7f));
+    }
+
+    private IEnumerator Stun(float seconds)
+    {
+        speed = 0f;
+        animator.enabled = false;
+        yield return new WaitForSeconds(seconds);
+        speed = defaultSpeed;
+        animator.enabled = true;
+    }
+
+    [PunRPC]
+    private void PickUpTrap(int trapViewID)
+    {
+        PhotonView trapView = PhotonView.Find(trapViewID);
+        if (trapView == null) return;
+        GameObject trapObject = trapView.gameObject;
+
+        if (!trapView.IsMine)
+        {
+            trapView.TransferOwnership(PhotonNetwork.LocalPlayer);
+            StartCoroutine(WaitForOwnershipAndDestroy(trapView));
+        }
+        else
+        {
+            HandleTrapPickup();
+            PhotonNetwork.Destroy(trapObject);
+        }
+    }
+
+    private IEnumerator WaitForOwnershipAndDestroy(PhotonView trapView)
+    {
+        while (!trapView.IsMine) 
+        {
+            // Wait for 1 frame
+            yield return null;
+        }
+        
+        HandleTrapPickup();
+        PhotonNetwork.Destroy(trapView.gameObject);
+    }
+
+    [PunRPC]
+    private void HandleTrapPickup()
+    {
+        heldTrap = true;
+        trapInHands.SetActive(true);
+        Debug.Log($"Trap picked up by: {PhotonNetwork.LocalPlayer.NickName} | heldTrap = {heldTrap} | trapInHands Active = {trapInHands.activeSelf}");
+    }
+
+    [PunRPC]
+    private void PlaceTrap()
+    {
+        heldTrap = false;
+        trapInHands.SetActive(false);
+        Vector3 trapPosition = transform.position + transform.forward;
+        
+        Quaternion trapRotation = Quaternion.Euler(-90f, 0f, 0f);
+        GameObject newTrap = PhotonNetwork.Instantiate(trapPrefab.name, trapPosition, trapRotation);
+        
+        Debug.Log($"{name} placed trap {trapPosition}: {newTrap.name}");
+    }
+
+    private void HandleTrap()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, distanceTrap))
+        {
+            if (hit.collider.CompareTag("Trap"))
+            {
+                if (Input.GetKeyDown(KeyCode.F) && !heldTrap)
+                {
+                    PhotonView trapView = hit.collider.GetComponent<PhotonView>();
+                    if (trapView != null)
+                    {
+                        photonView.RPC("PickUpTrap", RpcTarget.AllBuffered, trapView.ViewID);
+                    }
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.G) && heldTrap)
+            {
+                photonView.RPC("PlaceTrap", RpcTarget.MasterClient);
+            }
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * distanceTrap, Color.green);
+        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * attackDistance, Color.blue);
+    }
 }

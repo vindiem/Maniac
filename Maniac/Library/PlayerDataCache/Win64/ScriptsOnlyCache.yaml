@@ -40,10 +40,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -120,55 +118,55 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1540}
+      Script: {instanceID: 1544}
     - Class: 114
-      Script: {instanceID: 1548}
+      Script: {instanceID: 1552}
     - Class: 114
-      Script: {instanceID: 1596}
+      Script: {instanceID: 1576}
     - Class: 114
-      Script: {instanceID: 1640}
+      Script: {instanceID: 1602}
     - Class: 114
-      Script: {instanceID: 1794}
+      Script: {instanceID: 1646}
     - Class: 114
-      Script: {instanceID: 2266}
+      Script: {instanceID: 1800}
     - Class: 114
-      Script: {instanceID: 2618}
+      Script: {instanceID: 2272}
     - Class: 114
-      Script: {instanceID: 2890}
+      Script: {instanceID: 2624}
     - Class: 114
-      Script: {instanceID: 2990}
+      Script: {instanceID: 2896}
     - Class: 114
-      Script: {instanceID: 3114}
+      Script: {instanceID: 2996}
     - Class: 114
-      Script: {instanceID: 3944}
+      Script: {instanceID: 3120}
     - Class: 114
       Script: {instanceID: 3950}
     - Class: 114
-      Script: {instanceID: 4114}
+      Script: {instanceID: 3956}
     - Class: 114
-      Script: {instanceID: 4534}
+      Script: {instanceID: 4120}
     - Class: 114
-      Script: {instanceID: 5190}
+      Script: {instanceID: 4540}
     - Class: 114
-      Script: {instanceID: 5206}
+      Script: {instanceID: 5196}
     - Class: 114
-      Script: {instanceID: 5620}
+      Script: {instanceID: 5212}
     - Class: 114
-      Script: {instanceID: 5662}
+      Script: {instanceID: 5626}
     - Class: 114
-      Script: {instanceID: 6356}
+      Script: {instanceID: 5668}
     - Class: 114
-      Script: {instanceID: 6954}
+      Script: {instanceID: 6362}
     - Class: 114
-      Script: {instanceID: 7472}
+      Script: {instanceID: 6960}
     - Class: 114
-      Script: {instanceID: 7828}
+      Script: {instanceID: 7478}
     - Class: 114
-      Script: {instanceID: 7954}
+      Script: {instanceID: 7834}
     - Class: 114
-      Script: {instanceID: 8252}
+      Script: {instanceID: 7960}
     - Class: 114
-      Script: {instanceID: 191462}
+      Script: {instanceID: 8258}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -246,6 +244,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.UIElements
     className: PanelRaycaster
+  - hash:
+      serializedVersion: 2
+      Hash: a8e3571aa4f5e95dad37cd05688ab442
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: Outline
   - hash:
       serializedVersion: 2
       Hash: dd9dda1dfd39e605c49e72003342ef5d
@@ -392,7 +396,7 @@ ScriptsOnlyBuild:
     className: UnityOnPointerUpMessageListener
   - hash:
       serializedVersion: 2
-      Hash: e2b57172d2368365fed27aa494912017
+      Hash: 50dbce4d20a8b0524d6a73110936094c
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: PlayerSetup
@@ -602,7 +606,7 @@ ScriptsOnlyBuild:
     className: TestResultRendererCallback
   - hash:
       serializedVersion: 2
-      Hash: de97c8b2eecbd8e356b9e53fbfab37ae
+      Hash: f3bd055f98602f82f9158b7e4f2b7edb
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: PlayerMovement
@@ -1938,12 +1942,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
-  - hash:
-      serializedVersion: 2
-      Hash: a8e3571aa4f5e95dad37cd05688ab442
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: Outline
   platform: 19
   scenePathNames:
   - Assets/Scenes/Level1.unity
