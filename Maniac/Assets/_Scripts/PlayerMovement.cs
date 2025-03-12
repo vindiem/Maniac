@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     [Space(10)] [Header("UI variables")] 
     [SerializeField] private Text healthText;
     [SerializeField] private Text roleText;
+    [SerializeField] private Text heldTrapText;
 
     [Space(10)] [Header("Attack and take damage variables")] 
     [HideInInspector] public float health = 100;
@@ -40,9 +41,9 @@ public class PlayerMovement : MonoBehaviour
     private Transform lastHighlightedVictim = null;
 
     [Space(10)] [Header("Trap system variables")]
-    private bool heldTrap = false;
     [SerializeField] private GameObject trapInHands;
     [SerializeField] private GameObject trapPrefab;
+    private bool heldTrap = false;
     private float distanceTrap = 3f;
 
     private void Start()
@@ -77,6 +78,8 @@ public class PlayerMovement : MonoBehaviour
     {
         healthText.text = $"Health: {health}";
         roleText.text = $"Role: {role}";
+        if (role == "murder") heldTrapText.text = "Murders can't held traps";
+        else if (role == "victim") heldTrapText.text = $"Held Trap: {heldTrap}";
     }
 
     private void HandleAttack()
@@ -188,7 +191,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Outline's functions
-
     #region Region
 
     private void HighlightVictim()
@@ -198,7 +200,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (hit.collider.CompareTag("Player") && hit.collider.gameObject != gameObject)
             {
-                Debug.Log($"{hit.collider.name}, >> {hit.collider}, {hit.collider.gameObject.name}");
+                //Debug.Log($"{hit.collider.name}, >> {hit.collider}, {hit.collider.gameObject.name}");
 
                 Transform targetPlayer = hit.collider.transform;
                 float distanceToTarget = Vector3.Distance(transform.position, targetPlayer.position);
@@ -247,6 +249,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Cursor.visible = !Cursor.visible;
             CursorLockMode mode = Cursor.visible ? CursorLockMode.Locked : CursorLockMode.None;
+            Cursor.lockState = mode;
         }
     }
     
@@ -263,7 +266,7 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool(nameOfAnimation, false);
     }
 
-    // Trap system
+    // FUCKING Trap system
     private void OnTriggerEnter(Collider other)
     {
         if (role == "murder" && other.CompareTag("Trap"))
@@ -292,40 +295,65 @@ public class PlayerMovement : MonoBehaviour
     [PunRPC]
     private void PickUpTrap(int trapViewID)
     {
-        PhotonView trapView = PhotonView.Find(trapViewID);
-        if (trapView == null) return;
-        GameObject trapObject = trapView.gameObject;
-
-        if (!trapView.IsMine)
-        {
-            trapView.TransferOwnership(PhotonNetwork.LocalPlayer);
-            StartCoroutine(WaitForOwnershipAndDestroy(trapView));
-        }
-        else
-        {
-            HandleTrapPickup();
-            PhotonNetwork.Destroy(trapObject);
-        }
-    }
-
-    private IEnumerator WaitForOwnershipAndDestroy(PhotonView trapView)
-    {
-        while (!trapView.IsMine) 
-        {
-            // Wait for 1 frame
-            yield return null;
-        }
-        
-        HandleTrapPickup();
-        PhotonNetwork.Destroy(trapView.gameObject);
-    }
-
-    [PunRPC]
-    private void HandleTrapPickup()
-    {
         heldTrap = true;
         trapInHands.SetActive(true);
-        Debug.Log($"Trap picked up by: {PhotonNetwork.LocalPlayer.NickName} | heldTrap = {heldTrap} | trapInHands Active = {trapInHands.activeSelf}");
+        
+        Debug.Log($"{PhotonNetwork.NickName} received RPC. ViewID: {trapViewID}");
+
+        PhotonView trapView = PhotonView.Find(trapViewID);
+        if (trapView == null)
+        {
+            Debug.LogWarning($"{PhotonNetwork.NickName} didn't find object with ViewID: {trapViewID}");
+            return;
+        }
+        
+        if (trapView.IsRoomView)
+        {
+            Debug.LogWarning($"Trap {trapView.ViewID} belongs to the scene. Requesting MasterClient to take ownership.");
+            if (PhotonNetwork.IsMasterClient)
+                trapView.TransferOwnership(PhotonNetwork.LocalPlayer);
+            else
+            {
+                photonView.RPC("RequestOwnership", RpcTarget.MasterClient, trapView.ViewID);
+                return;
+            }
+        }
+        else
+            trapView.TransferOwnership(PhotonNetwork.LocalPlayer);
+        
+        StartCoroutine(DestroyAfterOwnership(trapView));
+    }
+    
+    [PunRPC]
+    private void RequestOwnership(int trapViewID)
+    {
+        PhotonView trapView = PhotonView.Find(trapViewID);
+        if (trapView != null && PhotonNetwork.IsMasterClient) 
+            trapView.TransferOwnership(PhotonNetwork.LocalPlayer);
+    }
+    
+    private IEnumerator DestroyAfterOwnership(PhotonView trapView)
+    {
+        int attempts = 10;
+        while (!trapView.IsMine && attempts > 0)
+        {
+            Debug.Log($"Waiting for ownership of trap {trapView.ViewID}... Attempts left: {attempts}");
+            attempts--;
+            yield return new WaitForSeconds(0.2f);
+        }
+
+        Debug.Log($"{PhotonNetwork.NickName} now owns the trap {trapView.ViewID}. Destroying...");
+        if (trapView.IsMine || PhotonNetwork.IsMasterClient)
+        {
+            //PhotonNetwork.Destroy(trapView.gameObject);
+            if (trapView != null && trapView.gameObject != null)
+                PhotonNetwork.Destroy(trapView.gameObject);
+            else
+                Debug.LogWarning("Trap already destroyed or null.");
+        }
+        else
+            Debug.LogWarning($"{PhotonNetwork.NickName} is not the owner and cannot destroy trap {trapView.ViewID}.");
+        
     }
 
     [PunRPC]
@@ -333,12 +361,34 @@ public class PlayerMovement : MonoBehaviour
     {
         heldTrap = false;
         trapInHands.SetActive(false);
-        Vector3 trapPosition = transform.position + transform.forward;
-        
-        Quaternion trapRotation = Quaternion.Euler(-90f, 0f, 0f);
-        GameObject newTrap = PhotonNetwork.Instantiate(trapPrefab.name, trapPosition, trapRotation);
-        
-        Debug.Log($"{name} placed trap {trapPosition}: {newTrap.name}");
+
+        if (PhotonNetwork.IsMasterClient)
+        {
+            Vector3 trapPosition = transform.position + transform.forward;
+            Quaternion trapRotation = Quaternion.Euler(-90f, 0f, 0f);
+
+            GameObject newTrap = PhotonNetwork.Instantiate(trapPrefab.name, trapPosition, trapRotation);
+            PhotonView newTrapView = newTrap.GetComponent<PhotonView>();
+
+            Debug.Log($"MasterClient placed trap {newTrapView.ViewID} at {trapPosition}");
+
+            // Massage all players, that trap has been created
+            if (newTrapView != null)
+                photonView.RPC("SyncTrap", RpcTarget.OthersBuffered,
+                    newTrapView.ViewID, trapPosition);
+        }
+    }
+    
+    [PunRPC]
+    private void SyncTrap(int trapViewID, Vector3 position)
+    {
+        PhotonView trapView = PhotonView.Find(trapViewID);
+        if (trapView != null)
+        {
+            trapView.transform.position = position;
+            trapView.gameObject.SetActive(true);
+            Debug.Log($"Synced trap {trapViewID} at {position}");
+        }
     }
 
     private void HandleTrap()
@@ -353,20 +403,22 @@ public class PlayerMovement : MonoBehaviour
                     PhotonView trapView = hit.collider.GetComponent<PhotonView>();
                     if (trapView != null)
                     {
-                        photonView.RPC("PickUpTrap", RpcTarget.AllBuffered, trapView.ViewID);
+                        photonView.RPC("PickUpTrap", RpcTarget.All, trapView.ViewID);
                     }
                 }
             }
             else if (Input.GetKeyDown(KeyCode.G) && heldTrap)
             {
-                photonView.RPC("PlaceTrap", RpcTarget.MasterClient);
+                photonView.RPC("PlaceTrap", RpcTarget.AllBuffered);
             }
         }
     }
 
+    // Draw gizmos
     private void OnDrawGizmosSelected()
     {
         Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * distanceTrap, Color.green);
         Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * attackDistance, Color.blue);
     }
+    
 }

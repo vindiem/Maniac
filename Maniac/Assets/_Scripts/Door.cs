@@ -35,7 +35,8 @@ public class Door : MonoBehaviourPun
 
         float distanceToPlayer = Vector3.Distance(transform.position, nearestPlayer.position);
 
-        if (Input.GetKeyDown(KeyCode.E) && distanceToPlayer <= activationDistance && !isMoving)
+        if (Input.GetKeyDown(KeyCode.E) && distanceToPlayer <= activationDistance 
+                                        && !isMoving && objectRenderer.material.color == Color.green)
         {
             photonView.RPC("ToggleDoor", RpcTarget.AllBuffered, !isOpen);
         }

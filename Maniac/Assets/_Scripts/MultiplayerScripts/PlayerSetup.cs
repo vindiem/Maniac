@@ -14,14 +14,14 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
     [Header("Player skins & ui")]
     [SerializeField] private GameObject[] skins;
     [SerializeField] private Text roleText;
-    private string role = "victim";
+    private string _role = "victim";
     
-    private PhotonView photonView;
+    private PhotonView _photonView;
     [SerializeField] private GameObject trapInHands;
         
     private void Awake()
     {
-        photonView = GetComponent<PhotonView>();
+        _photonView = GetComponent<PhotonView>();
         
         // Disable all sets
         playerMovement.enabled = false;
@@ -32,7 +32,7 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
 
     public void SetupLocalPlayer()
     {
-        if (!photonView.IsMine) return;
+        if (!_photonView.IsMine) return;
 
         playerMovement.enabled = true;
         playerCamera.SetActive(true);
@@ -43,11 +43,11 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
     
     public void SetRoleAndSkin(string newRole)
     {
-        role = newRole;
+        _role = newRole;
         playerMovement.SetRole(newRole);
-        Debug.Log($"{role.ToUpper()} set to new player");
+        Debug.Log($"{_role.ToUpper()} set to new player");
         
-        if (roleText != null) roleText.text = $"Role: {role}";
+        if (roleText != null) roleText.text = $"Role: {_role}";
         else Debug.LogWarning("RoleText is not assigned!");
 
         if (skins == null || skins.Length == 0)
@@ -56,8 +56,8 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
             return;
         }
 
-        int randomSkin = (role == "victim") ? Random.Range(0, 3) : Random.Range(4, skins.Length);
-        photonView.RPC("SetSkin_RPC", RpcTarget.AllBuffered, randomSkin);
+        int randomSkin = (_role == "victim") ? Random.Range(0, 3) : Random.Range(4, skins.Length);
+        _photonView.RPC("SetSkin_RPC", RpcTarget.AllBuffered, randomSkin);
     }
     
     [PunRPC]
