@@ -5004,6 +5004,7 @@ GameObject:
   - component: {fileID: 8729054283821255311}
   - component: {fileID: 1920791655927927025}
   - component: {fileID: 2180791541392314132}
+  - component: {fileID: 7901842682900494895}
   - component: {fileID: 8430431883458647491}
   - component: {fileID: 7958467671958910153}
   m_Layer: 0
@@ -5084,7 +5085,6 @@ MonoBehaviour:
   roleText: {fileID: 9145772095814037280}
   heldTrapText: {fileID: 19578218818627267}
   health: 100
-  role: victim
   trapInHands: {fileID: 3398377395680164713}
   trapPrefab: {fileID: 6867218042283104507, guid: 36a82bdcb85538442982f46a4cf378f6, type: 3}
 --- !u!114 &2180791541392314132
@@ -5112,6 +5112,18 @@ MonoBehaviour:
   - {fileID: 8011953503599250058}
   roleText: {fileID: 9145772095814037280}
   trapInHands: {fileID: 3398377395680164713}
+--- !u!114 &7901842682900494895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2074534809792860959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 014cd7fda96d4f5fbc12b3a8331b035e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8430431883458647491
 MonoBehaviour:
   m_ObjectHideFlags: 0

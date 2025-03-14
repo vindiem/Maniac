@@ -2,14 +2,16 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp:
     - Outline
-    - PlayerMovement
-    - PlayerSetup
+    - _Scripts.MultiplayerScripts.PlayerSetup
+    - _Scripts.PlayerScripts.PlayerMovement
+    - _Scripts.PlayerScripts.PlayerRole
     Assembly-CSharp.dll:
     - Door
     - Outline
-    - PlayerMovement
-    - PlayerSetup
     - RoomManager
+    - _Scripts.MultiplayerScripts.PlayerSetup
+    - _Scripts.PlayerScripts.PlayerMovement
+    - _Scripts.PlayerScripts.PlayerRole
     PhotonUnityNetworking:
     - Photon.Pun.PhotonAnimatorView
     - Photon.Pun.PhotonRigidbodyView
@@ -40,10 +42,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -122,15 +122,15 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1544}
     - Class: 114
-      Script: {instanceID: 1552}
+      Script: {instanceID: 1574}
     - Class: 114
-      Script: {instanceID: 1576}
+      Script: {instanceID: 1600}
     - Class: 114
-      Script: {instanceID: 1602}
+      Script: {instanceID: 1644}
     - Class: 114
-      Script: {instanceID: 1646}
+      Script: {instanceID: 1798}
     - Class: 114
-      Script: {instanceID: 1800}
+      Script: {instanceID: 1970}
     - Class: 114
       Script: {instanceID: 2272}
     - Class: 114
@@ -158,17 +158,19 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 5668}
     - Class: 114
-      Script: {instanceID: 6362}
+      Script: {instanceID: 5864}
     - Class: 114
-      Script: {instanceID: 6960}
+      Script: {instanceID: 6364}
     - Class: 114
-      Script: {instanceID: 7478}
+      Script: {instanceID: 6962}
     - Class: 114
-      Script: {instanceID: 7834}
+      Script: {instanceID: 7480}
     - Class: 114
-      Script: {instanceID: 7960}
+      Script: {instanceID: 7836}
     - Class: 114
-      Script: {instanceID: 8258}
+      Script: {instanceID: 7962}
+    - Class: 114
+      Script: {instanceID: 8260}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -228,12 +230,6 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.UI
     className: HorizontalLayoutGroup
-  - hash:
-      serializedVersion: 2
-      Hash: 540882762544409cc4530e60db00e951
-    assemblyName: UnityEngine.UI
-    namespaceName: UnityEngine.UI
-    className: CanvasScaler
   - hash:
       serializedVersion: 2
       Hash: e5ced545fd8a42a1f50e04211216ab80
@@ -356,6 +352,12 @@ ScriptsOnlyBuild:
     className: CurrentRoomIsVisibleProperty
   - hash:
       serializedVersion: 2
+      Hash: 1a3079046b2af8c9f568861d4383cc96
+    assemblyName: Assembly-CSharp
+    namespaceName: _Scripts.PlayerScripts
+    className: PlayerRole
+  - hash:
+      serializedVersion: 2
       Hash: 5e82999b234bc0d078492d7332ef3cfd
     assemblyName: PhotonUnityNetworking.Demos
     namespaceName: Photon.Pun.Demo.Cockpit
@@ -398,9 +400,9 @@ ScriptsOnlyBuild:
     className: UnityOnPointerUpMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 50dbce4d20a8b0524d6a73110936094c
+      Hash: 8625d791e98b28bae38ea7ce07d734ff
     assemblyName: Assembly-CSharp
-    namespaceName: 
+    namespaceName: _Scripts.MultiplayerScripts
     className: PlayerSetup
   - hash:
       serializedVersion: 2
@@ -608,9 +610,9 @@ ScriptsOnlyBuild:
     className: TestResultRendererCallback
   - hash:
       serializedVersion: 2
-      Hash: 6a4a5ce6bd9a1d3259285001cd8eb4d3
+      Hash: 382ca6f0e30756e5fd9cd3db8c3c8c31
     assemblyName: Assembly-CSharp
-    namespaceName: 
+    namespaceName: _Scripts.PlayerScripts
     className: PlayerMovement
   - hash:
       serializedVersion: 2
@@ -1338,6 +1340,12 @@ ScriptsOnlyBuild:
     assemblyName: PhotonUnityNetworking.Demos
     namespaceName: Photon.Pun.Demo.Cockpit
     className: InfosPanelPlaceholder
+  - hash:
+      serializedVersion: 2
+      Hash: 540882762544409cc4530e60db00e951
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.UI
+    className: CanvasScaler
   - hash:
       serializedVersion: 2
       Hash: ef38c1407dba8c1f5d69f5db61a694fe

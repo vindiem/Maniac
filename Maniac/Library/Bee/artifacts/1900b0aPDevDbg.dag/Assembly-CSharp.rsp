@@ -340,7 +340,8 @@
 "Assets/_Scripts/LootManager.cs"
 "Assets/_Scripts/MultiplayerScripts/PlayerSetup.cs"
 "Assets/_Scripts/MultiplayerScripts/RoomManager.cs"
-"Assets/_Scripts/PlayerMovement.cs"
+"Assets/_Scripts/PlayerScripts/PlayerMovement.cs"
+"Assets/_Scripts/PlayerScripts/PlayerRole.cs"
 -langversion:9.0
 /deterministic
 /optimize-
