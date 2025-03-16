@@ -11,6 +11,7 @@ namespace _Scripts.MultiplayerScripts
         [Header("Player Setup")]
         [SerializeField] private 
             _Scripts.PlayerScripts.PlayerMovement playerMovement;
+        [SerializeField] private MonoBehaviour[] disableOnSetup;
         [SerializeField] private GameObject playerCamera;
         [SerializeField] private GameObject playerCanvas;
     
@@ -34,6 +35,11 @@ namespace _Scripts.MultiplayerScripts
             playerCamera.SetActive(false);
             playerCanvas.SetActive(false);
             trapInHands.SetActive(false);
+
+            foreach (MonoBehaviour t in disableOnSetup)
+            {
+                t.enabled = false;
+            }
         }
 
         public void SetupLocalPlayer()
@@ -43,11 +49,22 @@ namespace _Scripts.MultiplayerScripts
             playerMovement.enabled = true;
             playerCamera.SetActive(true);
             playerCanvas.SetActive(true);
+            
+            foreach (MonoBehaviour t in disableOnSetup)
+            {
+                t.enabled = true;
+            }
 
             FindPlayersAndSetRole();
         }
-    
-        public void SetRoleAndSkin(PlayerRoleEnum newRole)
+        
+        private void FindPlayersAndSetRole()
+        {
+            int playerCount = PhotonNetwork.PlayerList.Length;
+            SetRoleAndSkin(playerCount > 1 ? PlayerRoleEnum.Victim : PlayerRoleEnum.Murder);
+        }
+
+        private void SetRoleAndSkin(PlayerRoleEnum newRole)
         {
             playerRole.SetRole(newRole);
             Debug.Log($"{playerRole.GetRole()} set to new player");
@@ -74,10 +91,5 @@ namespace _Scripts.MultiplayerScripts
             skins[skinIndex].SetActive(true);
         }
     
-        private void FindPlayersAndSetRole()
-        {
-            int playerCount = PhotonNetwork.PlayerList.Length;
-            SetRoleAndSkin(playerCount > 1 ? PlayerRoleEnum.Victim : PlayerRoleEnum.Murder);
-        }
     }
 }

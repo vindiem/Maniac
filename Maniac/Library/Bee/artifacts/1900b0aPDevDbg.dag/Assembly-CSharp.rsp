@@ -341,7 +341,10 @@
 "Assets/_Scripts/MultiplayerScripts/PlayerSetup.cs"
 "Assets/_Scripts/MultiplayerScripts/RoomManager.cs"
 "Assets/_Scripts/PlayerScripts/PlayerMovement.cs"
+"Assets/_Scripts/PlayerScripts/PlayerOutlineSystem.cs"
 "Assets/_Scripts/PlayerScripts/PlayerRole.cs"
+"Assets/_Scripts/PlayerScripts/PlayerTrapSystem.cs"
+"Assets/_Scripts/PlayerScripts/PlayerUIUpdate.cs"
 -langversion:9.0
 /deterministic
 /optimize-
