@@ -1,5 +1,6 @@
 using _Scripts.PlayerScripts;
 using Photon.Pun;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -24,6 +25,7 @@ namespace _Scripts.MultiplayerScripts
         
         private PhotonView _photonView;
         [SerializeField] private GameObject trapInHands;
+        private string nickname;
         
         private void Awake()
         {
@@ -90,6 +92,13 @@ namespace _Scripts.MultiplayerScripts
         
             skins[skinIndex].SetActive(true);
         }
-    
+
+        [PunRPC]
+        public void SetNickname_RPC(string nickname)
+        {
+            this.nickname = nickname;
+            gameObject.GetComponentInChildren<TextMeshPro>().text = nickname;
+        }
+        
     }
 }

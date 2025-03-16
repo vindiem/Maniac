@@ -12,6 +12,8 @@ namespace _Scripts.PlayerScripts
     [RequireComponent(typeof(PlayerRole))]
     public class PlayerMovement : MonoBehaviour
     {
+        private static readonly int IsRunning = Animator.StringToHash("isRunning");
+        private static readonly int IsCrouching = Animator.StringToHash("isCrouching");
         private PhotonView photonView;
 
         [Header("Movement variables")] 
@@ -21,7 +23,6 @@ namespace _Scripts.PlayerScripts
         [SerializeField] private float mouseSensitivity = 100f;
 
         // Movement variables
-        private float defaultSpeed = 5f;
         private CharacterController controller;
         private Vector3 velocity;
         private bool isGrounded;
@@ -59,7 +60,6 @@ namespace _Scripts.PlayerScripts
             
             Cursor.lockState = CursorLockMode.Locked;
             defaultCharacterHeight = controller.height;
-            defaultSpeed = speed;
 
         }
 
@@ -145,7 +145,7 @@ namespace _Scripts.PlayerScripts
             Vector3 move = transform.right * moveX + transform.forward * moveZ;
             controller.Move(move * speed * Time.deltaTime);
 
-            animator.SetBool("isRunning", move.magnitude > 0.1f);
+            animator.SetBool(IsRunning, move.magnitude > 0.1f);
         }
 
         private void HandleJump()
@@ -181,7 +181,7 @@ namespace _Scripts.PlayerScripts
 
         private void SetCrouchState(bool isCrouching)
         {
-            animator.SetBool("isCrouching", isCrouching);
+            animator.SetBool(IsCrouching, isCrouching);
             controller.height = isCrouching ? 1.0f : defaultCharacterHeight;
             controller.center = isCrouching ? controller.center / 2.0f : controller.center * 2.0f;
             speed *= isCrouching ? 0.4f : 2.5f; 
@@ -217,17 +217,22 @@ namespace _Scripts.PlayerScripts
 
         private void StunMurder()
         {
-            Debug.Log($"{gameObject.name} stunned.");
+            Debug.Log($"{gameObject.name} (murder) stunned.");
             StartCoroutine(Stun(7f));
         }
 
         private IEnumerator Stun(float seconds)
         {
-            speed = 0f;
             animator.enabled = false;
+            float defaultJumpHeight = jumpHeight;
+            float defaultSpeed = speed;
+            jumpHeight = 0f;
+            speed = 0f;
             yield return new WaitForSeconds(seconds);
-            speed = defaultSpeed;
+            
             animator.enabled = true;
+            jumpHeight = defaultJumpHeight;
+            speed = defaultSpeed;
         }
         
     }

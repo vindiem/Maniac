@@ -122,6 +122,7 @@
 -define:PUN_2_0_OR_NEWER
 -define:PUN_2_OR_NEWER
 -define:PUN_2_19_OR_NEWER
+-define:UNITY_POST_PROCESSING_STACK_V2
 -define:CSHARP_7_OR_LATER
 -define:CSHARP_7_3_OR_NEWER
 -r:"Assets/Photon/PhotonLibs/netstandard2.0/Photon3Unity3D.dll"
@@ -346,6 +347,8 @@
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/Unity.EditorCoroutines.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/Unity.Performance.Profile-Analyzer.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/Unity.PlasticSCM.Editor.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aEDbg.dag/Unity.Postprocessing.Editor.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aEDbg.dag/Unity.Postprocessing.Runtime.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/Unity.Rider.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection.ref.dll"
@@ -382,7 +385,6 @@
 "Assets/Photon/PhotonChat/Demos/DemoChat/NamePickGui.cs"
 "Assets/Photon/PhotonRealtime/Demos/DemoLoadBalancing/ConnectAndJoinRandomLb.cs"
 "Assets/_Scripts/Door.cs"
-"Assets/_Scripts/LootManager.cs"
 "Assets/_Scripts/MultiplayerScripts/PlayerSetup.cs"
 "Assets/_Scripts/MultiplayerScripts/RoomManager.cs"
 "Assets/_Scripts/PlayerScripts/PlayerMovement.cs"
@@ -390,6 +392,7 @@
 "Assets/_Scripts/PlayerScripts/PlayerRole.cs"
 "Assets/_Scripts/PlayerScripts/PlayerTrapSystem.cs"
 "Assets/_Scripts/PlayerScripts/PlayerUIUpdate.cs"
+"Assets/_Scripts/ScenesManager.cs"
 -langversion:9.0
 /deterministic
 /optimize-

@@ -59,6 +59,8 @@ MonoBehaviour:
   - RequestOwnership
   - SyncTrapPosition
   - SyncTrap
+  - SpawnTraps
+  - SetNickname_RPC
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
