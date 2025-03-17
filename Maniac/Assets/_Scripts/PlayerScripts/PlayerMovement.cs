@@ -58,7 +58,7 @@ namespace _Scripts.PlayerScripts
             playerTrapSystem = GetComponent<PlayerTrapSystem>();
             playerOutlineSystem = GetComponent<PlayerOutlineSystem>();
             
-            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.lockState = CursorLockMode.None;
             defaultCharacterHeight = controller.height;
 
         }
@@ -81,7 +81,9 @@ namespace _Scripts.PlayerScripts
             playerUIUpdate.UpdateUI(health, playerRole, playerTrapSystem.GetTrapInHandsBool());
             if (playerRole.GetRole() == PlayerRoleEnum.Victim) 
                 playerTrapSystem.HandleTrap();
-
+            
+            CursorVisibility();
+            
         }
 
         private void HandleAttack()
@@ -193,6 +195,15 @@ namespace _Scripts.PlayerScripts
             Debug.Log($"{name} died.");
             gameObject.SetActive(false);
         }
+
+        private void CursorVisibility()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Cursor.lockState = Cursor.lockState == CursorLockMode.Locked ? 
+                    CursorLockMode.None : CursorLockMode.Locked;
+            }
+        }
         
         // Animations' triggers helper
         private IEnumerator SetAnimatorBool(string nameOfAnimation)
@@ -210,7 +221,7 @@ namespace _Scripts.PlayerScripts
             if (playerRole.GetRole() == PlayerRoleEnum.Murder && other.CompareTag("Trap"))
             {
                 int viewId = GetComponent<PhotonView>().ViewID;
-                photonView.RPC("TakeDamage", RpcTarget.AllBuffered, viewId, damage);
+                photonView.RPC("TakeDamage", RpcTarget.AllBuffered, viewId, damage / 3);
                 StunMurder();
             }
         }

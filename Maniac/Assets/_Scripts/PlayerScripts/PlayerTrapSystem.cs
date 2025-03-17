@@ -156,11 +156,11 @@ namespace _Scripts.PlayerScripts
         public bool GetTrapInHandsBool() => heldTrap;
         
         // Draw gizmos
-        private void OnDrawGizmosSelected() 
+        /*private void OnDrawGizmosSelected() 
         {
             Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * distanceTrap, Color.green); 
             Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * playerMovement.attackDistance, Color.blue);
-        }
+        }*/
 
     }
 }
