@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,10 +11,18 @@ public class PlayerUIUpdate : MonoBehaviour
     [SerializeField] private Text roleText;
     //[SerializeField] private Text heldTrapText;
     [SerializeField] private Image holdTrapImage;
-    [SerializeField] private Text helpText;
+    [SerializeField] private GameObject helpText;
     [SerializeField] private Image roleImage;
     [SerializeField] private Image healthBarImage;
-    
+        
+    // Light
+    private Light lightSource;
+
+    private void Start()
+    {
+        lightSource = GetComponentInChildren<Light>();
+    }
+
     public void UpdateUI(float health, _Scripts.PlayerScripts.PlayerRole playerRole, bool heldTrap)
     {
         healthText.text = $"{health}";
@@ -30,6 +39,14 @@ public class PlayerUIUpdate : MonoBehaviour
             if (heldTrap) holdTrapImage.color = Color.green;
             else holdTrapImage.color = Color.grey;
             roleImage.color = Color.green;
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            lightSource.enabled = !lightSource.enabled;
+            
+            // Making sound
+            SoundManager.instance.PlayLightSound();
         }
     }
     

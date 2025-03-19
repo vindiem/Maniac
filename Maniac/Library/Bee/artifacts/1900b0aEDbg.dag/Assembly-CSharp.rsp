@@ -390,12 +390,14 @@
 "Assets/_Scripts/Door.cs"
 "Assets/_Scripts/MultiplayerScripts/PlayerSetup.cs"
 "Assets/_Scripts/MultiplayerScripts/RoomManager.cs"
+"Assets/_Scripts/PlayerScripts/GhostFreeMovement.cs"
 "Assets/_Scripts/PlayerScripts/PlayerMovement.cs"
 "Assets/_Scripts/PlayerScripts/PlayerOutlineSystem.cs"
 "Assets/_Scripts/PlayerScripts/PlayerRole.cs"
 "Assets/_Scripts/PlayerScripts/PlayerTrapSystem.cs"
 "Assets/_Scripts/PlayerScripts/PlayerUIUpdate.cs"
 "Assets/_Scripts/ScenesManager.cs"
+"Assets/_Scripts/SoundManager.cs"
 -langversion:9.0
 /deterministic
 /optimize-

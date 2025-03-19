@@ -12,7 +12,8 @@ namespace _Scripts.PlayerScripts
         [Header("Trap system variables")] 
         [SerializeField] private GameObject trapInHands;
         [SerializeField] private GameObject trapPrefab;
-        private bool heldTrap = false;
+        private bool holdTrap = false;
+        private bool holdGun = false;
         private float distanceTrap = 3f;
 
         private PlayerMovement playerMovement;
@@ -32,7 +33,7 @@ namespace _Scripts.PlayerScripts
         [PunRPC]
         private void PickUpTrap(int trapViewID)
         {
-            heldTrap = true;
+            holdTrap = true;
             trapInHands.SetActive(true);
 
             Debug.Log($"{PhotonNetwork.NickName} received RPC. ViewID: {trapViewID}");
@@ -98,7 +99,7 @@ namespace _Scripts.PlayerScripts
         [PunRPC]
         private void PlaceTrap()
         {
-            heldTrap = false;
+            holdTrap = false;
             trapInHands.SetActive(false);
 
             if (PhotonNetwork.IsMasterClient)
@@ -137,30 +138,32 @@ namespace _Scripts.PlayerScripts
             {
                 if (hit.collider.CompareTag("Trap"))
                 {
-                    if (Input.GetKeyDown(KeyCode.F) && !heldTrap)
+                    if (Input.GetKeyDown(KeyCode.F) && !holdTrap)
                     {
                         PhotonView trapView = hit.collider.GetComponent<PhotonView>();
                         if (trapView != null)
                         {
                             photonView.RPC("PickUpTrap", RpcTarget.All, trapView.ViewID);
+                            
+                            // Making sound
+                            SoundManager.instance.PlayTrapCollectSound();
                         }
                     }
                 }
-                else if (Input.GetKeyDown(KeyCode.G) && heldTrap)
+                else if (Input.GetKeyDown(KeyCode.G) && holdTrap)
                 {
                     photonView.RPC("PlaceTrap", RpcTarget.AllBuffered);
+                    
+                    // Making sound
+                    SoundManager.instance.PlayTrapPlaceSound();
                 }
+                
+                
             }
         }
         
-        public bool GetTrapInHandsBool() => heldTrap;
-        
-        // Draw gizmos
-        /*private void OnDrawGizmosSelected() 
-        {
-            Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * distanceTrap, Color.green); 
-            Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * playerMovement.attackDistance, Color.blue);
-        }*/
+        public bool GetTrapInHandsBool() => holdTrap;
+        public bool GetGunInHandsBool() => holdGun;
 
     }
 }

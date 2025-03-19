@@ -45,6 +45,10 @@ namespace _Scripts.PlayerScripts
         private PlayerUIUpdate playerUIUpdate;
         private PlayerTrapSystem playerTrapSystem;
         private PlayerOutlineSystem playerOutlineSystem;
+        private GhostFreeMovement ghostFreeMovement;
+        
+        // Prefab
+        [SerializeField] private GameObject stateObj;
 
         private void Start()
         {
@@ -57,10 +61,15 @@ namespace _Scripts.PlayerScripts
             playerUIUpdate = GetComponent<PlayerUIUpdate>();
             playerTrapSystem = GetComponent<PlayerTrapSystem>();
             playerOutlineSystem = GetComponent<PlayerOutlineSystem>();
+            ghostFreeMovement = GetComponent<GhostFreeMovement>();
+            
+            defaultCharacterHeight = controller.height;
+            ghostFreeMovement.enabled = false;
             
             Cursor.lockState = CursorLockMode.None;
-            defaultCharacterHeight = controller.height;
-
+            Cursor.lockState = Cursor.lockState == CursorLockMode.Locked ? 
+                CursorLockMode.None : CursorLockMode.Locked;
+            
         }
 
         private void Update()
@@ -117,6 +126,9 @@ namespace _Scripts.PlayerScripts
                         int viewId = targetPlayer.GetComponent<PhotonView>().ViewID;
                         photonView.RPC("TakeDamage", RpcTarget.AllBuffered, viewId, damage);
                     }
+                    
+                    // Making sound
+                    SoundManager.instance.PlayMurderHitSound();
                 }
             }
 
@@ -193,7 +205,47 @@ namespace _Scripts.PlayerScripts
         {
             // Death logic
             Debug.Log($"{name} died.");
-            gameObject.SetActive(false);
+            health = 0f;
+            StartCoroutine(dieIEnumerator());
+        }
+
+        private IEnumerator dieIEnumerator()
+        {
+            StartCoroutine(SetAnimatorBool("Die"));
+            photonView.RPC("RPC_Death", RpcTarget.All);
+            yield return new WaitForSeconds(1f);
+            
+            Transform[] objects = GetComponentsInChildren<Transform>();
+            
+            foreach (Transform obj in objects)
+            {
+                if (obj.gameObject != this.gameObject && !obj.gameObject.CompareTag("MainCamera"))
+                {
+                    obj.gameObject.SetActive(false);
+                }
+            }
+            controller.enabled = false;
+            
+            playerRole.enabled = false;
+            playerUIUpdate.enabled = false;
+            playerTrapSystem.enabled = false;
+            playerOutlineSystem.enabled = false;
+            ghostFreeMovement.enabled = true;
+            
+            cameraTransform.localPosition = new Vector3(0f, 0f, 0f);
+            cameraTransform.transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
+            PlayerMovement playerMovement = GetComponent<PlayerMovement>();
+            playerMovement.enabled = false;
+            
+            PhotonNetwork.Instantiate(stateObj.name, transform.position, Quaternion.identity);
+        }
+        
+        // + death animation
+        [PunRPC]
+        public void RPC_Death()
+        {
+            // Victims' win system or Murder's
+            Debug.Log("DIEED");
         }
 
         private void CursorVisibility()
@@ -223,6 +275,9 @@ namespace _Scripts.PlayerScripts
                 int viewId = GetComponent<PhotonView>().ViewID;
                 photonView.RPC("TakeDamage", RpcTarget.AllBuffered, viewId, damage / 3);
                 StunMurder();
+                
+                // Making sound
+                SoundManager.instance.PlayTrapCloseSound();
             }
         }
 

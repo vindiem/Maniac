@@ -56,6 +56,9 @@ public class Door : MonoBehaviourPun
         isMoving = true;
         Vector3 startRotation = transform.eulerAngles;
         float time = 0f;
+        
+        // Making sound
+        SoundManager.instance.PlayDoorSound();
 
         while (time < 1f)
         {
