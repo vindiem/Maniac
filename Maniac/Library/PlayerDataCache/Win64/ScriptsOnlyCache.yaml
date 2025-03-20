@@ -4,6 +4,7 @@ ScriptsOnlyBuild:
     - GhostFreeMovement
     - Outline
     - PlayerUIUpdate
+    - Weapon
     - _Scripts.MultiplayerScripts.PlayerSetup
     - _Scripts.PlayerScripts.PlayerMovement
     - _Scripts.PlayerScripts.PlayerOutlineSystem
@@ -16,6 +17,7 @@ ScriptsOnlyBuild:
     - PlayerUIUpdate
     - ScenesManager
     - SoundManager
+    - Weapon
     - _Scripts.MultiplayerScripts.PlayerSetup
     - _Scripts.MultiplayerScripts.RoomManager
     - _Scripts.PlayerScripts.PlayerMovement
@@ -66,6 +68,7 @@ ScriptsOnlyBuild:
     - UnityEngine.Rendering.PostProcessing.Vignette
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.RiderScriptEditorData
+    - Packages.Rider.Editor.RiderScriptEditorPersistedState
     - Packages.Rider.Editor.UnitTesting.CallbackData
     Unity.TextMeshPro:
     - TMPro.TMP_FontAsset
@@ -290,17 +293,19 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 6102}
     - Class: 114
-      Script: {instanceID: 6148}
+      Script: {instanceID: 6134}
     - Class: 114
-      Script: {instanceID: 6268}
+      Script: {instanceID: 6150}
     - Class: 114
-      Script: {instanceID: 6604}
+      Script: {instanceID: 6270}
     - Class: 114
-      Script: {instanceID: 6612}
+      Script: {instanceID: 6606}
     - Class: 114
-      Script: {instanceID: 7740}
+      Script: {instanceID: 6614}
     - Class: 114
-      Script: {instanceID: 8128}
+      Script: {instanceID: 7742}
+    - Class: 114
+      Script: {instanceID: 8130}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -417,17 +422,19 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 6102}
     - Class: 114
-      Script: {instanceID: 6148}
+      Script: {instanceID: 6134}
     - Class: 114
-      Script: {instanceID: 6268}
+      Script: {instanceID: 6150}
     - Class: 114
-      Script: {instanceID: 6604}
+      Script: {instanceID: 6270}
     - Class: 114
-      Script: {instanceID: 6612}
+      Script: {instanceID: 6606}
     - Class: 114
-      Script: {instanceID: 7740}
+      Script: {instanceID: 6614}
     - Class: 114
-      Script: {instanceID: 8128}
+      Script: {instanceID: 7742}
+    - Class: 114
+      Script: {instanceID: 8130}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -562,25 +569,27 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 6102}
     - Class: 114
-      Script: {instanceID: 6148}
+      Script: {instanceID: 6134}
     - Class: 114
-      Script: {instanceID: 6188}
+      Script: {instanceID: 6150}
     - Class: 114
-      Script: {instanceID: 6268}
+      Script: {instanceID: 6190}
     - Class: 114
-      Script: {instanceID: 6604}
+      Script: {instanceID: 6270}
     - Class: 114
-      Script: {instanceID: 6612}
+      Script: {instanceID: 6606}
     - Class: 114
-      Script: {instanceID: 7218}
+      Script: {instanceID: 6614}
     - Class: 114
-      Script: {instanceID: 7758}
+      Script: {instanceID: 7220}
     - Class: 114
-      Script: {instanceID: 8128}
+      Script: {instanceID: 7760}
     - Class: 114
-      Script: {instanceID: 8256}
+      Script: {instanceID: 8130}
     - Class: 114
-      Script: {instanceID: 8558}
+      Script: {instanceID: 8258}
+    - Class: 114
+      Script: {instanceID: 8560}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -818,7 +827,7 @@ ScriptsOnlyBuild:
     className: UnityOnPointerUpMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 80d1307a5a50442e702ffb1e23cea5fa
+      Hash: b0d95ba52c3e71edf172fc3278fb0a28
     assemblyName: Assembly-CSharp
     namespaceName: _Scripts.MultiplayerScripts
     className: PlayerSetup
@@ -1040,7 +1049,7 @@ ScriptsOnlyBuild:
     className: TestResultRendererCallback
   - hash:
       serializedVersion: 2
-      Hash: 23b5789b74b59823f5695caf8dd2a451
+      Hash: b453fb416b2ae2b929d323bbdd087a7f
     assemblyName: Assembly-CSharp
     namespaceName: _Scripts.PlayerScripts
     className: PlayerMovement
@@ -1238,7 +1247,7 @@ ScriptsOnlyBuild:
     className: SetRoomCustomPropertyUIForm
   - hash:
       serializedVersion: 2
-      Hash: 8e3a1742a4991d637f882b0f1492fd7c
+      Hash: e15d3e22055e0df222f5b692dba48b7b
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: PlayerUIUpdate
@@ -1850,7 +1859,13 @@ ScriptsOnlyBuild:
     className: CanvasScaler
   - hash:
       serializedVersion: 2
-      Hash: 1a85e8cd39be6928da104157d38ca95e
+      Hash: 7b575d6f1fd3fb08cb1e2e041f1f0d5f
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: Weapon
+  - hash:
+      serializedVersion: 2
+      Hash: a409c1f1e5335379a2b250b3410150f6
     assemblyName: Assembly-CSharp
     namespaceName: _Scripts.PlayerScripts
     className: PlayerTrapSystem
@@ -1862,7 +1877,7 @@ ScriptsOnlyBuild:
     className: AnimatorMessageListener
   - hash:
       serializedVersion: 2
-      Hash: bc0146e6a9112af438b1621b4f6754b1
+      Hash: dd77a292c466cfa558033ecec79bd378
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: SoundManager

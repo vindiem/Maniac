@@ -17,6 +17,7 @@ public class SoundManager : MonoBehaviourPun
     public AudioClip trapCloseSound;
     public AudioClip trapCollectSound;
     public AudioClip trapPlaceSound;
+    public AudioClip shootSound;
 
     private PhotonView photonView;
 
@@ -140,4 +141,17 @@ public class SoundManager : MonoBehaviourPun
     {
         sfxSource.PlayOneShot(trapPlaceSound);
     }
+
+    public void PlayShootSound()
+    {
+        photonView.RPC("RPC_PlayShootSound", RpcTarget.OthersBuffered);
+        sfxSource.PlayOneShot(shootSound);
+    }
+
+    [PunRPC]
+    private void RPC_PlayShootSound()
+    {
+        sfxSource.PlayOneShot(shootSound);
+    }
+    
 }

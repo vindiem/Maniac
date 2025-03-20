@@ -69,6 +69,14 @@ MonoBehaviour:
   - RPC_PlayTrapCollectSound
   - RPC_PlayTrapPlaceSound
   - RPC_Death
+  - PickUpGun
+  - PlaceGun
+  - SyncGun
+  - RPC_PlayShootSound
+  - SwitchToSlot
+  - SetActive
+  - SyncActiveSlot
+  - SyncInventoryState
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

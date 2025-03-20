@@ -25,6 +25,7 @@ namespace _Scripts.MultiplayerScripts
         
         private PhotonView _photonView;
         [SerializeField] private GameObject trapInHands;
+        [SerializeField] private GameObject gunInHands;
         private string nickname;
         
         private void Awake()
@@ -36,7 +37,9 @@ namespace _Scripts.MultiplayerScripts
             playerMovement.enabled = false;
             playerCamera.SetActive(false);
             playerCanvas.SetActive(false);
+            
             trapInHands.SetActive(false);
+            gunInHands.SetActive(false);
 
             foreach (MonoBehaviour t in disableOnSetup)
             {

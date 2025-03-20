@@ -347,6 +347,7 @@
 "Assets/_Scripts/PlayerScripts/PlayerRole.cs"
 "Assets/_Scripts/PlayerScripts/PlayerTrapSystem.cs"
 "Assets/_Scripts/PlayerScripts/PlayerUIUpdate.cs"
+"Assets/_Scripts/PlayerScripts/Weapon.cs"
 "Assets/_Scripts/ScenesManager.cs"
 "Assets/_Scripts/SoundManager.cs"
 -langversion:9.0

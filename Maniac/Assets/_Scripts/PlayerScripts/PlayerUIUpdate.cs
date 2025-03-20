@@ -11,6 +11,7 @@ public class PlayerUIUpdate : MonoBehaviour
     [SerializeField] private Text roleText;
     //[SerializeField] private Text heldTrapText;
     [SerializeField] private Image holdTrapImage;
+    [SerializeField] private Image holdGunImage;
     [SerializeField] private GameObject helpText;
     [SerializeField] private Image roleImage;
     [SerializeField] private Image healthBarImage;
@@ -23,21 +24,23 @@ public class PlayerUIUpdate : MonoBehaviour
         lightSource = GetComponentInChildren<Light>();
     }
 
-    public void UpdateUI(float health, _Scripts.PlayerScripts.PlayerRole playerRole, bool heldTrap)
+    public void UpdateUI(float health, _Scripts.PlayerScripts.PlayerRole playerRole, bool holdTrap, bool holdGun)
     {
         healthText.text = $"{health}";
         healthBarImage.fillAmount = health / 100;
         roleText.text = $"{playerRole.GetRole()}";
+        
         if (playerRole.GetRole() == _Scripts.PlayerScripts.PlayerRoleEnum.Murder)
         {
-            //heldTrapText.text = "Murders can't held traps";
             holdTrapImage.color = Color.grey;
+            holdGunImage.color = Color.grey;
             roleImage.color = Color.red;
         }
         else if (playerRole.GetRole() == _Scripts.PlayerScripts.PlayerRoleEnum.Victim)
         {
-            if (heldTrap) holdTrapImage.color = Color.green;
-            else holdTrapImage.color = Color.grey;
+            holdTrapImage.color = holdTrap ? Color.green : Color.grey;
+            holdGunImage.color = holdGun ? Color.green : Color.grey;
+            
             roleImage.color = Color.green;
         }
 

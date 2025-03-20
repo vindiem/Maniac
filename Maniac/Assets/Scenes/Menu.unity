@@ -972,6 +972,7 @@ MonoBehaviour:
   trapCloseSound: {fileID: 8300000, guid: 297d8db84f9069d41904687ba79ffd33, type: 3}
   trapCollectSound: {fileID: 8300000, guid: 537664aedb56d094dba2f5d2e68392d8, type: 3}
   trapPlaceSound: {fileID: 8300000, guid: 55fa8f2e4fbca3e4bbe712e62ec77de2, type: 3}
+  shootSound: {fileID: 8300000, guid: b4f2f645932bcc44498f4868c91b2951, type: 3}
 --- !u!114 &1052488873
 MonoBehaviour:
   m_ObjectHideFlags: 0

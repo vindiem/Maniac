@@ -87,9 +87,10 @@ namespace _Scripts.PlayerScripts
             
             if (playerRole.GetRole() == PlayerRoleEnum.Murder) 
                 HandleAttack();
-            playerUIUpdate.UpdateUI(health, playerRole, playerTrapSystem.GetTrapInHandsBool());
+            playerUIUpdate.UpdateUI(health, playerRole, 
+                playerTrapSystem.GetTrapInHandsBool(), playerTrapSystem.GetGunInHandsBool());
             if (playerRole.GetRole() == PlayerRoleEnum.Victim) 
-                playerTrapSystem.HandleTrap();
+                playerTrapSystem.HandleInventory();
             
             CursorVisibility();
             
@@ -205,18 +206,17 @@ namespace _Scripts.PlayerScripts
         {
             // Death logic
             Debug.Log($"{name} died.");
-            health = 0f;
-            StartCoroutine(dieIEnumerator());
-        }
-
-        private IEnumerator dieIEnumerator()
-        {
-            StartCoroutine(SetAnimatorBool("Die"));
             photonView.RPC("RPC_Death", RpcTarget.All);
-            yield return new WaitForSeconds(1f);
+        }
+        
+        // + death animation
+        [PunRPC]
+        public void RPC_Death()
+        {
+            // Victims' win system or Murder's
+            Debug.Log("DIEED");
             
             Transform[] objects = GetComponentsInChildren<Transform>();
-            
             foreach (Transform obj in objects)
             {
                 if (obj.gameObject != this.gameObject && !obj.gameObject.CompareTag("MainCamera"))
@@ -238,14 +238,6 @@ namespace _Scripts.PlayerScripts
             playerMovement.enabled = false;
             
             PhotonNetwork.Instantiate(stateObj.name, transform.position, Quaternion.identity);
-        }
-        
-        // + death animation
-        [PunRPC]
-        public void RPC_Death()
-        {
-            // Victims' win system or Murder's
-            Debug.Log("DIEED");
         }
 
         private void CursorVisibility()
@@ -281,7 +273,7 @@ namespace _Scripts.PlayerScripts
             }
         }
 
-        private void StunMurder()
+        public void StunMurder()
         {
             Debug.Log($"{gameObject.name} (murder) stunned.");
             StartCoroutine(Stun(7f));
