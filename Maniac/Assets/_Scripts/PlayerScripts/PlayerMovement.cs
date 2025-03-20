@@ -156,7 +156,7 @@ namespace _Scripts.PlayerScripts
         {
             float moveX = Input.GetAxis("Horizontal");
             float moveZ = Input.GetAxis("Vertical");
-
+            
             Vector3 move = transform.right * moveX + transform.forward * moveZ;
             controller.Move(move * speed * Time.deltaTime);
 
@@ -206,38 +206,79 @@ namespace _Scripts.PlayerScripts
         {
             // Death logic
             Debug.Log($"{name} died.");
-            photonView.RPC("RPC_Death", RpcTarget.All);
-        }
-        
-        // + death animation
-        [PunRPC]
-        public void RPC_Death()
-        {
-            // Victims' win system or Murder's
-            Debug.Log("DIEED");
-            
-            Transform[] objects = GetComponentsInChildren<Transform>();
-            foreach (Transform obj in objects)
+    
+            // Check if photonView is null before calling RPC
+            if (photonView != null)
             {
-                if (obj.gameObject != this.gameObject && !obj.gameObject.CompareTag("MainCamera"))
+                photonView.RPC("RPC_Death", RpcTarget.All);
+            }
+            else
+            {
+                // Fallback if photonView is null
+                Debug.LogWarning("PhotonView is null in Die() method!");
+                RPC_Death(); // Call the method directly if RPC can't be sent
+            }
+        }
+
+        [PunRPC]
+        private void RPC_Death()
+        {
+            // Add null checks for all component access
+    
+            // Disable child objects safely
+            if (this != null && gameObject != null) // Check if this object still exists
+            {
+                Transform[] objects = GetComponentsInChildren<Transform>();
+                if (objects != null)
                 {
-                    obj.gameObject.SetActive(false);
+                    foreach (Transform obj in objects)
+                    {
+                        if (obj != null && obj.gameObject != null && obj.gameObject != this.gameObject && 
+                            !obj.gameObject.CompareTag("MainCamera"))
+                        {
+                            obj.gameObject.SetActive(false);
+                        }
+                    }
+                }
+        
+                // Safely disable controller
+                if (controller != null && controller.enabled)
+                {
+                    controller.enabled = false;
+                }
+        
+                // Safely disable components
+                if (playerRole != null) playerRole.enabled = false;
+                if (playerUIUpdate != null) playerUIUpdate.enabled = false;
+                if (playerTrapSystem != null) playerTrapSystem.enabled = false;
+                if (playerOutlineSystem != null) playerOutlineSystem.enabled = false;
+        
+                // Safely enable ghostFreeMovement
+                if (ghostFreeMovement != null) ghostFreeMovement.enabled = true;
+        
+                PhotonNetwork.Instantiate(stateObj.name, transform.position, Quaternion.identity);
+        
+                // Adjust transform positions only if objects exist
+                if (transform != null)
+                {
+                    transform.position = new Vector3(transform.position.x, 1.5f, transform.position.z);
+                    transform.rotation = Quaternion.identity;
+                }
+        
+                if (cameraTransform != null)
+                {
+                    cameraTransform.localPosition = new Vector3(0f, 0f, 0f);
+                    cameraTransform.rotation = Quaternion.identity;
+                    // Using identity instead of new Quaternion(0f, 0f, 0f, 0f)
+                }
+        
+                // Safely disable this component
+                PlayerMovement playerMovement = GetComponent<PlayerMovement>();
+                if (playerMovement != null)
+                {
+                    playerMovement.enabled = false;
                 }
             }
-            controller.enabled = false;
-            
-            playerRole.enabled = false;
-            playerUIUpdate.enabled = false;
-            playerTrapSystem.enabled = false;
-            playerOutlineSystem.enabled = false;
-            ghostFreeMovement.enabled = true;
-            
-            cameraTransform.localPosition = new Vector3(0f, 0f, 0f);
-            cameraTransform.transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
-            PlayerMovement playerMovement = GetComponent<PlayerMovement>();
-            playerMovement.enabled = false;
-            
-            PhotonNetwork.Instantiate(stateObj.name, transform.position, Quaternion.identity);
         }
 
         private void CursorVisibility()
@@ -265,7 +306,7 @@ namespace _Scripts.PlayerScripts
             if (playerRole.GetRole() == PlayerRoleEnum.Murder && other.CompareTag("Trap"))
             {
                 int viewId = GetComponent<PhotonView>().ViewID;
-                photonView.RPC("TakeDamage", RpcTarget.AllBuffered, viewId, damage / 3);
+                photonView.RPC("TakeDamage", RpcTarget.AllBuffered, viewId, MathF.Round(damage / 3));
                 StunMurder();
                 
                 // Making sound
@@ -273,7 +314,7 @@ namespace _Scripts.PlayerScripts
             }
         }
 
-        public void StunMurder()
+        private void StunMurder()
         {
             Debug.Log($"{gameObject.name} (murder) stunned.");
             StartCoroutine(Stun(7f));

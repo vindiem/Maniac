@@ -79,13 +79,18 @@ ScriptsOnlyBuild:
     - TMPro.TextMeshProUGUI
     Unity.TextMeshPro.dll:
     - TMPro.TMP_FontAsset
+    - TMPro.TMP_Settings
+    - TMPro.TMP_SpriteAsset
+    - TMPro.TMP_StyleSheet
     - TMPro.TextMeshPro
     - TMPro.TextMeshProUGUI
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -1247,7 +1252,7 @@ ScriptsOnlyBuild:
     className: SetRoomCustomPropertyUIForm
   - hash:
       serializedVersion: 2
-      Hash: e15d3e22055e0df222f5b692dba48b7b
+      Hash: 1c0d0cf1d5d3f9a5e624617a0dcc50a4
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: PlayerUIUpdate
@@ -1859,7 +1864,7 @@ ScriptsOnlyBuild:
     className: CanvasScaler
   - hash:
       serializedVersion: 2
-      Hash: 7b575d6f1fd3fb08cb1e2e041f1f0d5f
+      Hash: e60509ab3f96f6230ab0041e930e5440
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: Weapon

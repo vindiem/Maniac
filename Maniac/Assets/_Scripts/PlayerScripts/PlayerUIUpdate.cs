@@ -15,9 +15,14 @@ public class PlayerUIUpdate : MonoBehaviour
     [SerializeField] private GameObject helpText;
     [SerializeField] private Image roleImage;
     [SerializeField] private Image healthBarImage;
+    [SerializeField] private Text reloadText;
+    
+    [SerializeField] private Image reloadImage;
         
     // Light
     private Light lightSource;
+
+    [SerializeField] private Weapon weapon; 
 
     private void Start()
     {
@@ -29,6 +34,8 @@ public class PlayerUIUpdate : MonoBehaviour
         healthText.text = $"{health}";
         healthBarImage.fillAmount = health / 100;
         roleText.text = $"{playerRole.GetRole()}";
+        reloadText.text = $"Next fire in: {weapon.GetNextFirePercent()}";
+        reloadImage.fillAmount = weapon.GetNextFirePercent();
         
         if (playerRole.GetRole() == _Scripts.PlayerScripts.PlayerRoleEnum.Murder)
         {

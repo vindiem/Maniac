@@ -7,18 +7,18 @@ using Photon.Pun;
 
 public class Weapon : MonoBehaviour
 {
-    [SerializeField] private Camera camera;
     [SerializeField] private float damage = 25f;
-    private float fireRate = 2.5f;
+    private float fireRate = 12.5f;
     private float maxDistance = 250f;
-    
     private float nextFire = 0f;
 
     private void Update()
     {
-        if (Input.GetButton("Fire1") && nextFire <= 0f)
+        if (Input.GetButtonDown("Fire1") && nextFire <= 0f && !PhotonNetwork.IsMasterClient)
         {
-            nextFire += fireRate;
+            // Making sound
+            SoundManager.instance.PlayShootSound();
+            nextFire = fireRate;
             Fire();
         }
         nextFire -= Time.deltaTime;
@@ -26,8 +26,6 @@ public class Weapon : MonoBehaviour
 
     private void Fire()
     {
-        // Making sound
-        //SoundManager.instance.PlayShootSound();
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, maxDistance))
         {
@@ -43,11 +41,12 @@ public class Weapon : MonoBehaviour
                 if (isOwnerMasterClient)
                 {
                     photonView.RPC("TakeDamage", RpcTarget.AllBuffered, viewId, damage);
-                    playerMovement.StunMurder();
                     Debug.Log(obj.name + " takes " + damage + " damage " + "view id " + viewId);
                 }
             }
         }
     }
-    
+
+    public float GetNextFirePercent() => nextFire / fireRate;
+
 }
