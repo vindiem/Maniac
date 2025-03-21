@@ -1,3 +1,5 @@
+using System;
+using _Scripts.PlayerScripts;
 using UnityEngine;
 
 public class GhostFreeMovement : MonoBehaviour
@@ -8,8 +10,14 @@ public class GhostFreeMovement : MonoBehaviour
     private float rotationX = 0f;
     private float rotationY = 0f;
 
+    private PlayerRoleEnum playerRoleEnum;
+    
+    public bool isDead = false;
+
     private void Update()
     {
+        if (!isDead) return;
+        
         float moveX = Input.GetAxis("Horizontal"); // A, D
         float moveZ = Input.GetAxis("Vertical");   // W, S
         float moveY = 0;
@@ -26,4 +34,15 @@ public class GhostFreeMovement : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(rotationY, rotationX, 0);
     }
+
+    public void SetIsDead()
+    {
+        isDead = true;
+    }
+    
+    public void SetDieState(PlayerRoleEnum playerRoleEnum)
+    {
+        this.playerRoleEnum = playerRoleEnum;
+    }
+    public PlayerRoleEnum GetDieState() => playerRoleEnum;
 }

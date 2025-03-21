@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using _Scripts.MultiplayerScripts;
 using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -38,7 +40,7 @@ namespace _Scripts.PlayerScripts
         // Attacking variables
         private bool isAttacking = false;
         [HideInInspector] public float attackDistance = 2.5f;
-        private float damage = 50f;
+        private float damage = 35f;
 
         // : MonoBehaviour
         private PlayerRole playerRole;
@@ -50,9 +52,13 @@ namespace _Scripts.PlayerScripts
         // Prefab
         [SerializeField] private GameObject stateObj;
 
-        private void Start()
+        private void Awake()
         {
             photonView = GetComponent<PhotonView>();
+        }
+
+        private void Start()
+        {
             controller = GetComponent<CharacterController>();
             cameraTransform = GetComponentInChildren<Camera>().transform;
             animator = GetComponentInChildren<Animator>();
@@ -64,12 +70,12 @@ namespace _Scripts.PlayerScripts
             ghostFreeMovement = GetComponent<GhostFreeMovement>();
             
             defaultCharacterHeight = controller.height;
-            ghostFreeMovement.enabled = false;
             
             Cursor.lockState = CursorLockMode.None;
             Cursor.lockState = Cursor.lockState == CursorLockMode.Locked ? 
                 CursorLockMode.None : CursorLockMode.Locked;
             
+            ghostFreeMovement.SetDieState(playerRole.GetRole());
         }
 
         private void Update()
@@ -93,7 +99,7 @@ namespace _Scripts.PlayerScripts
                 playerTrapSystem.HandleInventory();
             
             CursorVisibility();
-            
+
         }
 
         private void HandleAttack()
@@ -206,6 +212,8 @@ namespace _Scripts.PlayerScripts
         {
             // Death logic
             Debug.Log($"{name} died.");
+            
+            Cursor.lockState = CursorLockMode.None;
     
             // Check if photonView is null before calling RPC
             if (photonView != null)
@@ -218,13 +226,20 @@ namespace _Scripts.PlayerScripts
                 Debug.LogWarning("PhotonView is null in Die() method!");
                 RPC_Death(); // Call the method directly if RPC can't be sent
             }
+            
+            // win check
+            RoomManager roomManager = FindObjectOfType<RoomManager>();
+            if (roomManager != null)
+            {
+                roomManager.WinCheck();
+            }
+
         }
 
         [PunRPC]
         private void RPC_Death()
         {
             // Add null checks for all component access
-    
             // Disable child objects safely
             if (this != null && gameObject != null) // Check if this object still exists
             {
@@ -253,8 +268,11 @@ namespace _Scripts.PlayerScripts
                 if (playerTrapSystem != null) playerTrapSystem.enabled = false;
                 if (playerOutlineSystem != null) playerOutlineSystem.enabled = false;
         
-                // Safely enable ghostFreeMovement
-                if (ghostFreeMovement != null) ghostFreeMovement.enabled = true;
+                // Safely setting ghostFreeMovement dead
+                if (ghostFreeMovement != null)
+                {
+                    ghostFreeMovement.SetIsDead();
+                }
         
                 PhotonNetwork.Instantiate(stateObj.name, transform.position, Quaternion.identity);
         
@@ -278,6 +296,7 @@ namespace _Scripts.PlayerScripts
                 {
                     playerMovement.enabled = false;
                 }
+                
             }
         }
 
@@ -306,7 +325,7 @@ namespace _Scripts.PlayerScripts
             if (playerRole.GetRole() == PlayerRoleEnum.Murder && other.CompareTag("Trap"))
             {
                 int viewId = GetComponent<PhotonView>().ViewID;
-                photonView.RPC("TakeDamage", RpcTarget.AllBuffered, viewId, MathF.Round(damage / 3));
+                photonView.RPC("TakeDamage", RpcTarget.AllBuffered, viewId, MathF.Round(damage / 5));
                 StunMurder();
                 
                 // Making sound
@@ -317,7 +336,7 @@ namespace _Scripts.PlayerScripts
         private void StunMurder()
         {
             Debug.Log($"{gameObject.name} (murder) stunned.");
-            StartCoroutine(Stun(7f));
+            StartCoroutine(Stun(4f));
         }
 
         private IEnumerator Stun(float seconds)
