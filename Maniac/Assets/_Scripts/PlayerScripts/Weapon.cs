@@ -7,7 +7,7 @@ using Photon.Pun;
 
 public class Weapon : MonoBehaviour
 {
-    [SerializeField] private float damage = 25f;
+    private float damage = 5f;
     private float fireRate = 12.5f;
     private float maxDistance = 250f;
     private float nextFire = 0f;
@@ -47,6 +47,6 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    public float GetNextFirePercent() => nextFire / fireRate;
+    public float GetNextFirePercent() => MathF.Round((nextFire / fireRate), 2);
 
 }
