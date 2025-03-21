@@ -34,7 +34,7 @@ public class PlayerUIUpdate : MonoBehaviour
         healthText.text = $"{health}";
         healthBarImage.fillAmount = health / 100;
         roleText.text = $"{playerRole.GetRole()}";
-        reloadText.text = $"Next fire in: {weapon.GetNextFirePercent()}";
+        reloadText.text = $"Next fire in: {(weapon.GetNextFirePercent() * 100)}";
         reloadImage.fillAmount = weapon.GetNextFirePercent();
         
         if (playerRole.GetRole() == _Scripts.PlayerScripts.PlayerRoleEnum.Murder)
