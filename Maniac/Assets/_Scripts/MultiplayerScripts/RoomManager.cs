@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using _Scripts.PlayerScripts;
 using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = System.Random;
 
@@ -20,9 +22,16 @@ namespace _Scripts.MultiplayerScripts
         public GameObject winScreen;
         public Text winText;
         private int victimsCount = 0, murdersCount = 0;
+        
+        public string roomNameToJoin = "Room";
+
+        public GameObject roomCamera2;
 
         private void Start()
         {
+            if (roomCamera == null && connectionScreen == null 
+                                   && nickNameScreen == null && winScreen == null 
+                                   && connectionScreen == null) return;
             roomCamera.SetActive(true);
             connectionScreen.SetActive(false);
             nickNameScreen.SetActive(true);
@@ -92,27 +101,18 @@ namespace _Scripts.MultiplayerScripts
             nickNameScreen.SetActive(false);
             connectionScreen.SetActive(true);
             Debug.Log("Connecting to photon...");
-            PhotonNetwork.ConnectUsingSettings();
-        }
-
-        public override void OnConnectedToMaster()
-        {
-            Debug.Log("Connected to Master (Server)...");
-            PhotonNetwork.JoinLobby();
-        }
-
-        public override void OnJoinedLobby()
-        {
-            PhotonNetwork.JoinOrCreateRoom("test", null, null);
-            Debug.Log("Joined or created lobby");
+            PhotonNetwork.JoinOrCreateRoom(roomNameToJoin, null, null);
         }
 
         public override void OnJoinedRoom()
         {
             Debug.Log("Joined room");
+            
+            if (connectionScreen == null && roomCamera == null) return;
             connectionScreen.SetActive(false);
             roomCamera.SetActive(false);
             SpawnPlayer();
+            roomCamera2.SetActive(false);
         }
 
         private void SpawnPlayer()
@@ -124,6 +124,22 @@ namespace _Scripts.MultiplayerScripts
             _player.GetComponent<PlayerSetup>().SetupLocalPlayer();
             _player.GetComponent<PhotonView>().RPC("SetNickname_RPC", RpcTarget.AllBuffered, _nickname);
         }
-    
+
+        private void OnApplicationQuit()
+        {
+            OnLeftRoom();
+        }
+
+        public override void OnLeftRoom()
+        {
+            base.OnLeftRoom();
+
+            if (PhotonNetwork.InRoom)
+            {
+                PhotonNetwork.LeaveRoom();
+                PhotonNetwork.LeaveLobby();
+                PhotonNetwork.Disconnect();
+            }
+        }
     }
 }

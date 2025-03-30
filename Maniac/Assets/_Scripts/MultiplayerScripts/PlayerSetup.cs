@@ -35,6 +35,7 @@ namespace _Scripts.MultiplayerScripts
             
             // Disable all sets
             playerMovement.enabled = false;
+            
             playerCamera.SetActive(false);
             playerCanvas.SetActive(false);
             
