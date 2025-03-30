@@ -19,7 +19,7 @@ namespace _Scripts.PlayerScripts
         private PhotonView photonView;
 
         [Header("Movement variables")] 
-        [SerializeField] private float speed = 5f;
+        [SerializeField] private float speed = 3.5f;
         [SerializeField] private float jumpHeight = 2f;
         [SerializeField] private float gravity = 9.81f;
         [SerializeField] private float mouseSensitivity = 100f;
@@ -32,6 +32,7 @@ namespace _Scripts.PlayerScripts
         private Animator animator;
         private float xRotation = 0f;
         private float defaultCharacterHeight = 0f;
+        private float defaultSpeed = 0f;
 
         [Space(10)] 
         [Header("Health & damage")] 
@@ -70,6 +71,7 @@ namespace _Scripts.PlayerScripts
             ghostFreeMovement = GetComponent<GhostFreeMovement>();
             
             defaultCharacterHeight = controller.height;
+            defaultSpeed = speed;
             
             Cursor.lockState = CursorLockMode.None;
             Cursor.lockState = Cursor.lockState == CursorLockMode.Locked ? 
@@ -216,9 +218,9 @@ namespace _Scripts.PlayerScripts
             Cursor.lockState = CursorLockMode.None;
     
             // Check if photonView is null before calling RPC
-            if (photonView != null)
+            if (photonView != null && PhotonNetwork.IsMasterClient)
             {
-                photonView.RPC("RPC_Death", RpcTarget.All);
+                photonView.RPC("RPC_Death", RpcTarget.AllBuffered);
             }
             else
             {
@@ -343,7 +345,6 @@ namespace _Scripts.PlayerScripts
         {
             animator.enabled = false;
             float defaultJumpHeight = jumpHeight;
-            float defaultSpeed = speed;
             jumpHeight = 0f;
             speed = 0f;
             yield return new WaitForSeconds(seconds);

@@ -25,13 +25,8 @@ namespace _Scripts.MultiplayerScripts
         
         public string roomNameToJoin = "Room";
 
-        public GameObject roomCamera2;
-
         private void Start()
         {
-            if (roomCamera == null && connectionScreen == null 
-                                   && nickNameScreen == null && winScreen == null 
-                                   && connectionScreen == null) return;
             roomCamera.SetActive(true);
             connectionScreen.SetActive(false);
             nickNameScreen.SetActive(true);
@@ -112,7 +107,6 @@ namespace _Scripts.MultiplayerScripts
             connectionScreen.SetActive(false);
             roomCamera.SetActive(false);
             SpawnPlayer();
-            roomCamera2.SetActive(false);
         }
 
         private void SpawnPlayer()

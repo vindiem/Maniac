@@ -26,8 +26,6 @@ ScriptsOnlyBuild:
     - _Scripts.PlayerScripts.PlayerOutlineSystem
     - _Scripts.PlayerScripts.PlayerRole
     - _Scripts.PlayerScripts.PlayerTrapSystem
-    Cinemachine.dll:
-    - Cinemachine.CinemachineBrain
     PhotonUnityNetworking:
     - Photon.Pun.PhotonAnimatorView
     - Photon.Pun.PhotonRigidbodyView
@@ -82,9 +80,6 @@ ScriptsOnlyBuild:
     - TMPro.TextMeshPro
     Unity.TextMeshPro.dll:
     - TMPro.TMP_FontAsset
-    - TMPro.TMP_Settings
-    - TMPro.TMP_SpriteAsset
-    - TMPro.TMP_StyleSheet
     - TMPro.TextMeshPro
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
@@ -122,10 +117,6 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Text
     - UnityEngine.UI.VerticalLayoutGroup
   serializedClasses:
-    Cinemachine:
-    - Cinemachine.CinemachineBlendDefinition
-    - Cinemachine.CinemachineBrain/BrainEvent
-    - Cinemachine.CinemachineBrain/VcamActivatedEvent
     PhotonRealtime:
     - Photon.Realtime.AppSettings
     PhotonUnityNetworking:
@@ -206,11 +197,11 @@ ScriptsOnlyBuild:
     fullTypeName: ScenesManager
     methodName: LoadScene
   - assembly: Assembly-CSharp
-    fullTypeName: RoomItemButton
-    methodName: OnClick
-  - assembly: Assembly-CSharp
     fullTypeName: PlayerUIUpdate
     methodName: ShowHidePressButton
+  - assembly: Assembly-CSharp
+    fullTypeName: RoomItemButton
+    methodName: OnClick
   - assembly: Assembly-CSharp
     fullTypeName: ScenesManager
     methodName: LoadScene
@@ -229,6 +220,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: _Scripts.MultiplayerScripts.RoomManager
     methodName: JoinRoomButtonPressed
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.GameObject
+    methodName: SetActive
   - assembly: Assembly-CSharp
     fullTypeName: _Scripts.MultiplayerScripts.RoomList
     methodName: ChangeRoomToCreateName
@@ -245,11 +239,11 @@ ScriptsOnlyBuild:
     fullTypeName: ScenesManager
     methodName: LoadScene
   - assembly: Assembly-CSharp
-    fullTypeName: RoomItemButton
-    methodName: OnClick
-  - assembly: Assembly-CSharp
     fullTypeName: PlayerUIUpdate
     methodName: ShowHidePressButton
+  - assembly: Assembly-CSharp
+    fullTypeName: RoomItemButton
+    methodName: OnClick
   - assembly: UnityEngine.CoreModule
     fullTypeName: UnityEngine.GameObject
     methodName: SetActive
@@ -283,6 +277,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: _Scripts.MultiplayerScripts.RoomManager
     methodName: JoinRoomButtonPressed
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.GameObject
+    methodName: SetActive
   - assembly: Assembly-CSharp
     fullTypeName: ScenesManager
     methodName: LoadScene
@@ -749,8 +746,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 6052}
     - Class: 114
       Script: {instanceID: 6100}
-    - Class: 114
-      Script: {instanceID: 6280}
     - Class: 114
       Script: {instanceID: 6316}
     - Class: 114
@@ -1806,7 +1801,7 @@ ScriptsOnlyBuild:
     className: UnityOnCancelMessageListener
   - hash:
       serializedVersion: 2
-      Hash: edab2bd96d3aa65dd584615b7a17790d
+      Hash: 97b1c2f76e0e8479b42ddb3420b9f365
     assemblyName: Assembly-CSharp
     namespaceName: _Scripts.MultiplayerScripts
     className: RoomManager

@@ -95,6 +95,16 @@ namespace _Scripts.MultiplayerScripts
                 skin.SetActive(false);
         
             skins[skinIndex].SetActive(true);
+
+            if (photonView.IsMine)
+            {
+                SkinnedMeshRenderer[] skinnedMeshRenderers = skins[skinIndex].GetComponentsInChildren<SkinnedMeshRenderer>();
+                foreach (var skinnedMeshRenderer in skinnedMeshRenderers)
+                {
+                    skinnedMeshRenderer.enabled = false;
+                }
+            }
+            
         }
 
         [PunRPC]
