@@ -80,6 +80,9 @@ ScriptsOnlyBuild:
     - TMPro.TextMeshPro
     Unity.TextMeshPro.dll:
     - TMPro.TMP_FontAsset
+    - TMPro.TMP_Settings
+    - TMPro.TMP_SpriteAsset
+    - TMPro.TMP_StyleSheet
     - TMPro.TextMeshPro
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
@@ -197,11 +200,11 @@ ScriptsOnlyBuild:
     fullTypeName: ScenesManager
     methodName: LoadScene
   - assembly: Assembly-CSharp
-    fullTypeName: PlayerUIUpdate
-    methodName: ShowHidePressButton
-  - assembly: Assembly-CSharp
     fullTypeName: RoomItemButton
     methodName: OnClick
+  - assembly: Assembly-CSharp
+    fullTypeName: PlayerUIUpdate
+    methodName: ShowHidePressButton
   - assembly: Assembly-CSharp
     fullTypeName: ScenesManager
     methodName: LoadScene
@@ -239,11 +242,11 @@ ScriptsOnlyBuild:
     fullTypeName: ScenesManager
     methodName: LoadScene
   - assembly: Assembly-CSharp
-    fullTypeName: PlayerUIUpdate
-    methodName: ShowHidePressButton
-  - assembly: Assembly-CSharp
     fullTypeName: RoomItemButton
     methodName: OnClick
+  - assembly: Assembly-CSharp
+    fullTypeName: PlayerUIUpdate
+    methodName: ShowHidePressButton
   - assembly: UnityEngine.CoreModule
     fullTypeName: UnityEngine.GameObject
     methodName: SetActive

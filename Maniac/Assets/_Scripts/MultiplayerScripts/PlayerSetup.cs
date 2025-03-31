@@ -111,7 +111,7 @@ namespace _Scripts.MultiplayerScripts
         public void SetNickname_RPC(string nickname)
         {
             this.nickname = nickname;
-            gameObject.GetComponentInChildren<TextMeshPro>().text = nickname;
+            gameObject.GetComponentInChildren<TextMeshPro>().text = nickname + $" [{playerRole.GetRole()}]";
         }
         
     }

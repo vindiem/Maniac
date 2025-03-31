@@ -42,6 +42,7 @@ namespace _Scripts.PlayerScripts
         private bool isAttacking = false;
         [HideInInspector] public float attackDistance = 2.5f;
         private float damage = 35f;
+        private float highlightAllPlayersTime = 15f;
 
         // : MonoBehaviour
         private PlayerRole playerRole;
@@ -92,15 +93,29 @@ namespace _Scripts.PlayerScripts
             HandleCamera();
             HandleCrouch();
             #endregion
-            
-            if (playerRole.GetRole() == PlayerRoleEnum.Murder) 
+
+            if (playerRole.GetRole() == PlayerRoleEnum.Murder)
+            {
                 HandleAttack();
+
+                if (Input.GetKeyDown(KeyCode.X) && highlightAllPlayersTime <= 0f)
+                {
+                    //playerOutlineSystem.HighlightAll();
+                    photonView.RPC("HighlightAll", RpcTarget.AllBuffered);
+                    highlightAllPlayersTime = 55f;
+                }
+                
+            }
             playerUIUpdate.UpdateUI(health, playerRole, 
                 playerTrapSystem.GetTrapInHandsBool(), playerTrapSystem.GetGunInHandsBool());
-            if (playerRole.GetRole() == PlayerRoleEnum.Victim) 
+            if (playerRole.GetRole() == PlayerRoleEnum.Victim)
+            {
                 playerTrapSystem.HandleInventory();
+                playerUIUpdate.Highlight(GetComponent<Outline>().enabled);
+            }
             
             CursorVisibility();
+            highlightAllPlayersTime -= Time.deltaTime;
 
         }
 

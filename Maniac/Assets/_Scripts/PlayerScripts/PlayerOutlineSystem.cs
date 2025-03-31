@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Photon.Pun;
 using UnityEngine;
 
@@ -49,6 +50,23 @@ namespace _Scripts.PlayerScripts
                 lastHighlightedPlayer.GetComponent<PhotonView>().RPC("SetHighlight", RpcTarget.AllBuffered, false);
                 lastHighlightedPlayer = null;
             }
+        }
+
+        [PunRPC]
+        public void HighlightAll()
+        {
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            foreach (var player in players)
+            {
+                StartCoroutine(ResetHighlight(player));
+            }
+        }
+
+        private IEnumerator ResetHighlight(GameObject targetPlayer)
+        {
+            targetPlayer.GetComponent<PhotonView>().RPC("SetHighlight", RpcTarget.AllBuffered, true);
+            yield return new WaitForSeconds(4f);
+            targetPlayer.GetComponent<PhotonView>().RPC("SetHighlight", RpcTarget.AllBuffered, false);
         }
     
         [PunRPC] 
