@@ -33,6 +33,21 @@ namespace _Scripts.PlayerScripts
         private float xRotation = 0f;
         private float defaultCharacterHeight = 0f;
         private float defaultSpeed = 0f;
+        private float defaultJumpHeight = 0f;
+        
+        [Space(10)]
+        [Header("Sprint variables")]
+        [SerializeField] private float sprintSpeed = 8f;
+        [SerializeField] private float acceleration = 10f;
+        [SerializeField] private float stamina = 5f;
+        [SerializeField] private float staminaRegenRate = .7f;
+        [SerializeField] private float staminaDrainRate = 2f;
+        [SerializeField] private float staminaThreshold = 1f;
+        private bool canSprint = true;
+        private float currentStamina;
+        private bool isSprinting;
+
+        private bool stunned = false;
 
         [Space(10)] 
         [Header("Health & damage")] 
@@ -73,6 +88,7 @@ namespace _Scripts.PlayerScripts
             
             defaultCharacterHeight = controller.height;
             defaultSpeed = speed;
+            defaultJumpHeight = jumpHeight;
             
             Cursor.lockState = CursorLockMode.None;
             Cursor.lockState = Cursor.lockState == CursorLockMode.Locked ? 
@@ -92,6 +108,7 @@ namespace _Scripts.PlayerScripts
             ApplyGravity();
             HandleCamera();
             HandleCrouch();
+            HandleSprint();
             #endregion
 
             if (playerRole.GetRole() == PlayerRoleEnum.Murder)
@@ -111,7 +128,6 @@ namespace _Scripts.PlayerScripts
             if (playerRole.GetRole() == PlayerRoleEnum.Victim)
             {
                 playerTrapSystem.HandleInventory();
-                playerUIUpdate.Highlight(GetComponent<Outline>().enabled);
             }
             
             CursorVisibility();
@@ -186,6 +202,34 @@ namespace _Scripts.PlayerScripts
             animator.SetBool(IsRunning, move.magnitude > 0.1f);
         }
 
+        private void HandleSprint()
+        {
+            if (stunned) return;
+            
+            if (currentStamina <= 0)
+                canSprint = false;
+
+            if (currentStamina >= staminaThreshold)
+                canSprint = true;
+
+            if (Input.GetKey(KeyCode.LeftShift) && canSprint && currentStamina > 0)
+            {
+                isSprinting = true;
+                currentStamina -= staminaDrainRate * Time.deltaTime;
+            }
+            else
+            {
+                isSprinting = false;
+                currentStamina += staminaRegenRate * Time.deltaTime;
+            }
+
+            currentStamina = Mathf.Clamp(currentStamina, 0, stamina);
+
+            float targetSpeed = isSprinting ? sprintSpeed : defaultSpeed;
+            speed = Mathf.Lerp(speed, targetSpeed, Time.deltaTime * acceleration);
+        }
+        public float[] GetStamina() => new float[] { currentStamina, stamina };
+        
         private void HandleJump()
         {
             if (Input.GetButtonDown("Jump") && isGrounded)
@@ -343,27 +387,27 @@ namespace _Scripts.PlayerScripts
             {
                 int viewId = GetComponent<PhotonView>().ViewID;
                 photonView.RPC("TakeDamage", RpcTarget.AllBuffered, viewId, MathF.Round(damage / 5));
-                StunMurder();
+                StunPlayer();
                 
                 // Making sound
                 SoundManager.instance.PlayTrapCloseSound();
             }
         }
 
-        private void StunMurder()
+        private void StunPlayer()
         {
-            Debug.Log($"{gameObject.name} (murder) stunned.");
+            Debug.Log($"{gameObject.name} (player) stunned.");
             StartCoroutine(Stun(4f));
         }
 
         private IEnumerator Stun(float seconds)
         {
             animator.enabled = false;
-            float defaultJumpHeight = jumpHeight;
             jumpHeight = 0f;
             speed = 0f;
+            stunned = true;
             yield return new WaitForSeconds(seconds);
-            
+            stunned = false;
             animator.enabled = true;
             jumpHeight = defaultJumpHeight;
             speed = defaultSpeed;

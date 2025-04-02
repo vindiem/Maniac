@@ -962,7 +962,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.5153087e-38, y: 1.533676e-38, z: 1.5244928e-38, w: 1.5520434e-38}
+  m_BoundingSphereOverride: {x: 1.02e-43, y: 3e-45, z: 1.9128e-41, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -982,6 +982,10 @@ PrefabInstance:
     - target: {fileID: 6867218042283104507, guid: 36a82bdcb85538442982f46a4cf378f6, type: 3}
       propertyPath: m_Name
       value: Trap
+      objectReference: {fileID: 0}
+    - target: {fileID: 6867218042283104507, guid: 36a82bdcb85538442982f46a4cf378f6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6872687050786047061, guid: 36a82bdcb85538442982f46a4cf378f6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1219,6 +1223,10 @@ PrefabInstance:
     - target: {fileID: 6867218042283104507, guid: 36a82bdcb85538442982f46a4cf378f6, type: 3}
       propertyPath: m_Name
       value: Trap
+      objectReference: {fileID: 0}
+    - target: {fileID: 6867218042283104507, guid: 36a82bdcb85538442982f46a4cf378f6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6872687050786047061, guid: 36a82bdcb85538442982f46a4cf378f6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1825,7 +1833,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 8.04e-43, y: 3.278e-42, z: 0, w: -3.454904e-29}
+  m_BoundingSphereOverride: {x: 1.02e-43, y: 7e-45, z: 5.483e-42, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -2457,7 +2465,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.0377557e-38, y: 1.0377568e-38, z: 1.0469398e-38, w: 1.0469405e-38}
+  m_BoundingSphereOverride: {x: 1.02e-43, y: 8e-45, z: 4.858e-42, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -2594,9 +2602,17 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 43
       objectReference: {fileID: 0}
+    - target: {fileID: 5996551541175781319, guid: 0151de6a82b1fe54b92b3b50bc335566, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6519268850539211289, guid: 0151de6a82b1fe54b92b3b50bc335566, type: 3}
       propertyPath: m_Name
       value: Gun (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519268850539211289, guid: 0151de6a82b1fe54b92b3b50bc335566, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3342,6 +3358,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Trap
       objectReference: {fileID: 0}
+    - target: {fileID: 6867218042283104507, guid: 36a82bdcb85538442982f46a4cf378f6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6872687050786047061, guid: 36a82bdcb85538442982f46a4cf378f6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.16
@@ -3643,6 +3663,10 @@ PrefabInstance:
     - target: {fileID: 6867218042283104507, guid: 36a82bdcb85538442982f46a4cf378f6, type: 3}
       propertyPath: m_Name
       value: Trap
+      objectReference: {fileID: 0}
+    - target: {fileID: 6867218042283104507, guid: 36a82bdcb85538442982f46a4cf378f6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6872687050786047061, guid: 36a82bdcb85538442982f46a4cf378f6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4057,7 +4081,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: -2.3283064e-10, y: 0.0019833122, z: 0.003380495, w: 0.0029579073}
+  m_BoundingSphereOverride: {x: 1.02e-43, y: 7e-45, z: 1.4288e-41, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -5646,7 +5670,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 4.408174e-39, y: 4.68368e-39, z: 4.867354e-39, w: 4.775521e-39}
+  m_BoundingSphereOverride: {x: 1.02e-43, y: 6e-45, z: 1.3999e-41, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -6022,6 +6046,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Trap
       objectReference: {fileID: 0}
+    - target: {fileID: 6867218042283104507, guid: 36a82bdcb85538442982f46a4cf378f6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6872687050786047061, guid: 36a82bdcb85538442982f46a4cf378f6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.379
@@ -6284,6 +6312,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Trap
       objectReference: {fileID: 0}
+    - target: {fileID: 6867218042283104507, guid: 36a82bdcb85538442982f46a4cf378f6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6872687050786047061, guid: 36a82bdcb85538442982f46a4cf378f6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.043
@@ -6443,6 +6475,10 @@ PrefabInstance:
     - target: {fileID: 6867218042283104507, guid: 36a82bdcb85538442982f46a4cf378f6, type: 3}
       propertyPath: m_Name
       value: Trap
+      objectReference: {fileID: 0}
+    - target: {fileID: 6867218042283104507, guid: 36a82bdcb85538442982f46a4cf378f6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6872687050786047061, guid: 36a82bdcb85538442982f46a4cf378f6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7290,9 +7326,17 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 40
       objectReference: {fileID: 0}
+    - target: {fileID: 5996551541175781319, guid: 0151de6a82b1fe54b92b3b50bc335566, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6519268850539211289, guid: 0151de6a82b1fe54b92b3b50bc335566, type: 3}
       propertyPath: m_Name
       value: Gun (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519268850539211289, guid: 0151de6a82b1fe54b92b3b50bc335566, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7764,9 +7808,17 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 39
       objectReference: {fileID: 0}
+    - target: {fileID: 5996551541175781319, guid: 0151de6a82b1fe54b92b3b50bc335566, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6519268850539211289, guid: 0151de6a82b1fe54b92b3b50bc335566, type: 3}
       propertyPath: m_Name
       value: Gun (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519268850539211289, guid: 0151de6a82b1fe54b92b3b50bc335566, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8483,7 +8535,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 2.4796318e-38, y: 2.5163666e-38, z: 2.498e-38, w: 2.5531013e-38}
+  m_BoundingSphereOverride: {x: 4.1003012e-19, y: 2.2e-44, z: -2.4405384e-30, w: 9.188e-41}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -9013,7 +9065,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 7.9639e-41, y: 1.2735e-41, z: 1.435e-42, w: 2.152e-42}
+  m_BoundingSphereOverride: {x: 4.1003012e-19, y: 2.2e-44, z: -2.4405384e-30, w: 9.188e-41}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -9337,7 +9389,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 8.08165e-39, y: 8.357156e-39, z: 8.54083e-39, w: 8.448997e-39}
+  m_BoundingSphereOverride: {x: 0, y: 3.4e-44, z: 0, w: 1e-45}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -10022,7 +10074,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 9.1835e-41, y: 1.1681478e-37, z: 9.78048e-39, w: NaN}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 1e-45}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -10246,7 +10298,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 9.1835e-41, y: 2.0387484e-38, z: 4.5697343e-37, w: 4.1326e-40}
+  m_BoundingSphereOverride: {x: 1.02e-43, y: 6e-45, z: 1.3523e-41, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -10425,7 +10477,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 3.59e-43, y: 0, z: 0, w: 9.404242e-38}
+  m_BoundingSphereOverride: {x: 1.02e-43, y: 6e-45, z: 1.3279e-41, w: 1.06204504e-32}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -10924,6 +10976,10 @@ PrefabInstance:
     - target: {fileID: 6867218042283104507, guid: 36a82bdcb85538442982f46a4cf378f6, type: 3}
       propertyPath: m_Name
       value: Trap
+      objectReference: {fileID: 0}
+    - target: {fileID: 6867218042283104507, guid: 36a82bdcb85538442982f46a4cf378f6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6872687050786047061, guid: 36a82bdcb85538442982f46a4cf378f6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11954,7 +12010,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 1.02e-43, y: 4e-45, z: 1.6667e-41, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -12167,7 +12223,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 1.02e-43, y: 7e-45, z: 5.635e-42, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -12748,7 +12804,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 2.803e-42, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 1.02e-43, y: 4e-45, z: 1.5456e-41, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -12843,6 +12899,10 @@ PrefabInstance:
     - target: {fileID: 6867218042283104507, guid: 36a82bdcb85538442982f46a4cf378f6, type: 3}
       propertyPath: m_Name
       value: Trap
+      objectReference: {fileID: 0}
+    - target: {fileID: 6867218042283104507, guid: 36a82bdcb85538442982f46a4cf378f6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6872687050786047061, guid: 36a82bdcb85538442982f46a4cf378f6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13922,7 +13982,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 1.02e-43, y: 4e-45, z: 1.573e-41, w: 1.102026e-39}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -13979,9 +14039,17 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 42
       objectReference: {fileID: 0}
+    - target: {fileID: 5996551541175781319, guid: 0151de6a82b1fe54b92b3b50bc335566, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6519268850539211289, guid: 0151de6a82b1fe54b92b3b50bc335566, type: 3}
       propertyPath: m_Name
       value: Gun (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519268850539211289, guid: 0151de6a82b1fe54b92b3b50bc335566, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14045,9 +14113,17 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 41
       objectReference: {fileID: 0}
+    - target: {fileID: 5996551541175781319, guid: 0151de6a82b1fe54b92b3b50bc335566, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6519268850539211289, guid: 0151de6a82b1fe54b92b3b50bc335566, type: 3}
       propertyPath: m_Name
       value: Gun (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519268850539211289, guid: 0151de6a82b1fe54b92b3b50bc335566, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14074,6 +14150,10 @@ PrefabInstance:
     - target: {fileID: 6867218042283104507, guid: 36a82bdcb85538442982f46a4cf378f6, type: 3}
       propertyPath: m_Name
       value: Trap
+      objectReference: {fileID: 0}
+    - target: {fileID: 6867218042283104507, guid: 36a82bdcb85538442982f46a4cf378f6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6872687050786047061, guid: 36a82bdcb85538442982f46a4cf378f6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14177,9 +14257,17 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 44
       objectReference: {fileID: 0}
+    - target: {fileID: 5996551541175781319, guid: 0151de6a82b1fe54b92b3b50bc335566, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6519268850539211289, guid: 0151de6a82b1fe54b92b3b50bc335566, type: 3}
       propertyPath: m_Name
       value: Gun (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519268850539211289, guid: 0151de6a82b1fe54b92b3b50bc335566, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -38356,9 +38444,17 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 38
       objectReference: {fileID: 0}
+    - target: {fileID: 5996551541175781319, guid: 0151de6a82b1fe54b92b3b50bc335566, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6519268850539211289, guid: 0151de6a82b1fe54b92b3b50bc335566, type: 3}
       propertyPath: m_Name
       value: Gun
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519268850539211289, guid: 0151de6a82b1fe54b92b3b50bc335566, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

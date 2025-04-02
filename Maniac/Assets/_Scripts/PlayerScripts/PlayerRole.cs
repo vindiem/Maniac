@@ -17,7 +17,5 @@ namespace _Scripts.PlayerScripts
 
         public void SetRole(PlayerRoleEnum newRole) => this._role = newRole;
         public PlayerRoleEnum GetRole() => _role;
-        
-        
     }
 }

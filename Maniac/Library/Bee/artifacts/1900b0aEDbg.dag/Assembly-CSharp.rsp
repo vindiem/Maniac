@@ -394,6 +394,7 @@
 "Assets/_Scripts/MultiplayerScripts/RoomItemButton.cs"
 "Assets/_Scripts/MultiplayerScripts/RoomList.cs"
 "Assets/_Scripts/MultiplayerScripts/RoomManager.cs"
+"Assets/_Scripts/PlayerScripts/FearEffect.cs"
 "Assets/_Scripts/PlayerScripts/GhostFreeMovement.cs"
 "Assets/_Scripts/PlayerScripts/PlayerMovement.cs"
 "Assets/_Scripts/PlayerScripts/PlayerOutlineSystem.cs"

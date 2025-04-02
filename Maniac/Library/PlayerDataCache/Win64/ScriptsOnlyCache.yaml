@@ -3,18 +3,18 @@ ScriptsOnlyBuild:
     Assembly-CSharp:
     - GhostFreeMovement
     - Outline
-    - PlayerUIUpdate
     - Weapon
     - _Scripts.MultiplayerScripts.PlayerSetup
+    - _Scripts.PlayerScripts.FearEffect
     - _Scripts.PlayerScripts.PlayerMovement
     - _Scripts.PlayerScripts.PlayerOutlineSystem
     - _Scripts.PlayerScripts.PlayerRole
     - _Scripts.PlayerScripts.PlayerTrapSystem
+    - _Scripts.PlayerScripts.PlayerUIUpdate
     Assembly-CSharp.dll:
     - Door
     - GhostFreeMovement
     - Outline
-    - PlayerUIUpdate
     - RoomItemButton
     - ScenesManager
     - SoundManager
@@ -22,10 +22,12 @@ ScriptsOnlyBuild:
     - _Scripts.MultiplayerScripts.PlayerSetup
     - _Scripts.MultiplayerScripts.RoomList
     - _Scripts.MultiplayerScripts.RoomManager
+    - _Scripts.PlayerScripts.FearEffect
     - _Scripts.PlayerScripts.PlayerMovement
     - _Scripts.PlayerScripts.PlayerOutlineSystem
     - _Scripts.PlayerScripts.PlayerRole
     - _Scripts.PlayerScripts.PlayerTrapSystem
+    - _Scripts.PlayerScripts.PlayerUIUpdate
     PhotonUnityNetworking:
     - Photon.Pun.PhotonAnimatorView
     - Photon.Pun.PhotonRigidbodyView
@@ -80,9 +82,6 @@ ScriptsOnlyBuild:
     - TMPro.TextMeshPro
     Unity.TextMeshPro.dll:
     - TMPro.TMP_FontAsset
-    - TMPro.TMP_Settings
-    - TMPro.TMP_SpriteAsset
-    - TMPro.TMP_StyleSheet
     - TMPro.TextMeshPro
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
@@ -191,7 +190,7 @@ ScriptsOnlyBuild:
     fullTypeName: ScenesManager
     methodName: LoadScene
   - assembly: Assembly-CSharp
-    fullTypeName: PlayerUIUpdate
+    fullTypeName: _Scripts.PlayerScripts.PlayerUIUpdate
     methodName: ShowHidePressButton
   - assembly: Assembly-CSharp
     fullTypeName: ScenesManager
@@ -199,12 +198,12 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: ScenesManager
     methodName: LoadScene
+  - assembly: Assembly-CSharp
+    fullTypeName: _Scripts.PlayerScripts.PlayerUIUpdate
+    methodName: ShowHidePressButton
   - assembly: Assembly-CSharp
     fullTypeName: RoomItemButton
     methodName: OnClick
-  - assembly: Assembly-CSharp
-    fullTypeName: PlayerUIUpdate
-    methodName: ShowHidePressButton
   - assembly: Assembly-CSharp
     fullTypeName: ScenesManager
     methodName: LoadScene
@@ -242,11 +241,11 @@ ScriptsOnlyBuild:
     fullTypeName: ScenesManager
     methodName: LoadScene
   - assembly: Assembly-CSharp
+    fullTypeName: _Scripts.PlayerScripts.PlayerUIUpdate
+    methodName: ShowHidePressButton
+  - assembly: Assembly-CSharp
     fullTypeName: RoomItemButton
     methodName: OnClick
-  - assembly: Assembly-CSharp
-    fullTypeName: PlayerUIUpdate
-    methodName: ShowHidePressButton
   - assembly: UnityEngine.CoreModule
     fullTypeName: UnityEngine.GameObject
     methodName: SetActive
@@ -408,6 +407,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 8042}
     - Class: 114
       Script: {instanceID: 8430}
+    - Class: 114
+      Script: {instanceID: 328836}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -553,6 +554,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 8042}
     - Class: 114
       Script: {instanceID: 8430}
+    - Class: 114
+      Script: {instanceID: 328836}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -771,6 +774,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 8564}
     - Class: 114
       Script: {instanceID: 8900}
+    - Class: 114
+      Script: {instanceID: 328836}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1294,7 +1299,7 @@ ScriptsOnlyBuild:
     className: TestResultRendererCallback
   - hash:
       serializedVersion: 2
-      Hash: b453fb416b2ae2b929d323bbdd087a7f
+      Hash: 93879225785d9aabef5936ca678a6188
     assemblyName: Assembly-CSharp
     namespaceName: _Scripts.PlayerScripts
     className: PlayerMovement
@@ -1534,9 +1539,9 @@ ScriptsOnlyBuild:
     className: SetRoomCustomPropertyUIForm
   - hash:
       serializedVersion: 2
-      Hash: 1c0d0cf1d5d3f9a5e624617a0dcc50a4
+      Hash: 543b5bc15b6a918215d239aca93ed995
     assemblyName: Assembly-CSharp
-    namespaceName: 
+    namespaceName: _Scripts.PlayerScripts
     className: PlayerUIUpdate
   - hash:
       serializedVersion: 2
@@ -2996,6 +3001,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 6ef734482a519e5142392194de3bac3f
+    assemblyName: Assembly-CSharp
+    namespaceName: _Scripts.PlayerScripts
+    className: FearEffect
   platform: 19
   scenePathNames:
   - Assets/Scenes/PreMenu.unity
