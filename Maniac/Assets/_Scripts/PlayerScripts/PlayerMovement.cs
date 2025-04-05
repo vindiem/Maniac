@@ -168,7 +168,7 @@ namespace _Scripts.PlayerScripts
                     }
                     
                     // Making sound
-                    SoundManager.instance.PlayMurderHitSound();
+                    SoundManager.Instance.PlayMurderHitSound();
                 }
             }
 
@@ -390,7 +390,7 @@ namespace _Scripts.PlayerScripts
                 StunPlayer();
                 
                 // Making sound
-                SoundManager.instance.PlayTrapCloseSound();
+                SoundManager.Instance.PlayTrapCloseSound();
             }
         }
 

@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using System.Collections;
+using _Scripts;
 using Photon.Pun;
 
 public class Door : MonoBehaviourPun
@@ -11,8 +12,9 @@ public class Door : MonoBehaviourPun
     private Color originalColor;
     private bool isOpen = false;
     private bool isMoving = false;
-    private Vector3 closedRotation;
-    private Vector3 openRotation;
+    
+    private Quaternion closedRotation;
+    private Quaternion openRotation;
 
     private Transform nearestPlayer = null;
 
@@ -24,9 +26,10 @@ public class Door : MonoBehaviourPun
             originalColor = objectRenderer.material.color;
         }
 
-        closedRotation = transform.eulerAngles;
-        openRotation = closedRotation + new Vector3(0, 100, 0);
+        closedRotation = transform.rotation;
+        openRotation = Quaternion.AngleAxis(100, Vector3.up) * closedRotation;
     }
+
 
     private void Update()
     {
@@ -51,23 +54,23 @@ public class Door : MonoBehaviourPun
         StartCoroutine(RotateDoor(isOpen ? openRotation : closedRotation));
     }
 
-    private IEnumerator RotateDoor(Vector3 targetRotation)
+    private IEnumerator RotateDoor(Quaternion targetRotation)
     {
         isMoving = true;
-        Vector3 startRotation = transform.eulerAngles;
+        Quaternion startRotation = transform.rotation;
         float time = 0f;
         
         // Making sound
-        SoundManager.instance.PlayDoorSound();
+        SoundManager.Instance.PlayDoorSound();
 
         while (time < 1f)
         {
-            transform.eulerAngles = Vector3.Lerp(startRotation, targetRotation, time);
+            transform.rotation = Quaternion.Slerp(startRotation, targetRotation, time);
             time += Time.deltaTime * rotationSpeed;
             yield return null;
         }
 
-        transform.eulerAngles = targetRotation;
+        transform.rotation = targetRotation;
         isMoving = false;
     }
 

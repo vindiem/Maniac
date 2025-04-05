@@ -353,7 +353,7 @@ namespace _Scripts.PlayerScripts
                             photonView.RPC("PickUpTrap", RpcTarget.All, trapView.ViewID);
                             
                             // Making sound
-                            SoundManager.instance.PlayTrapCollectSound();
+                            SoundManager.Instance.PlayTrapCollectSound();
                         }
                     }
                 }
@@ -381,7 +381,7 @@ namespace _Scripts.PlayerScripts
                         photonView.RPC("PlaceTrap", RpcTarget.AllBuffered);
                         
                         // Making sound
-                        SoundManager.instance.PlayTrapPlaceSound();
+                        SoundManager.Instance.PlayTrapPlaceSound();
                     }
                     else if (activeSlot == 2 && holdGun)
                     {

@@ -6,38 +6,51 @@ namespace _Scripts.PlayerScripts
 {
     public class PlayerUIUpdate : MonoBehaviour
     {
-        [Space(10)] 
-        [Header("UI variables")] 
+        [Space(10)]
+        [Header("UI Elements")]
         [SerializeField] private Text healthText;
         [SerializeField] private Text roleText;
+        [SerializeField] private Image roleImage;
+    
+        [Space(10)]
+        [Header("Inventory UI")]
         [SerializeField] private Image holdTrapImage;
         [SerializeField] private Image holdGunImage;
         [SerializeField] private GameObject helpText;
-        [SerializeField] private Image roleImage;
-        
+
+        [Space(10)]
+        [Header("Health UI")]
         [SerializeField] private Image healthBarImage;
-        
-        // reload
+
+        [Space(10)]
+        [Header("Reload System")]
         [SerializeField] private GameObject weaponSystem;
         [SerializeField] private GameObject inventorySystem;
         [SerializeField] private Text reloadText;
         [SerializeField] private Image reloadImage;
-        
-        // stamina
+
+        [Space(10)]
+        [Header("Stamina System")]
         [SerializeField] private Text staminaText;
         [SerializeField] private Image staminaBarImage;
-        
+
+        [Space(10)]
+        [Header("Highlight System")]
         [SerializeField] private Text highlightText;
-        
-        // fear
+
+        [Space(10)]
+        [Header("Fear System")]
         [SerializeField] private GameObject fearOverlay;
         [SerializeField] private Text fearText;
         [SerializeField] private Image fearImage;
-        
-        // Light
+
+        [Space(10)]
+        [Header("Light System")]
         private Light lightSource;
 
-        [SerializeField] private Weapon weapon; 
+        [Space(10)]
+        [Header("Player Components")]
+        [SerializeField] private Weapon weapon;
         private PlayerMovement playerMovement;
         private FearEffect fearEffect;
 
@@ -92,7 +105,7 @@ namespace _Scripts.PlayerScripts
                 lightSource.enabled = !lightSource.enabled;
             
                 // Making sound
-                SoundManager.instance.PlayLightSound();
+                SoundManager.Instance.PlayLightSound();
             }
         }
     

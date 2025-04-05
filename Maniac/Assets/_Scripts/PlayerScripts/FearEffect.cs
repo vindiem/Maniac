@@ -5,13 +5,24 @@ using Photon.Pun;
 
 namespace _Scripts.PlayerScripts
 {
-    public class FearEffect : MonoBehaviour
+    public class FearEffect : MonoBehaviourPunCallbacks
     {
+        [Header("Fear Settings")]
         public float detectionRadius = 10f;
         public float maxFear = 100f;
+        public float minFear = 50f;
         public float fearIncreaseRate = 5f;
         public float fearDecreaseRate = 2f;
         public float stunDuration = 2f;
+        
+        [Header("Visual Effect Settings")]
+        [Range(0f, 1f)]
+        public float maxOverlayAlpha = 0.7f; // Maximum darkness of the overlay
+        [Range(0f, 0.1f)]
+        public float maxShakeAmount = 0.02f; // Reduced max camera shake
+        public float overlayTransitionSpeed = 2f; // Higher = faster transition
+        
+        [Header("References")]
         public Image fearOverlay;
         public Transform cameraTransform;
 
@@ -19,9 +30,14 @@ namespace _Scripts.PlayerScripts
         private bool isStunned = false;
         private Transform murderer;
         private Vector3 originalCameraPos;
+        private PlayerMovement playerMovement;
+        private float currentOverlayAlpha = 0f;
 
         private void Start()
         {
+            // Cache component reference
+            playerMovement = GetComponent<PlayerMovement>();
+            
             if (cameraTransform == null)
             {
                 Debug.LogError("FearEffect: CameraTransform is not assigned!");
@@ -33,32 +49,52 @@ namespace _Scripts.PlayerScripts
             {
                 Debug.LogWarning("FearEffect: FearOverlay is not assigned. Fear UI effect won't work.");
             }
+            else
+            {
+                // Initialize overlay to be transparent
+                Color startColor = fearOverlay.color;
+                startColor.a = 0f;
+                fearOverlay.color = startColor;
+            }
 
             originalCameraPos = cameraTransform.localPosition;
         }
 
         private void Update()
         {
-            if (GetComponent<PlayerRole>().GetRole() == PlayerRoleEnum.Murder) return;
-            if (isStunned) return;
+            // Skip if we are the murderer
+            PlayerRole playerRole = GetComponent<PlayerRole>();
+            if (playerRole != null && playerRole.GetRole() == PlayerRoleEnum.Murder) 
+                return;
+                
+            if (isStunned) 
+                return;
 
+            // Find murderer
             murderer = FindNearestMurderer();
 
+            // Update fear level
             if (murderer != null)
             {
-                currentFear += fearIncreaseRate * Time.deltaTime;
-                Debug.Log($"Murderer nearby! Fear increasing: {currentFear}");
+                float distance = Vector3.Distance(transform.position, murderer.position);
+                float fearFactor = 1.0f - (distance / detectionRadius); // More fear when closer
+                currentFear += fearIncreaseRate * fearFactor * Time.deltaTime;
+                //Debug.Log($"Murderer nearby at distance {distance}! Fear increasing: {currentFear}");
             }
             else
             {
-                // Плавное снижение страха, но не ниже 50
+                // Gradually decrease fear, but not below minFear
                 currentFear -= fearDecreaseRate * Time.deltaTime;
-                Debug.Log($"No murderer nearby. Fear decreasing: {currentFear}");
+                //Debug.Log($"No murderer nearby. Fear decreasing: {currentFear}");
             }
 
-            currentFear = Mathf.Clamp(currentFear, 50, maxFear); // Теперь не опускается ниже 50
+            // Clamp fear between minimum and maximum
+            currentFear = Mathf.Clamp(currentFear, minFear, maxFear);
+            
+            // Apply visual effects based on fear level
             ApplyFearEffects();
 
+            // Check if player should be stunned
             if (currentFear >= maxFear && !isStunned)
             {
                 StartCoroutine(StunPlayer());
@@ -70,37 +106,85 @@ namespace _Scripts.PlayerScripts
         private Transform FindNearestMurderer()
         {
             Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRadius);
-            if (colliders.Length == 0) return null;
+            Transform closestMurderer = null;
+            float closestDistance = detectionRadius;
 
             foreach (Collider col in colliders)
             {
-                PlayerRole role = col.GetComponent<PlayerRole>();
-                if (role.gameObject == PhotonNetwork.IsMasterClient)
+                // Skip if it's our own collider
+                if (col.gameObject == gameObject)
+                    continue;
+                    
+                PhotonView photonView = col.GetComponent<PhotonView>();
+                
+                // Skip if photonView is null
+                if (photonView == null)
+                    continue;
+                
+                // Skip if Owner is null
+                if (photonView.Owner == null)
                 {
-                    Debug.Log($"Found player with role: {role.GetRole()}"); 
-                    return col.transform;
+                    Debug.LogWarning("Found a PhotonView with null Owner");
+                    continue;
+                }
+                
+                // Check if this player is controlled by MasterClient
+                if (photonView.Owner.IsMasterClient)
+                {
+                    float distance = Vector3.Distance(transform.position, col.transform.position);
+                    if (distance < closestDistance)
+                    {
+                        closestDistance = distance;
+                        closestMurderer = col.transform;
+                        //Debug.Log($"Found murderer at distance {distance}");
+                    }
                 }
             }
-            return null;
+            
+            return closestMurderer;
         }
 
         private void ApplyFearEffects()
         {
-            // Затемнение экрана
+            // Calculate target alpha based on fear level
+            float targetAlpha = Mathf.Lerp(0f, maxOverlayAlpha, (currentFear - minFear) / (maxFear - minFear));
+            
+            // Screen darkening effect with smooth transition
             if (fearOverlay != null)
             {
+                // Smoothly interpolate the current alpha toward the target alpha
+                currentOverlayAlpha = Mathf.Lerp(currentOverlayAlpha, targetAlpha, Time.deltaTime * overlayTransitionSpeed);
+                
                 Color color = fearOverlay.color;
-                color.a = Mathf.Lerp(0f, 0.5f, (currentFear - 50) / (maxFear - 50)); // Сдвигаем диапазон (50-100)
+                color.a = currentOverlayAlpha;
                 fearOverlay.color = color;
             }
 
-            // Тряска камеры (уменьшенная амплитуда)
-            if (currentFear > 50f)
+            // Camera shake effect (intensity based on fear level, but more subtle)
+            if (currentFear > minFear && cameraTransform != null)
             {
-                float shakeAmount = ((currentFear - 50) / (maxFear - 50)) * 0.05f;
-                cameraTransform.localPosition = originalCameraPos + Random.insideUnitSphere * shakeAmount;
+                // Non-linear scaling for more dramatic effect at high fear levels
+                float fearPercentage = (currentFear - minFear) / (maxFear - minFear);
+                float shakeAmount = Mathf.Pow(fearPercentage, 2) * maxShakeAmount; // Square makes it increase more at higher levels
+                
+                // Apply slight randomization to make shake less predictable
+                if (fearPercentage > 0.3f) // Only shake when fear is above 30%
+                {
+                    // More subtle horizontal shake than vertical
+                    Vector3 shake = new Vector3(
+                        Random.Range(-1f, 1f) * shakeAmount * 0.7f, // Less horizontal shake
+                        Random.Range(-1f, 1f) * shakeAmount,
+                        0f
+                    );
+                    
+                    cameraTransform.localPosition = originalCameraPos + shake;
+                }
+                else
+                {
+                    cameraTransform.localPosition = originalCameraPos;
+                }
             }
-            else
+            else if (cameraTransform != null)
             {
                 cameraTransform.localPosition = originalCameraPos;
             }
@@ -109,14 +193,30 @@ namespace _Scripts.PlayerScripts
         private IEnumerator StunPlayer()
         {
             isStunned = true;
-            Debug.Log("Player stunned!");
+            Debug.Log("Player stunned from fear!");
 
-            GetComponent<PlayerMovement>().enabled = false;
+            // Disable movement
+            if (playerMovement != null)
+                playerMovement.enabled = false;
+                
+            // Dramatic screen effect at max fear
+            if (fearOverlay != null)
+            {
+                Color color = fearOverlay.color;
+                color.a = maxOverlayAlpha;
+                fearOverlay.color = color;
+            }
+                
+            // Wait for stun duration
             yield return new WaitForSeconds(stunDuration);
-            GetComponent<PlayerMovement>().enabled = true;
+            
+            // Re-enable movement
+            if (playerMovement != null)
+                playerMovement.enabled = true;
 
+            // Reset fear to minimum level after being stunned
             isStunned = false;
-            currentFear = 50f; // После шока страх сбрасывается до 50
+            currentFear = minFear;
         }
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using _Scripts;
 using _Scripts.PlayerScripts;
 using UnityEngine;
 using Photon.Pun;
@@ -17,7 +18,7 @@ public class Weapon : MonoBehaviour
         if (Input.GetButtonDown("Fire1") && nextFire <= 0f && !PhotonNetwork.IsMasterClient)
         {
             // Making sound
-            SoundManager.instance.PlayShootSound();
+            SoundManager.Instance.PlayShootSound();
             nextFire = fireRate;
             Fire();
         }
