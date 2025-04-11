@@ -21,6 +21,7 @@ namespace _Scripts.PlayerScripts
         [Space(10)]
         [Header("Health UI")]
         [SerializeField] private Image healthBarImage;
+        [SerializeField] private Image heartImage;
 
         [Space(10)]
         [Header("Reload System")]
@@ -33,10 +34,11 @@ namespace _Scripts.PlayerScripts
         [Header("Stamina System")]
         [SerializeField] private Text staminaText;
         [SerializeField] private Image staminaBarImage;
+        [SerializeField] private Image staminaImage;
 
         [Space(10)]
         [Header("Highlight System")]
-        [SerializeField] private Text highlightText;
+        [SerializeField] private GameObject highlightText;
 
         [Space(10)]
         [Header("Fear System")]
@@ -63,7 +65,7 @@ namespace _Scripts.PlayerScripts
         private void Start()
         {
             lightSource = GetComponentInChildren<Light>();
-            highlightText.gameObject.SetActive(false);
+            highlightText.SetActive(false);
         }
 
         public void UpdateUI(float health, _Scripts.PlayerScripts.PlayerRole playerRole, bool holdTrap, bool holdGun)
@@ -80,6 +82,8 @@ namespace _Scripts.PlayerScripts
             // Stamina
             staminaText.text = $"CS: {MathF.Round(playerMovement.GetStamina()[0], 2)}";
             staminaBarImage.fillAmount = playerMovement.GetStamina()[0] / playerMovement.GetStamina()[1];
+            
+            staminaImage.fillAmount = playerMovement.GetStamina()[0] / playerMovement.GetStamina()[1];
         
             if (playerRole.GetRole() == _Scripts.PlayerScripts.PlayerRoleEnum.Murder)
             {
@@ -94,7 +98,7 @@ namespace _Scripts.PlayerScripts
                 holdGunImage.color = holdGun ? Color.green : Color.grey;
             
                 roleImage.color = Color.green;
-                highlightText.gameObject.SetActive(GetComponentInChildren<Outline>().enabled ? true : false);
+                highlightText.SetActive(GetComponentInChildren<Outline>().enabled ? true : false);
                 
                 fearText.text = $"Fear: {Mathf.Round(fearEffect.GetCurrentFear())}";
                 fearImage.fillAmount = fearEffect.GetCurrentFear() / 100;
@@ -114,6 +118,6 @@ namespace _Scripts.PlayerScripts
             bool isActive = helpText.gameObject.activeSelf;
             helpText.gameObject.SetActive(!isActive);
         }
-    
+        
     }
 }
