@@ -412,6 +412,7 @@
 "Assets/Photon/PhotonChat/Demos/DemoChat/IgnoreUiRaycastWhenInactive.cs"
 "Assets/Photon/PhotonChat/Demos/DemoChat/NamePickGui.cs"
 "Assets/Photon/PhotonRealtime/Demos/DemoLoadBalancing/ConnectAndJoinRandomLb.cs"
+"Assets/Scenes/Profiles/Shaders/PixelateEffect.cs"
 "Assets/_Scripts/Door.cs"
 "Assets/_Scripts/FollowCamera.cs"
 "Assets/_Scripts/MultiplayerScripts/PlayerSetup.cs"

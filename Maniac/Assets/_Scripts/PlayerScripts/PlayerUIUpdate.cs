@@ -1,6 +1,9 @@
 using System;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UI;
+using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.Serialization;
 
 namespace _Scripts.PlayerScripts
 {
@@ -21,7 +24,11 @@ namespace _Scripts.PlayerScripts
         [Space(10)]
         [Header("Health UI")]
         [SerializeField] private Image healthBarImage;
-        [SerializeField] private Image heartImage;
+        [SerializeField] private Image heartPanelImage;
+        [SerializeField] private float minAlpha = 0.2f; 
+        [SerializeField] private float maxAlpha = 1f;
+        [SerializeField] private float blinkSpeed = 1f;
+        private CanvasGroup canvasGroup;
 
         [Space(10)]
         [Header("Reload System")]
@@ -55,6 +62,9 @@ namespace _Scripts.PlayerScripts
         [SerializeField] private Weapon weapon;
         private PlayerMovement playerMovement;
         private FearEffect fearEffect;
+        
+        [SerializeField] private PostProcessVolume postProcessVolume;
+        private Vignette vignette;
 
         private void Awake()
         {
@@ -66,6 +76,8 @@ namespace _Scripts.PlayerScripts
         {
             lightSource = GetComponentInChildren<Light>();
             highlightText.SetActive(false);
+            
+            //canvasGroup = heartImage.gameObject.AddComponent<CanvasGroup>();
         }
 
         public void UpdateUI(float health, _Scripts.PlayerScripts.PlayerRole playerRole, bool holdTrap, bool holdGun)
@@ -73,6 +85,11 @@ namespace _Scripts.PlayerScripts
             // Health
             healthText.text = $"HP: {health}";
             healthBarImage.fillAmount = health / 100;
+            
+            heartPanelImage.fillAmount = 1 - health / 100;
+            //float pong = Mathf.PingPong(Time.time * 10, 100);
+            //float intensity = Mathf.Lerp(minAlpha, maxAlpha, pong / 100f);
+            //canvasGroup.alpha = Mathf.Lerp(intensity, 1f, Mathf.PingPong(Time.time * blinkSpeed, 1f));
             
             // Role and reload
             roleText.text = $"{playerRole.GetRole()}";
@@ -91,6 +108,11 @@ namespace _Scripts.PlayerScripts
                 weaponSystem.SetActive(false);
                 inventorySystem.SetActive(false);
                 fearOverlay.SetActive(false);
+                
+                // red vignette
+                postProcessVolume.profile.TryGetSettings(out vignette);
+                vignette.color.value = Color.red;
+                vignette.intensity.value = .4f;
             }
             else if (playerRole.GetRole() == _Scripts.PlayerScripts.PlayerRoleEnum.Victim)
             {

@@ -73,6 +73,7 @@ namespace _Scripts.MultiplayerScripts
                     }
                 }
             }
+            
         }
 
         [PunRPC]
@@ -96,7 +97,19 @@ namespace _Scripts.MultiplayerScripts
             nickNameScreen.SetActive(false);
             connectionScreen.SetActive(true);
             Debug.Log("Connecting to photon...");
-            PhotonNetwork.JoinOrCreateRoom(roomNameToJoin, null, null);
+
+            try
+            {
+                PhotonNetwork.JoinOrCreateRoom(roomNameToJoin, null, null);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                PhotonNetwork.LeaveRoom();
+                PhotonNetwork.LeaveLobby();
+                PhotonNetwork.Disconnect();
+                throw;
+            }
         }
 
         public override void OnJoinedRoom()
