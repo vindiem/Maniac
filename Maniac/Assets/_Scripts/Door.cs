@@ -28,8 +28,12 @@ public class Door : MonoBehaviourPun
 
         closedRotation = transform.rotation;
         openRotation = Quaternion.AngleAxis(100, Vector3.up) * closedRotation;
-    }
 
+        if (PhotonNetwork.IsMasterClient)
+        {
+            StartCoroutine(AutoOpenCloseRoutine());
+        }
+    }
 
     private void Update()
     {
@@ -59,7 +63,7 @@ public class Door : MonoBehaviourPun
         isMoving = true;
         Quaternion startRotation = transform.rotation;
         float time = 0f;
-        
+
         // Making sound
         SoundManager.Instance.PlayDoorSound();
 
@@ -107,5 +111,21 @@ public class Door : MonoBehaviourPun
         }
 
         return nearest;
+    }
+
+    // Coroutine for random spooky door opening
+    private IEnumerator AutoOpenCloseRoutine()
+    {
+        while (true)
+        {
+            float waitTime = UnityEngine.Random.Range(25f, 35f);
+            yield return new WaitForSeconds(waitTime);
+
+            if (!isMoving)
+            {
+                bool shouldOpen = UnityEngine.Random.value > 0.5f;
+                photonView.RPC("ToggleDoor", RpcTarget.AllBuffered, shouldOpen);
+            }
+        }
     }
 }

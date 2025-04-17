@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using _Scripts.MultiplayerScripts;
+using _Scripts.MultiplayerScripts.LobbyScripts;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
@@ -77,14 +78,14 @@ namespace _Scripts.PlayerScripts
 
         private Vector3 initialCameraLocalPos;
         private float bobTimer;
-        private Camera camera;
+        private new Camera camera;
         
         [Header("Camera Tilt Settings")]
         [SerializeField] private float tiltAmount = 5f;
         [SerializeField] private float tiltSpeed = 4f;
         
-        private const float DefaultFieldOfView = 50f;
-        private const float ChangedFieldOfView = 57.5f;
+        private const float DefaultFieldOfView = 50.0f;
+        private const float ChangedFieldOfView = 60.0f;
 
         private void Awake()
         {
@@ -336,6 +337,7 @@ namespace _Scripts.PlayerScripts
                 : new Vector3(cameraTransform.position.x,
                                 cameraTransform.position.y + 0.55f,
                                 cameraTransform.position.z);
+            initialCameraLocalPos = cameraTransform.localPosition;
         }
 
         private void Die()

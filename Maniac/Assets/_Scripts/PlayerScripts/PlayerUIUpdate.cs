@@ -53,7 +53,7 @@ namespace _Scripts.PlayerScripts
 
         [Space(10)]
         [Header("Light System")]
-        private Light lightSource;
+        //private Light lightSource;
 
         [Space(10)]
         [Header("Player Components")]
@@ -72,7 +72,7 @@ namespace _Scripts.PlayerScripts
 
         private void Start()
         {
-            lightSource = GetComponentInChildren<Light>();
+            //lightSource = GetComponentInChildren<Light>();
             highlightText.SetActive(false);
             
             //canvasGroup = heartImage.gameObject.AddComponent<CanvasGroup>();
@@ -124,13 +124,13 @@ namespace _Scripts.PlayerScripts
                 fearImage.fillAmount = fearEffect.GetCurrentFear() / 100;
             }
 
-            if (Input.GetMouseButtonDown(1))
+            /*if (Input.GetMouseButtonDown(1))
             {
                 lightSource.enabled = !lightSource.enabled;
             
                 // Making sound
                 SoundManager.Instance.PlayLightSound();
-            }
+            }*/
         }
     
         public void ShowHidePressButton()

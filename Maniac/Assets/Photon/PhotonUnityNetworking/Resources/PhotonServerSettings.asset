@@ -81,6 +81,15 @@ MonoBehaviour:
   - WinScreen
   - WinCheck
   - HighlightAll
+  - TurnAllLightOnRPC
+  - TurnAllLightsOffRPC
+  - TurnAllLightsOnRPC
+  - PanelsControledRPC
+  - PanelsControlRPC
+  - FlickerLightsRPC
+  - ToggleFlashlightRPC
+  - ToggleFlashlight
+  - SetFlashlightState
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

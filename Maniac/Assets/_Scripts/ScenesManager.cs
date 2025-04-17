@@ -9,12 +9,11 @@ namespace _Scripts
         public void LoadScene(string sceneName)
         {
             SceneManager.LoadScene(sceneName);
-        
-            if (PhotonNetwork.InRoom)
-            {
-                PhotonNetwork.LeaveRoom();
-                PhotonNetwork.Disconnect();
-            }
+
+            if (!PhotonNetwork.InRoom) return;
+            PhotonNetwork.LeaveRoom();
+            PhotonNetwork.LeaveLobby();
+            PhotonNetwork.Disconnect();
         }
     }
 }
