@@ -1,19 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ScenesManager : MonoBehaviour
+namespace _Scripts
 {
-    public void LoadScene(string sceneName)
+    public class ScenesManager : MonoBehaviour
     {
-        SceneManager.LoadScene(sceneName);
-        
-        if (PhotonNetwork.InRoom)
+        public void LoadScene(string sceneName)
         {
-            PhotonNetwork.LeaveRoom();
-            PhotonNetwork.Disconnect();
+            SceneManager.LoadScene(sceneName);
+        
+            if (PhotonNetwork.InRoom)
+            {
+                PhotonNetwork.LeaveRoom();
+                PhotonNetwork.Disconnect();
+            }
         }
     }
 }

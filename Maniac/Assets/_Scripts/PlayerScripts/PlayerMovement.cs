@@ -68,6 +68,23 @@ namespace _Scripts.PlayerScripts
         
         // Prefab
         [SerializeField] private GameObject stateObj;
+        
+        [Header("Camera Bobbing")]
+        [SerializeField] private float bobFrequency = 5f;
+        [SerializeField] private float bobAmplitude = 0.05f;
+        [SerializeField] private float bobSmoothing = 6f;
+        private float bobSmoothingDefaultValue;
+
+        private Vector3 initialCameraLocalPos;
+        private float bobTimer;
+        private Camera camera;
+        
+        [Header("Camera Tilt Settings")]
+        [SerializeField] private float tiltAmount = 5f;
+        [SerializeField] private float tiltSpeed = 4f;
+        
+        private const float DefaultFieldOfView = 50f;
+        private const float ChangedFieldOfView = 57.5f;
 
         private void Awake()
         {
@@ -77,8 +94,11 @@ namespace _Scripts.PlayerScripts
         private void Start()
         {
             controller = GetComponent<CharacterController>();
-            cameraTransform = GetComponentInChildren<Camera>().transform;
             animator = GetComponentInChildren<Animator>();
+            
+            cameraTransform = GetComponentInChildren<Camera>().transform;
+            camera = cameraTransform.GetComponent<Camera>();
+            camera.fieldOfView = DefaultFieldOfView;
             
             playerRole = GetComponent<PlayerRole>();
             playerUIUpdate = GetComponent<PlayerUIUpdate>();
@@ -95,6 +115,9 @@ namespace _Scripts.PlayerScripts
                 CursorLockMode.None : CursorLockMode.Locked;
             
             ghostFreeMovement.SetDieState(playerRole.GetRole());
+
+            bobSmoothingDefaultValue = bobSmoothing;
+            initialCameraLocalPos = cameraTransform.localPosition;
         }
 
         private void Update()
@@ -121,17 +144,17 @@ namespace _Scripts.PlayerScripts
                     photonView.RPC("HighlightAll", RpcTarget.AllBuffered);
                     highlightAllPlayersTime = 55f;
                 }
-                
+                highlightAllPlayersTime -= Time.deltaTime;
             }
-            playerUIUpdate.UpdateUI(health, playerRole, 
-                playerTrapSystem.GetTrapInHandsBool(), playerTrapSystem.GetGunInHandsBool());
-            if (playerRole.GetRole() == PlayerRoleEnum.Victim)
+            else if (playerRole.GetRole() == PlayerRoleEnum.Victim)
             {
                 playerTrapSystem.HandleInventory();
             }
             
+            playerUIUpdate.UpdateUI(health, playerRole, 
+                playerTrapSystem.GetTrapInHandsBool(), playerTrapSystem.GetGunInHandsBool());
+            
             CursorVisibility();
-            highlightAllPlayersTime -= Time.deltaTime;
 
         }
 
@@ -251,9 +274,44 @@ namespace _Scripts.PlayerScripts
             float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
             xRotation = Mathf.Clamp(xRotation - mouseY, -75f, 75f);
-            cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+    
+            float targetTiltZ = -mouseX * tiltAmount;
+            Quaternion targetTiltRotation = Quaternion.Euler(xRotation, 0f, targetTiltZ);
+            cameraTransform.localRotation = Quaternion.Slerp(cameraTransform.localRotation, targetTiltRotation, Time.deltaTime * tiltSpeed);
+    
             transform.Rotate(Vector3.up * mouseX);
+
+            float moveX = Input.GetAxis("Horizontal");
+            float moveZ = Input.GetAxis("Vertical");
+            bool isMoving = moveX != 0 || moveZ != 0;
+
+            if (isMoving && isGrounded)
+            {
+                bobTimer += Time.deltaTime * bobFrequency;
+                float bobOffsetY = Mathf.Sin(bobTimer) * bobAmplitude;
+                float bobOffsetX = Mathf.Cos(bobTimer / 2f) * bobAmplitude;
+
+                Vector3 targetPosition = initialCameraLocalPos + new Vector3(bobOffsetX, bobOffsetY, 0f);
+                cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, targetPosition, Time.deltaTime * bobSmoothing);
+            }
+            else
+            {
+                bobTimer = 0f;
+                cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, initialCameraLocalPos, Time.deltaTime * bobSmoothing);
+            }
+
+            if (isSprinting)
+            {
+                bobSmoothing = 1.2f;
+                camera.fieldOfView = ChangedFieldOfView;
+            }
+            else
+            {
+                bobSmoothing = bobSmoothingDefaultValue;
+                camera.fieldOfView = DefaultFieldOfView;
+            }
         }
+
 
         private void HandleCrouch()
         {
@@ -266,7 +324,18 @@ namespace _Scripts.PlayerScripts
             animator.SetBool(IsCrouching, isCrouching);
             controller.height = isCrouching ? 1.0f : defaultCharacterHeight;
             controller.center = isCrouching ? controller.center / 2.0f : controller.center * 2.0f;
+            
             speed *= isCrouching ? 0.4f : 2.5f; 
+            defaultSpeed *= isCrouching ? 0.4f : 2.5f;
+            sprintSpeed *= isCrouching ? 0.4f : 2.5f;
+            
+            cameraTransform.position = isCrouching 
+                ? new Vector3(cameraTransform.position.x,
+                                cameraTransform.position.y - 0.55f,
+                                cameraTransform.position.z) 
+                : new Vector3(cameraTransform.position.x,
+                                cameraTransform.position.y + 0.55f,
+                                cameraTransform.position.z);
         }
 
         private void Die()

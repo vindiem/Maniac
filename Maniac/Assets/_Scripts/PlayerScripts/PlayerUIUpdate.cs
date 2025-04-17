@@ -2,8 +2,6 @@ using System;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UI;
-using UnityEngine.Rendering.PostProcessing;
-using UnityEngine.Serialization;
 
 namespace _Scripts.PlayerScripts
 {
@@ -25,9 +23,9 @@ namespace _Scripts.PlayerScripts
         [Header("Health UI")]
         [SerializeField] private Image healthBarImage;
         [SerializeField] private Image heartPanelImage;
-        [SerializeField] private float minAlpha = 0.2f; 
-        [SerializeField] private float maxAlpha = 1f;
-        [SerializeField] private float blinkSpeed = 1f;
+        //[SerializeField] private float minAlpha = 0.2f; 
+        //[SerializeField] private float maxAlpha = 1f;
+        //[SerializeField] private float blinkSpeed = 1f;
         private CanvasGroup canvasGroup;
 
         [Space(10)]

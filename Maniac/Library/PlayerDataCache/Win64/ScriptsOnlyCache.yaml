@@ -19,7 +19,6 @@ ScriptsOnlyBuild:
     - Outline
     - PixelateEffect
     - RoomItemButton
-    - ScenesManager
     - Weapon
     - _Scripts.FollowCamera
     - _Scripts.MultiplayerScripts.PlayerSetup
@@ -31,6 +30,7 @@ ScriptsOnlyBuild:
     - _Scripts.PlayerScripts.PlayerRole
     - _Scripts.PlayerScripts.PlayerTrapSystem
     - _Scripts.PlayerScripts.PlayerUIUpdate
+    - _Scripts.ScenesManager
     - _Scripts.SoundManager
     PhotonUnityNetworking:
     - Photon.Pun.PhotonAnimatorView
@@ -58,6 +58,7 @@ ScriptsOnlyBuild:
     Unity.2D.Animation.Editor.dll:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.Animation.Runtime.dll:
+    - UnityEngine.U2D.Animation.BufferManager
     - UnityEngine.U2D.Animation.SpriteSkinComposite
     - UnityEngine.U2D.Animation.SpriteSkinUpdateHelper
     Unity.2D.IK.Editor.dll:
@@ -107,6 +108,7 @@ ScriptsOnlyBuild:
     - UnityEngine.Rendering.PostProcessing.Vignette
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.RiderScriptEditorData
+    - Packages.Rider.Editor.RiderScriptEditorPersistedState
     - Packages.Rider.Editor.UnitTesting.CallbackData
     Unity.TextMeshPro:
     - TMPro.TMP_FontAsset
@@ -123,8 +125,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -232,25 +236,28 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.SpriteState
   methodsToPreserve:
   - assembly: Assembly-CSharp
-    fullTypeName: ScenesManager
+    fullTypeName: _Scripts.ScenesManager
     methodName: LoadScene
   - assembly: Assembly-CSharp
     fullTypeName: _Scripts.PlayerScripts.PlayerUIUpdate
     methodName: ShowHidePressButton
   - assembly: Assembly-CSharp
-    fullTypeName: ScenesManager
+    fullTypeName: _Scripts.ScenesManager
     methodName: LoadScene
   - assembly: Assembly-CSharp
-    fullTypeName: ScenesManager
+    fullTypeName: _Scripts.ScenesManager
     methodName: LoadScene
   - assembly: Assembly-CSharp
     fullTypeName: _Scripts.PlayerScripts.PlayerUIUpdate
     methodName: ShowHidePressButton
   - assembly: Assembly-CSharp
-    fullTypeName: ScenesManager
+    fullTypeName: RoomItemButton
+    methodName: OnClick
+  - assembly: Assembly-CSharp
+    fullTypeName: _Scripts.ScenesManager
     methodName: LoadScene
   - assembly: Assembly-CSharp
-    fullTypeName: ScenesManager
+    fullTypeName: _Scripts.ScenesManager
     methodName: LoadScene
   - assembly: UnityEngine.CoreModule
     fullTypeName: UnityEngine.GameObject
@@ -259,7 +266,7 @@ ScriptsOnlyBuild:
     fullTypeName: UnityEngine.GameObject
     methodName: SetActive
   - assembly: Assembly-CSharp
-    fullTypeName: ScenesManager
+    fullTypeName: _Scripts.ScenesManager
     methodName: LoadScene
   - assembly: Assembly-CSharp
     fullTypeName: _Scripts.MultiplayerScripts.RoomManager
@@ -280,11 +287,8 @@ ScriptsOnlyBuild:
     fullTypeName: _Scripts.MultiplayerScripts.RoomManager
     methodName: ChangeNickname
   - assembly: Assembly-CSharp
-    fullTypeName: ScenesManager
+    fullTypeName: _Scripts.ScenesManager
     methodName: LoadScene
-  - assembly: Assembly-CSharp
-    fullTypeName: RoomItemButton
-    methodName: OnClick
   - assembly: Assembly-CSharp
     fullTypeName: _Scripts.PlayerScripts.PlayerUIUpdate
     methodName: ShowHidePressButton
@@ -298,10 +302,10 @@ ScriptsOnlyBuild:
     fullTypeName: UnityEngine.GameObject
     methodName: SetActive
   - assembly: Assembly-CSharp
-    fullTypeName: ScenesManager
+    fullTypeName: _Scripts.ScenesManager
     methodName: LoadScene
   - assembly: Assembly-CSharp
-    fullTypeName: ScenesManager
+    fullTypeName: _Scripts.ScenesManager
     methodName: LoadScene
   - assembly: UnityEngine.CoreModule
     fullTypeName: UnityEngine.GameObject
@@ -328,7 +332,7 @@ ScriptsOnlyBuild:
     fullTypeName: UnityEngine.GameObject
     methodName: SetActive
   - assembly: Assembly-CSharp
-    fullTypeName: ScenesManager
+    fullTypeName: _Scripts.ScenesManager
     methodName: LoadScene
   sceneClasses:
     Assets/Scenes/Level1.unity:
@@ -1450,7 +1454,7 @@ ScriptsOnlyBuild:
     className: UnityOnInputFieldEndEditMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 93879225785d9aabef5936ca678a6188
+      Hash: 9cc4e30daaff124b083bacaff147df48
     assemblyName: Assembly-CSharp
     namespaceName: _Scripts.PlayerScripts
     className: PlayerMovement
@@ -1708,7 +1712,7 @@ ScriptsOnlyBuild:
     className: SetRoomCustomPropertyUIForm
   - hash:
       serializedVersion: 2
-      Hash: 00e578ae950bb094dd86e8ded5a4b8bd
+      Hash: 99223c189c32e981b902f0055462175a
     assemblyName: Assembly-CSharp
     namespaceName: _Scripts.PlayerScripts
     className: PlayerUIUpdate
@@ -2302,9 +2306,9 @@ ScriptsOnlyBuild:
     className: CountOfPlayersInRoomProperty
   - hash:
       serializedVersion: 2
-      Hash: 57f6d2843cf4bb142157816014151c7b
+      Hash: c155501195dd904e6e36e7fc2a46cc3c
     assemblyName: Assembly-CSharp
-    namespaceName: 
+    namespaceName: _Scripts
     className: ScenesManager
   - hash:
       serializedVersion: 2
