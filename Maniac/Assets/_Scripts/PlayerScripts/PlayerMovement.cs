@@ -1,13 +1,9 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using _Scripts.MultiplayerScripts;
 using _Scripts.MultiplayerScripts.LobbyScripts;
 using Photon.Pun;
-using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.Serialization;
-using UnityEngine.UI;
 
 namespace _Scripts.PlayerScripts
 {
@@ -29,7 +25,7 @@ namespace _Scripts.PlayerScripts
         private CharacterController controller;
         private Vector3 velocity;
         private bool isGrounded;
-        private Transform cameraTransform;
+        [SerializeField] private Transform cameraHolderTransform;
         private Animator animator;
         private float xRotation = 0f;
         private float defaultCharacterHeight = 0f;
@@ -78,7 +74,7 @@ namespace _Scripts.PlayerScripts
 
         private Vector3 initialCameraLocalPos;
         private float bobTimer;
-        private new Camera camera;
+        private Camera camera;
         
         [Header("Camera Tilt Settings")]
         [SerializeField] private float tiltAmount = 5f;
@@ -90,6 +86,7 @@ namespace _Scripts.PlayerScripts
         private void Awake()
         {
             photonView = GetComponent<PhotonView>();
+            initialCameraLocalPos = cameraHolderTransform.localPosition;
         }
 
         private void Start()
@@ -97,8 +94,8 @@ namespace _Scripts.PlayerScripts
             controller = GetComponent<CharacterController>();
             animator = GetComponentInChildren<Animator>();
             
-            cameraTransform = GetComponentInChildren<Camera>().transform;
-            camera = cameraTransform.GetComponent<Camera>();
+            //cameraTransform = GetComponentInChildren<Camera>().transform;
+            camera = cameraHolderTransform.GetComponentInChildren<Camera>();
             camera.fieldOfView = DefaultFieldOfView;
             
             playerRole = GetComponent<PlayerRole>();
@@ -118,7 +115,6 @@ namespace _Scripts.PlayerScripts
             ghostFreeMovement.SetDieState(playerRole.GetRole());
 
             bobSmoothingDefaultValue = bobSmoothing;
-            initialCameraLocalPos = cameraTransform.localPosition;
         }
 
         private void Update()
@@ -270,7 +266,7 @@ namespace _Scripts.PlayerScripts
         }
 
         private void HandleCamera()
-        {
+        {   
             float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
             float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
@@ -278,14 +274,12 @@ namespace _Scripts.PlayerScripts
     
             float targetTiltZ = -mouseX * tiltAmount;
             Quaternion targetTiltRotation = Quaternion.Euler(xRotation, 0f, targetTiltZ);
-            cameraTransform.localRotation = Quaternion.Slerp(cameraTransform.localRotation, targetTiltRotation, Time.deltaTime * tiltSpeed);
+            cameraHolderTransform.localRotation = Quaternion.Slerp(cameraHolderTransform.localRotation, targetTiltRotation, Time.deltaTime * tiltSpeed);
     
-            transform.Rotate(Vector3.up * mouseX);
-
             float moveX = Input.GetAxis("Horizontal");
             float moveZ = Input.GetAxis("Vertical");
             bool isMoving = moveX != 0 || moveZ != 0;
-
+            
             if (isMoving && isGrounded)
             {
                 bobTimer += Time.deltaTime * bobFrequency;
@@ -293,13 +287,15 @@ namespace _Scripts.PlayerScripts
                 float bobOffsetX = Mathf.Cos(bobTimer / 2f) * bobAmplitude;
 
                 Vector3 targetPosition = initialCameraLocalPos + new Vector3(bobOffsetX, bobOffsetY, 0f);
-                cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, targetPosition, Time.deltaTime * bobSmoothing);
+                cameraHolderTransform.localPosition = Vector3.Lerp(cameraHolderTransform.localPosition, targetPosition, Time.deltaTime * bobSmoothing);
             }
             else
             {
                 bobTimer = 0f;
-                cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, initialCameraLocalPos, Time.deltaTime * bobSmoothing);
+                cameraHolderTransform.localPosition = Vector3.Lerp(cameraHolderTransform.localPosition, initialCameraLocalPos, Time.deltaTime * bobSmoothing);
             }
+            
+            transform.Rotate(Vector3.up * mouseX);
 
             if (isSprinting)
             {
@@ -326,18 +322,18 @@ namespace _Scripts.PlayerScripts
             controller.height = isCrouching ? 1.0f : defaultCharacterHeight;
             controller.center = isCrouching ? controller.center / 2.0f : controller.center * 2.0f;
             
-            speed *= isCrouching ? 0.4f : 2.5f; 
+            speed *= isCrouching ? 0.4f : 2.5f;
             defaultSpeed *= isCrouching ? 0.4f : 2.5f;
             sprintSpeed *= isCrouching ? 0.4f : 2.5f;
             
-            cameraTransform.position = isCrouching 
-                ? new Vector3(cameraTransform.position.x,
-                                cameraTransform.position.y - 0.55f,
-                                cameraTransform.position.z) 
-                : new Vector3(cameraTransform.position.x,
-                                cameraTransform.position.y + 0.55f,
-                                cameraTransform.position.z);
-            initialCameraLocalPos = cameraTransform.localPosition;
+            cameraHolderTransform.localPosition = isCrouching 
+                ? new Vector3(cameraHolderTransform.localPosition.x,
+                                cameraHolderTransform.localPosition.y - 0.55f,
+                                cameraHolderTransform.localPosition.z) 
+                : new Vector3(cameraHolderTransform.localPosition.x,
+                                cameraHolderTransform.localPosition.y + 0.55f,
+                                cameraHolderTransform.localPosition.z);
+            initialCameraLocalPos = cameraHolderTransform.localPosition;
         }
 
         private void Die()
@@ -415,10 +411,10 @@ namespace _Scripts.PlayerScripts
                     transform.rotation = Quaternion.identity;
                 }
         
-                if (cameraTransform != null)
+                if (cameraHolderTransform != null)
                 {
-                    cameraTransform.localPosition = new Vector3(0f, 0f, 0f);
-                    cameraTransform.rotation = Quaternion.identity;
+                    cameraHolderTransform.localPosition = new Vector3(0f, 0f, 0f);
+                    cameraHolderTransform.localRotation = Quaternion.identity;
                     // Using identity instead of new Quaternion(0f, 0f, 0f, 0f)
                 }
         

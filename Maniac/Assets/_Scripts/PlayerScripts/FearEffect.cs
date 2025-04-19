@@ -124,7 +124,7 @@ namespace _Scripts.PlayerScripts
                 // Skip if Owner is null
                 if (photonView.Owner == null)
                 {
-                    Debug.LogWarning("Found a PhotonView with null Owner");
+                    //Debug.LogWarning("Found a PhotonView with null Owner");
                     continue;
                 }
                 

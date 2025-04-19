@@ -9,14 +9,14 @@ namespace _Scripts.PlayerScripts
         [Header("Light System")]
         private Light lightSource;
 
-        private float maxLightUsage = 5f;
-        private float cooldownTime = 5f;
+        private float maxLightUsage = 12f;
+        private float cooldownTime = 0f;
         private float currentUsageTime = 0f;
         private bool isOnCooldown = false;
         private bool isLightOn = false;
         private bool isBlinking = false;
 
-        private PhotonView photonView;
+        private new PhotonView photonView;
 
         private void Awake()
         {
@@ -25,6 +25,7 @@ namespace _Scripts.PlayerScripts
 
         private void Start()
         {
+            cooldownTime = maxLightUsage / 2f;
             lightSource = GetComponentInChildren<Light>();
             lightSource.enabled = false;
         }

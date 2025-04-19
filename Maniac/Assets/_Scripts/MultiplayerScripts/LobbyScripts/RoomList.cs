@@ -97,7 +97,7 @@ namespace _Scripts.MultiplayerScripts.LobbyScripts
                 GameObject roomItem = Instantiate(roomListItemPrefab, roomListParent);
                 
                 roomItem.transform.GetChild(0).GetComponent<Text>().text = room.Name;
-                roomItem.transform.GetChild(1).GetComponent<Text>().text = room.PlayerCount + "/" + room.MaxPlayers;
+                roomItem.transform.GetChild(1).GetComponent<Text>().text = room.PlayerCount + "/" + "5";
                 
                 roomItem.GetComponent<RoomItemButton>().roomName = room.Name;
                 

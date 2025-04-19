@@ -11,13 +11,15 @@ namespace _Scripts.MultiplayerScripts
 {
     public class GameController : MonoBehaviourPunCallbacks
     {
-        private const int SECONDS_TO_ON_LIGHTS = 30;
-        private const int SECONDS_TO_TURN_OFF_ON_LIGHTS = 40;
+        private const int SECONDS_TO_ON_LIGHTS = 50;
+        private const int SECONDS_TO_TURN_OFF_ON_LIGHTS = 150;
 
         private PhotonView _photonView;
 
         private List<Light> _lightsOnScene = new List<Light>();
         private readonly List<float> _defaultLightsIntensityValue = new List<float>();
+        
+        private ParticleSystem _rainParticleSystem;
 
         private void Awake()
         {
@@ -26,6 +28,9 @@ namespace _Scripts.MultiplayerScripts
 
         private void Start()
         {
+            _rainParticleSystem = GameObject.FindGameObjectWithTag("Rain").GetComponent<ParticleSystem>();
+            _rainParticleSystem.Stop();
+            
             StartCoroutine(CallRandomFunctionLoop());
             FindLightsOnScene();
         }
@@ -38,6 +43,7 @@ namespace _Scripts.MultiplayerScripts
                 if (light == null) continue;
                 light.intensity = 0.0f;
             }
+            _rainParticleSystem.Play();
         }
 
         [PunRPC]
@@ -48,6 +54,7 @@ namespace _Scripts.MultiplayerScripts
                 if (_lightsOnScene[i] == null) continue;
                 _lightsOnScene[i].intensity = _defaultLightsIntensityValue[i];
             }
+            _rainParticleSystem.Stop();
         }
 
         [PunRPC]
@@ -75,7 +82,8 @@ namespace _Scripts.MultiplayerScripts
                 yield return new WaitForSeconds(interval);
             }
 
-            TurnAllLightsOffRPC();
+            //TurnAllLightsOffRPC();
+            _photonView.RPC("TurnAllLightsOffRPC", RpcTarget.AllBuffered);
         }
 
         private IEnumerator CallRandomFunctionLoop()
