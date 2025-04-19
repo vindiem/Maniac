@@ -3409,7 +3409,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.02e-43, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 1.02e-43, y: 3e-44, z: 1.7174e-41, w: -5.65721e-39}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -3976,8 +3976,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.03
-      minScalar: 0.02
+      scalar: 0.02
+      minScalar: 0.01
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -4188,7 +4188,7 @@ ParticleSystem:
     startRotationY:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 0.007504916
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -7477,16 +7477,16 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     minKillSpeed: 0
-    maxKillSpeed: 10000
+    maxKillSpeed: 10
     radiusScale: 1
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294967295
-    maxCollisionShapes: 256
-    quality: 2
+      m_Bits: 1048576
+    maxCollisionShapes: 64
+    quality: 0
     voxelSize: 0.5
     collisionMessages: 0
-    collidesWithDynamic: 1
+    collidesWithDynamic: 0
     interiorCollisions: 0
   TriggerModule:
     enabled: 0
@@ -8455,7 +8455,7 @@ Transform:
   m_GameObject: {fileID: 626064136}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -2.5, y: 26.500002, z: -9}
+  m_LocalPosition: {x: 39.5, y: 26.500015, z: -124.000015}
   m_LocalScale: {x: 60, y: 60, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20725,12 +20725,12 @@ GameObject:
   - component: {fileID: 912999851773515573}
   - component: {fileID: 1630569236789957058}
   - component: {fileID: 7360688133037359214}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Cama
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!23 &440831386037243901
 MeshRenderer:
@@ -21565,12 +21565,12 @@ GameObject:
   - component: {fileID: 1839068239979449075}
   - component: {fileID: 5366437209926171666}
   - component: {fileID: 5764299287338981818}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Lavadora
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &589456579777393961
 Transform:
@@ -22088,12 +22088,12 @@ GameObject:
   - component: {fileID: 9172763114994489405}
   - component: {fileID: 3104250226848540708}
   - component: {fileID: 9172763114994489406}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Marco_P.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!1 &645725610246111170
 GameObject:
@@ -22486,12 +22486,12 @@ GameObject:
   - component: {fileID: 8773189014381562213}
   - component: {fileID: 5899536427155852571}
   - component: {fileID: 8773189014381562214}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Palanca
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &732137796873666100
 Transform:
@@ -23361,12 +23361,12 @@ GameObject:
   - component: {fileID: 93047323561502077}
   - component: {fileID: 7277269965060520770}
   - component: {fileID: 7277269965060520771}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Colchon.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!33 &836759877767416726
 MeshFilter:
@@ -23817,12 +23817,12 @@ GameObject:
   - component: {fileID: 5081949210470779504}
   - component: {fileID: 5176737550724834237}
   - component: {fileID: 5176737550724834238}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: a
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!23 &903847493933941215
 MeshRenderer:
@@ -23878,12 +23878,12 @@ GameObject:
   - component: {fileID: 2475830949250730461}
   - component: {fileID: 6868397173942688524}
   - component: {fileID: 6868397173942688525}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Marco_P.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!33 &908795995872110312
 MeshFilter:
@@ -24479,12 +24479,12 @@ GameObject:
   - component: {fileID: 8766126989573919708}
   - component: {fileID: 8173108343641480055}
   - component: {fileID: 8766126989573919709}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Papel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &989372460488676052
 Transform:
@@ -25022,12 +25022,12 @@ GameObject:
   - component: {fileID: 4149111438705451111}
   - component: {fileID: 27145980413370738}
   - component: {fileID: 4149111438705451112}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Cables.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!23 &1050238645303444852
 MeshRenderer:
@@ -25292,12 +25292,12 @@ GameObject:
   - component: {fileID: 7831846367094926872}
   - component: {fileID: 3566428688112172333}
   - component: {fileID: 7831846367094926873}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Barandal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1091085938815304201
 Transform:
@@ -25651,12 +25651,12 @@ GameObject:
   - component: {fileID: 735704047289038232}
   - component: {fileID: 6712047048356513773}
   - component: {fileID: 6712047048356513774}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: "Piso_Ba\xF1o.002"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!33 &1149027193118877561
 MeshFilter:
@@ -26022,12 +26022,12 @@ GameObject:
   - component: {fileID: 4168771307194299933}
   - component: {fileID: 2933188665504917007}
   - component: {fileID: 4168771307194299934}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Caja_fusiles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1200427573600715191
 Transform:
@@ -26487,12 +26487,12 @@ GameObject:
   - component: {fileID: 7759699003047453297}
   - component: {fileID: 1441935604357155459}
   - component: {fileID: 7759699003047453298}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Puerta_R.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!23 &1296854198778823078
 MeshRenderer:
@@ -27983,12 +27983,12 @@ GameObject:
   - component: {fileID: 6682365957788499574}
   - component: {fileID: 521025890232253196}
   - component: {fileID: 9174699819335893183}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Tapa.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1481018180905014180
 Transform:
@@ -29372,12 +29372,12 @@ GameObject:
   - component: {fileID: 9093610153577040776}
   - component: {fileID: 6544496799328638038}
   - component: {fileID: 9093610153577040777}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Refrigerador
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!23 &1668121434864762875
 MeshRenderer:
@@ -29634,12 +29634,12 @@ GameObject:
   - component: {fileID: 4782847902277124096}
   - component: {fileID: 5402012341996157011}
   - component: {fileID: 7965071110374282084}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Anaquel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1708766166482894770
 Transform:
@@ -30596,12 +30596,12 @@ GameObject:
   - component: {fileID: 6996875059109699421}
   - component: {fileID: 3343972473800853970}
   - component: {fileID: 7174890359938977459}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Cama.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!23 &1837109256320154065
 MeshRenderer:
@@ -31713,12 +31713,12 @@ GameObject:
   - component: {fileID: 1521737336577848797}
   - component: {fileID: 1796414117827540033}
   - component: {fileID: 4917492637001276500}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Marco_P.009
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2035635551454938777
 Transform:
@@ -34442,12 +34442,12 @@ GameObject:
   - component: {fileID: 4888004246806857461}
   - component: {fileID: 4814060290332938611}
   - component: {fileID: 4888004246806857462}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Marco_P.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2385880076514348805
 Transform:
@@ -36427,12 +36427,12 @@ GameObject:
   - component: {fileID: 2454655506965377047}
   - component: {fileID: 7593049918376581127}
   - component: {fileID: 7593049918376581128}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Puerta
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 0
 --- !u!4 &2689283926540874294
 Transform:
@@ -37471,12 +37471,12 @@ GameObject:
   - component: {fileID: 8010777502140153372}
   - component: {fileID: 2947611136441286552}
   - component: {fileID: 8010777502140153373}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Cesta.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2818997177646561370
 Transform:
@@ -38444,12 +38444,12 @@ GameObject:
   - component: {fileID: 3570163381879147674}
   - component: {fileID: 24687422988008578}
   - component: {fileID: 3570163381879147675}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Lavabo.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!1 &2945656696411675040
 GameObject:
@@ -38649,12 +38649,12 @@ GameObject:
   - component: {fileID: 687194632232251160}
   - component: {fileID: 6545243804762882967}
   - component: {fileID: 6545243804762882968}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Closet.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!33 &2978119663352143266
 MeshFilter:
@@ -38871,12 +38871,12 @@ GameObject:
   - component: {fileID: 2944377863719800313}
   - component: {fileID: 3728356800279222413}
   - component: {fileID: 3728356800279222414}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Anaquel.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &3015295036901061875
 Transform:
@@ -39174,12 +39174,12 @@ GameObject:
   - component: {fileID: 3714513654901781519}
   - component: {fileID: 2991951371432622681}
   - component: {fileID: 5822355174165981404}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: m
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!23 &3066955159548389208
 MeshRenderer:
@@ -39798,12 +39798,12 @@ GameObject:
   - component: {fileID: 1241496606063965936}
   - component: {fileID: 7263396046091052335}
   - component: {fileID: 7263396046091052336}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Cofre
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!23 &3119093618003760649
 MeshRenderer:
@@ -41251,12 +41251,12 @@ GameObject:
   - component: {fileID: 6553333465266517806}
   - component: {fileID: 7816424452728429452}
   - component: {fileID: 7816424452728429453}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Casa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &3364750399905363845
 Transform:
@@ -44339,12 +44339,12 @@ GameObject:
   - component: {fileID: 4759071761195690402}
   - component: {fileID: 4673797580024328372}
   - component: {fileID: 6528015016540041594}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Marco_P.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!33 &3802655995750730698
 MeshFilter:
@@ -44844,12 +44844,12 @@ GameObject:
   - component: {fileID: 4631024480109676471}
   - component: {fileID: 872537635339891263}
   - component: {fileID: 4631024480109676472}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Colchon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!33 &3905073569225867455
 MeshFilter:
@@ -45478,12 +45478,12 @@ GameObject:
   - component: {fileID: 8289725750050413612}
   - component: {fileID: 3066955159548389208}
   - component: {fileID: 8289725750050413613}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Barandal.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!1 &3989634807013429034
 GameObject:
@@ -45780,12 +45780,12 @@ GameObject:
   - component: {fileID: 6138744778376167280}
   - component: {fileID: 2537013054002680327}
   - component: {fileID: 6138744778376167281}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Lavadora.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!114 &4014474734397457129
 MonoBehaviour:
@@ -46817,12 +46817,12 @@ GameObject:
   - component: {fileID: 4866281021250719286}
   - component: {fileID: 2377017983259646993}
   - component: {fileID: 4866281021250719287}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Closet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!1 &4124975853234948932
 GameObject:
@@ -49180,12 +49180,12 @@ GameObject:
   - component: {fileID: 6445842098301802264}
   - component: {fileID: 9085054265844241822}
   - component: {fileID: 9085054265844241823}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: "Pared_Ba\xF1o"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!23 &4483104845068731047
 MeshRenderer:
@@ -49333,12 +49333,12 @@ GameObject:
   - component: {fileID: 1568112031586799785}
   - component: {fileID: 2255823485424375686}
   - component: {fileID: 8797725894519750000}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Cesta
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!1 &4520440901011428991
 GameObject:
@@ -49437,12 +49437,12 @@ GameObject:
   - component: {fileID: 5698240181880819098}
   - component: {fileID: 1837109256320154065}
   - component: {fileID: 5698240181880819099}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: 'Piso_pisina '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!23 &4547120039108791110
 MeshRenderer:
@@ -52781,12 +52781,12 @@ GameObject:
   - component: {fileID: 3722161120128983338}
   - component: {fileID: 5547928166535218044}
   - component: {fileID: 5547928166535218045}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Closet.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!23 &4975347805656988778
 MeshRenderer:
@@ -53102,12 +53102,12 @@ GameObject:
   - component: {fileID: 6645683910227355363}
   - component: {fileID: 166827425102538752}
   - component: {fileID: 7488284286537793629}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Cofre.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!1 &5009697111595766190
 GameObject:
@@ -54168,12 +54168,12 @@ GameObject:
   - component: {fileID: 6925164804290112049}
   - component: {fileID: 144319714774798436}
   - component: {fileID: 7129727146569304368}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Marco_P.007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5135451623582421410
 Transform:
@@ -55019,12 +55019,12 @@ GameObject:
   - component: {fileID: 5684361073071257114}
   - component: {fileID: 6896689021709108456}
   - component: {fileID: 6896689021709108457}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: E
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5250343855999342332
 Transform:
@@ -56183,12 +56183,12 @@ GameObject:
   - component: {fileID: 6826618221476121556}
   - component: {fileID: 3119093618003760649}
   - component: {fileID: 6913850748126428847}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: E.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5371780895406160303
 Transform:
@@ -57151,12 +57151,12 @@ GameObject:
   - component: {fileID: 1926006447918480484}
   - component: {fileID: 1993323865618508425}
   - component: {fileID: 8463123465038352910}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Marco_P.014
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!23 &5525063593371251886
 MeshRenderer:
@@ -57700,12 +57700,12 @@ GameObject:
   - component: {fileID: 8478951201868680164}
   - component: {fileID: 5678318959628652420}
   - component: {fileID: 8645851616293347628}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Piso.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!1 &5566936696032342961
 GameObject:
@@ -57920,12 +57920,12 @@ GameObject:
   - component: {fileID: 2178627497484545978}
   - component: {fileID: 6659714089961371000}
   - component: {fileID: 6659714089961371001}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Lavadero
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!1 &5595137798753388226
 GameObject:
@@ -59805,12 +59805,12 @@ GameObject:
   - component: {fileID: 626169802283452218}
   - component: {fileID: 7530624513285816386}
   - component: {fileID: 8147916871686384246}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Puerta_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5822355174165981403
 Transform:
@@ -59861,12 +59861,12 @@ GameObject:
   - component: {fileID: 8022208634816115505}
   - component: {fileID: 9210350688416099230}
   - component: {fileID: 9210350688416099231}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Marco_P.006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!1 &5825810930613696990
 GameObject:
@@ -59880,12 +59880,12 @@ GameObject:
   - component: {fileID: 3833846064595381551}
   - component: {fileID: 8912809045268010713}
   - component: {fileID: 8912809045268010714}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Pared_Cocina
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5826447316723099051
 Transform:
@@ -60356,12 +60356,12 @@ GameObject:
   - component: {fileID: 8393593777126601940}
   - component: {fileID: 5723991448838663374}
   - component: {fileID: 8944305944693941362}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Columnas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5879797050939706477
 Transform:
@@ -62189,12 +62189,12 @@ GameObject:
   - component: {fileID: 8245523967081382232}
   - component: {fileID: 1454457566626064693}
   - component: {fileID: 8245523967081382233}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Piso_Sotano
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6134742172855684909
 Transform:
@@ -64782,12 +64782,12 @@ GameObject:
   - component: {fileID: 3580701418542227951}
   - component: {fileID: 5597909366836925141}
   - component: {fileID: 6474140921627323105}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Estufa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!64 &6474140921627323105
 MeshCollider:
@@ -66477,12 +66477,12 @@ GameObject:
   - component: {fileID: 4430593322201316510}
   - component: {fileID: 176147071965754232}
   - component: {fileID: 6640054299541412263}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Casa.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!64 &6640054299541412263
 MeshCollider:
@@ -67637,12 +67637,12 @@ GameObject:
   - component: {fileID: 2147090127771113867}
   - component: {fileID: 8297495618414597127}
   - component: {fileID: 8407401100082334712}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Piso_Cocina
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!23 &6747654322914785684
 MeshRenderer:
@@ -68008,12 +68008,12 @@ GameObject:
   - component: {fileID: 5495958986556432665}
   - component: {fileID: 4340907956801927259}
   - component: {fileID: 6774469495529142727}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: "Pared_Ba\xF1o.001"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!64 &6774469495529142727
 MeshCollider:
@@ -69027,12 +69027,12 @@ GameObject:
   - component: {fileID: 4607170904308063802}
   - component: {fileID: 7252240967820737186}
   - component: {fileID: 7252240967820737187}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Bigas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!1 &6877095274609771697
 GameObject:
@@ -71197,12 +71197,12 @@ GameObject:
   - component: {fileID: 6467400013114615899}
   - component: {fileID: 2290082311973348352}
   - component: {fileID: 7107255427041947011}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Fusil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!64 &7107255427041947011
 MeshCollider:
@@ -74188,12 +74188,12 @@ GameObject:
   - component: {fileID: 7051496082143446969}
   - component: {fileID: 3139741084972080107}
   - component: {fileID: 7439358176086321007}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Casa.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!64 &7439358176086321007
 MeshCollider:
@@ -75970,12 +75970,12 @@ GameObject:
   - component: {fileID: 925905028366891134}
   - component: {fileID: 3714665512090861568}
   - component: {fileID: 7607248614560469309}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Marco_P.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!64 &7607248614560469309
 MeshCollider:
@@ -76615,12 +76615,12 @@ GameObject:
   - component: {fileID: 6988729625717041298}
   - component: {fileID: 2558255937774595798}
   - component: {fileID: 7651883708438135219}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Marco_P.013
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!64 &7651883708438135219
 MeshCollider:
@@ -76776,12 +76776,12 @@ GameObject:
   - component: {fileID: 170862016895745309}
   - component: {fileID: 6567758650900514844}
   - component: {fileID: 7654415025560626263}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Marco_P.008
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!64 &7654415025560626263
 MeshCollider:
@@ -77516,12 +77516,12 @@ GameObject:
   - component: {fileID: 303073880340053741}
   - component: {fileID: 6198001316053573160}
   - component: {fileID: 7732112920336387919}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Pisina
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!64 &7732112920336387919
 MeshCollider:
@@ -78449,12 +78449,12 @@ GameObject:
   - component: {fileID: 166175689724215248}
   - component: {fileID: 8642479961357212142}
   - component: {fileID: 8642479961357212143}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Casa.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!33 &7846780843654508674
 MeshFilter:
@@ -81359,12 +81359,12 @@ GameObject:
   - component: {fileID: 1398435443923494233}
   - component: {fileID: 6610429504394759417}
   - component: {fileID: 8066860012713135552}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Escaleras_Pisina
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!64 &8066860012713135552
 MeshCollider:
@@ -82665,12 +82665,12 @@ GameObject:
   - component: {fileID: 3198010922661780590}
   - component: {fileID: 4459718430686997836}
   - component: {fileID: 8182167742046014403}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: "Piso_Ba\xF1o.001"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!64 &8182167742046014403
 MeshCollider:
@@ -83032,12 +83032,12 @@ GameObject:
   - component: {fileID: 3264963604129109293}
   - component: {fileID: 5912563902082442746}
   - component: {fileID: 8199355247037242620}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Patio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!64 &8199355247037242620
 MeshCollider:
@@ -86311,12 +86311,12 @@ GameObject:
   - component: {fileID: 4046518697719122577}
   - component: {fileID: 8478006118553985325}
   - component: {fileID: 8510631102545946051}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Lavabo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!64 &8510631102545946051
 MeshCollider:
@@ -87431,12 +87431,12 @@ GameObject:
   - component: {fileID: 83126735530157534}
   - component: {fileID: 5205688890168627672}
   - component: {fileID: 8633852940991451994}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Marco_P.011
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!64 &8633852940991451994
 MeshCollider:
@@ -87978,12 +87978,12 @@ GameObject:
   - component: {fileID: 7899380030552633335}
   - component: {fileID: 8040436306479192872}
   - component: {fileID: 8714113624759041396}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Marco_P.012
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!33 &8674785788188093314
 MeshFilter:
@@ -88229,12 +88229,12 @@ GameObject:
   - component: {fileID: 8511962719006678249}
   - component: {fileID: 4444077588814424614}
   - component: {fileID: 8688550052225523328}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Marco_P
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!64 &8688550052225523328
 MeshCollider:
@@ -91339,12 +91339,12 @@ GameObject:
   - component: {fileID: 2160325617616064882}
   - component: {fileID: 9138419904420559922}
   - component: {fileID: 9138419904420559923}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Marco_P.010
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!1 &8931063396183386703
 GameObject:
@@ -92378,12 +92378,12 @@ GameObject:
   - component: {fileID: 7519691361937038560}
   - component: {fileID: 3312715642376058737}
   - component: {fileID: 9033381159738485601}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Closet.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!64 &9033381159738485601
 MeshCollider:
@@ -92759,12 +92759,12 @@ GameObject:
   - component: {fileID: 1085396038249765189}
   - component: {fileID: 5989701637309772220}
   - component: {fileID: 9052193048222086463}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Escalera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!64 &9052193048222086463
 MeshCollider:

@@ -1975,6 +1975,100 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.00089634955, y: 0.26095802, z: -0.01573275}
     m_Extent: {x: 0.40931875, y: 0.35060197, z: 0.17483445}
   m_DirtyAABB: 0
+--- !u!1 &754234868772992594
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3729418057162199711}
+  - component: {fileID: 211999019326702102}
+  m_Layer: 0
+  m_Name: Spot Light (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3729418057162199711
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754234868772992594}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -6.66, y: 0, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1871811207112338329}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!108 &211999019326702102
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754234868772992594}
+  m_Enabled: 1
+  serializedVersion: 10
+  m_Type: 0
+  m_Shape: 0
+  m_Color: {r: 1, g: 0.8564558, b: 0.49622637, a: 1}
+  m_Intensity: 0.33
+  m_Range: 1.63
+  m_SpotAngle: 129
+  m_InnerSpotAngle: 4
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 2
+    m_Resolution: 0
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!1 &755977491944310749
 GameObject:
   m_ObjectHideFlags: 0
@@ -2457,6 +2551,7 @@ GameObject:
   - component: {fileID: 1628636996014712445}
   - component: {fileID: 3193515813846084202}
   - component: {fileID: 6547466937486846335}
+  - component: {fileID: 7444874066589954941}
   m_Layer: 11
   m_Name: Brain
   m_TagString: Untagged
@@ -2473,7 +2568,7 @@ Transform:
   m_GameObject: {fileID: 882199718480457649}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.17, z: 0}
   m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2557,6 +2652,21 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &7444874066589954941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882199718480457649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecc81434a3914303b1c23f1d1624ac31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftFootstepPrefabName: LeftFootstep
+  rightFootstepPrefabName: RightFootstep
+  footstepYOffset: 0.01
 --- !u!1 &911124951535229688
 GameObject:
   m_ObjectHideFlags: 0
@@ -4027,6 +4137,8 @@ Transform:
   - {fileID: 3737184273325248611}
   - {fileID: 946655369486838322}
   - {fileID: 7416202417547235754}
+  - {fileID: 3729418057162199711}
+  - {fileID: 3823625390909046244}
   - {fileID: 3512698788092982191}
   m_Father: {fileID: 4132689356983478415}
   m_LocalEulerAnglesHint: {x: 0, y: -85.418, z: 0}
@@ -8390,6 +8502,7 @@ GameObject:
   - component: {fileID: 8715834707910767026}
   - component: {fileID: 7233635507099194230}
   - component: {fileID: 8359389725348315300}
+  - component: {fileID: 555980089617102349}
   m_Layer: 11
   m_Name: Bryce
   m_TagString: Untagged
@@ -8488,6 +8601,21 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &555980089617102349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2692907407981883762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecc81434a3914303b1c23f1d1624ac31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftFootstepPrefabName: LeftFootstep
+  rightFootstepPrefabName: RightFootstep
+  footstepYOffset: 0.01
 --- !u!1 &2707325907822171893
 GameObject:
   m_ObjectHideFlags: 0
@@ -9372,7 +9500,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3512698788092982191
 Transform:
   m_ObjectHideFlags: 0
@@ -10303,13 +10431,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3603944467823642950}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 2.15, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -6.66, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1871811207112338329}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!108 &8369766449584341766
 Light:
   m_ObjectHideFlags: 0
@@ -10322,9 +10450,9 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 0.8564558, b: 0.49622637, a: 1}
-  m_Intensity: 0.65
-  m_Range: 14
-  m_SpotAngle: 70
+  m_Intensity: 0.33
+  m_Range: 1.63
+  m_SpotAngle: 129
   m_InnerSpotAngle: 4
   m_CookieSize: 10
   m_Shadows:
@@ -10644,6 +10772,7 @@ GameObject:
   - component: {fileID: 7535680966065804314}
   - component: {fileID: 5410587790802053644}
   - component: {fileID: 9047764590672058842}
+  - component: {fileID: 7073817560202941925}
   m_Layer: 11
   m_Name: Whiteclown
   m_TagString: Untagged
@@ -10737,6 +10866,21 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &7073817560202941925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3837033423328498906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecc81434a3914303b1c23f1d1624ac31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftFootstepPrefabName: LeftFootstep
+  rightFootstepPrefabName: RightFootstep
+  footstepYOffset: 0.01
 --- !u!1 &3842454696449306051
 GameObject:
   m_ObjectHideFlags: 0
@@ -11993,6 +12137,7 @@ GameObject:
   - component: {fileID: 7023978502570561073}
   - component: {fileID: 3612206250349269027}
   - component: {fileID: 6937772395262209392}
+  - component: {fileID: 8589329918079553464}
   m_Layer: 11
   m_Name: Remy
   m_TagString: Untagged
@@ -12092,6 +12237,21 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &8589329918079553464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4382516200823803633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecc81434a3914303b1c23f1d1624ac31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftFootstepPrefabName: LeftFootstep
+  rightFootstepPrefabName: RightFootstep
+  footstepYOffset: 0.01
 --- !u!1 &4407446507261789483
 GameObject:
   m_ObjectHideFlags: 0
@@ -16608,6 +16768,7 @@ GameObject:
   - component: {fileID: 867113488999690244}
   - component: {fileID: 6747406031492960454}
   - component: {fileID: 9129229351613634626}
+  - component: {fileID: 8387894738159504248}
   m_Layer: 11
   m_Name: Elizabeth
   m_TagString: Untagged
@@ -16706,6 +16867,21 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &8387894738159504248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5882659234047013060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecc81434a3914303b1c23f1d1624ac31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftFootstepPrefabName: LeftFootstep
+  rightFootstepPrefabName: RightFootstep
+  footstepYOffset: 0.01
 --- !u!1 &5894121597269649132
 GameObject:
   m_ObjectHideFlags: 0
@@ -21378,6 +21554,7 @@ GameObject:
   - component: {fileID: 3646738375512640074}
   - component: {fileID: 7284818408242181271}
   - component: {fileID: 8819970855585526475}
+  - component: {fileID: 3746104009032664599}
   m_Layer: 11
   m_Name: Zombiegirl
   m_TagString: Untagged
@@ -21473,6 +21650,21 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &3746104009032664599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8011953503599250058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecc81434a3914303b1c23f1d1624ac31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftFootstepPrefabName: LeftFootstep
+  rightFootstepPrefabName: RightFootstep
+  footstepYOffset: 0.01
 --- !u!1 &8024342855188182379
 GameObject:
   m_ObjectHideFlags: 0
@@ -22647,6 +22839,100 @@ Transform:
   - {fileID: 5401330623209472853}
   m_Father: {fileID: 7595337413064069482}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8446802259175126047
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3823625390909046244}
+  - component: {fileID: 7406083047803672769}
+  m_Layer: 0
+  m_Name: Spot Light (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3823625390909046244
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8446802259175126047}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 3.514, y: 0, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1871811207112338329}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!108 &7406083047803672769
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8446802259175126047}
+  m_Enabled: 1
+  serializedVersion: 10
+  m_Type: 0
+  m_Shape: 0
+  m_Color: {r: 1, g: 0.8564558, b: 0.49622637, a: 1}
+  m_Intensity: 0.65
+  m_Range: 14
+  m_SpotAngle: 70
+  m_InnerSpotAngle: 4
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 2
+    m_Resolution: 0
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!1 &8465930013657285009
 GameObject:
   m_ObjectHideFlags: 0
@@ -23155,6 +23441,7 @@ GameObject:
   - component: {fileID: 3093010957950135951}
   - component: {fileID: 7637425808095059508}
   - component: {fileID: 2455520148309744792}
+  - component: {fileID: 3109510192442927964}
   m_Layer: 11
   m_Name: Skeletonzombie
   m_TagString: Untagged
@@ -23248,6 +23535,21 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &3109510192442927964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8594954327323291215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecc81434a3914303b1c23f1d1624ac31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftFootstepPrefabName: LeftFootstep
+  rightFootstepPrefabName: RightFootstep
+  footstepYOffset: 0.01
 --- !u!1 &8599889831516743003
 GameObject:
   m_ObjectHideFlags: 0

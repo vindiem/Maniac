@@ -2668,7 +2668,7 @@ GameObject:
   - component: {fileID: 330692232}
   - component: {fileID: 330692231}
   - component: {fileID: 330692230}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: grass_soil (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9570,8 +9570,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.03
-      minScalar: 0.02
+      scalar: 0.02
+      minScalar: 0.01
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -9782,7 +9782,7 @@ ParticleSystem:
     startRotationY:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 0.007504916
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -13071,16 +13071,16 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     minKillSpeed: 0
-    maxKillSpeed: 10000
+    maxKillSpeed: 10
     radiusScale: 1
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294967295
-    maxCollisionShapes: 256
+      m_Bits: 1048576
+    maxCollisionShapes: 64
     quality: 0
     voxelSize: 0.5
     collisionMessages: 0
-    collidesWithDynamic: 1
+    collidesWithDynamic: 0
     interiorCollisions: 0
   TriggerModule:
     enabled: 0
@@ -15556,7 +15556,7 @@ GameObject:
   - component: {fileID: 1489479697}
   - component: {fileID: 1489479696}
   - component: {fileID: 1489479695}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: Fence_003 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17866,7 +17866,7 @@ GameObject:
   - component: {fileID: 1853471941}
   - component: {fileID: 1853471940}
   - component: {fileID: 1853471939}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: Fence_001 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37178,12 +37178,12 @@ GameObject:
   - component: {fileID: 6021538008212952912}
   - component: {fileID: 2999000723677649658}
   - component: {fileID: 6021538008212952913}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Home_004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!23 &2026958939875125098
 MeshRenderer:
@@ -61426,12 +61426,12 @@ GameObject:
   - component: {fileID: 2339372232169211213}
   - component: {fileID: 2320563422078480946}
   - component: {fileID: 4707347711156369727}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Home_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!64 &4707347711156369727
 MeshCollider:
@@ -76178,7 +76178,7 @@ GameObject:
   - component: {fileID: 2856467417420972561}
   - component: {fileID: 6872374951064920527}
   - component: {fileID: 6872374951064920528}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: Hedges_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86045,12 +86045,12 @@ GameObject:
   - component: {fileID: 7117475778053279557}
   - component: {fileID: 3354061091095325131}
   - component: {fileID: 7300120033229615252}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Home
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!64 &7300120033229615252
 MeshCollider:
@@ -88566,12 +88566,12 @@ GameObject:
   - component: {fileID: 6933441624944434798}
   - component: {fileID: 3292422605340255374}
   - component: {fileID: 7529772157104426638}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Home_003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!64 &7529772157104426638
 MeshCollider:
@@ -94955,12 +94955,12 @@ GameObject:
   - component: {fileID: 3592386284903779693}
   - component: {fileID: 3075075052460153228}
   - component: {fileID: 8088357407610664246}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Home_002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!64 &8088357407610664246
 MeshCollider:
@@ -106479,12 +106479,12 @@ GameObject:
   - component: {fileID: 4637265888808935049}
   - component: {fileID: 6833709556776248086}
   - component: {fileID: 9075790179151765108}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Home_005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!64 &9075790179151765108
 MeshCollider:

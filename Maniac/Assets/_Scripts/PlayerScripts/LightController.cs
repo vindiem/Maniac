@@ -7,7 +7,7 @@ namespace _Scripts.PlayerScripts
     public class LightController : MonoBehaviourPun
     {
         [Header("Light System")]
-        private Light lightSource;
+        private Light[] lightSources;
 
         private float maxLightUsage = 12f;
         private float cooldownTime = 0f;
@@ -26,8 +26,11 @@ namespace _Scripts.PlayerScripts
         private void Start()
         {
             cooldownTime = maxLightUsage / 2f;
-            lightSource = GetComponentInChildren<Light>();
-            lightSource.enabled = false;
+            lightSources = GetComponentsInChildren<Light>();
+            foreach (var lightSource in lightSources)
+            {
+                lightSource.enabled = false;
+            }
         }
 
         private void Update()
@@ -53,8 +56,13 @@ namespace _Scripts.PlayerScripts
         private void ToggleLocalFlashlight(bool turnOn)
         {
             isLightOn = turnOn;
-            if (lightSource != null)
-                lightSource.enabled = isLightOn;
+            if (lightSources != null)
+            {
+                foreach (var lightSource in lightSources)
+                {
+                    lightSource.enabled = isLightOn;
+                }
+            }
 
             if (isLightOn)
                 SoundManager.Instance.PlayLightSound();
@@ -64,8 +72,13 @@ namespace _Scripts.PlayerScripts
         private void SetFlashlightState(bool turnOn)
         {
             isLightOn = turnOn;
-            if (lightSource != null)
-                lightSource.enabled = isLightOn;
+            if (lightSources != null)
+            {
+                foreach (var lightSource in lightSources)
+                {
+                    lightSource.enabled = isLightOn;
+                }
+            }
         }
 
         private IEnumerator StartBlinkAndCooldown()

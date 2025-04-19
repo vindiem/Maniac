@@ -90,6 +90,7 @@ MonoBehaviour:
   - ToggleFlashlightRPC
   - ToggleFlashlight
   - SetFlashlightState
+  - RPC_PrintFootstep
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
