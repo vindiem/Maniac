@@ -11,6 +11,8 @@ namespace _Scripts.PlayerScripts
         [SerializeField] private Text healthText;
         [SerializeField] private Text roleText;
         [SerializeField] private Image roleImage;
+        
+        [SerializeField] private Image roleImage1;
 
         [Header("Inventory UI")]
         [SerializeField] private Image holdTrapImage;
@@ -88,13 +90,15 @@ namespace _Scripts.PlayerScripts
                 weaponSystem.SetActive(false);
                 inventorySystem.SetActive(false);
                 fearOverlay.SetActive(false);
-
+                
                 // Apply red vignette for murder role
                 if (postProcessVolume.profile.TryGetSettings(out vignette))
                 {
                     vignette.color.value = Color.red;
                     vignette.intensity.value = 0.4f;
                 }
+                
+                roleImage1.enabled = true;
             }
             else if (playerRole.GetRole() == PlayerRoleEnum.Victim)
             {
