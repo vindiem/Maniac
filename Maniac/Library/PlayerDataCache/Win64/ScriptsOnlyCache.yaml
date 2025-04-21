@@ -17,7 +17,6 @@ ScriptsOnlyBuild:
     - _Scripts.PlayerScripts.PlayerTrapSystem
     - _Scripts.PlayerScripts.PlayerUIUpdate
     Assembly-CSharp.dll:
-    - AutoDestroy
     - Door
     - GhostFreeMovement
     - Outline
@@ -56,6 +55,8 @@ ScriptsOnlyBuild:
     - Photon.Pun.Demo.SlotRacer.PlayerControl
     - Photon.Pun.Demo.SlotRacer.Utils.SplineWalker
     PhotonUnityNetworking.Editor.dll:
+    - Photon.Pun.PhotonTransformViewEditor
+    - Photon.Pun.PhotonViewInspector
     - Photon.Pun.PunSceneSettings
     PhotonUnityNetworking.dll:
     - Photon.Pun.PhotonAnimatorView
@@ -71,12 +72,15 @@ ScriptsOnlyBuild:
     Unity.2D.IK.Editor.dll:
     - UnityEditor.U2D.IK.IKEditorManager
     Unity.2D.Tilemap.Editor.dll:
+    - UnityEditor.Tilemaps.GridBrush
+    - UnityEditor.Tilemaps.GridBrushEditor
     - UnityEditor.Tilemaps.GridPaintingState
     - UnityEditor.Tilemaps.GridPaletteBrushes
     - UnityEditor.Tilemaps.GridPalettes
     - UnityEditor.Tilemaps.SceneViewGridManager
     - UnityEditor.Tilemaps.SceneViewOpenTilePaletteHelper
     - UnityEditor.Tilemaps.TileDragAndDropManager
+    - UnityEditor.Tilemaps.TilemapEditorToolPreferences
     - UnityEditor.Tilemaps.TilemapPrefabStageHelper
     Unity.Postprocessing.Runtime:
     - UnityEngine.Rendering.PostProcessing.AmbientOcclusion
@@ -122,9 +126,6 @@ ScriptsOnlyBuild:
     - TMPro.TextMeshPro
     Unity.TextMeshPro.dll:
     - TMPro.TMP_FontAsset
-    - TMPro.TMP_Settings
-    - TMPro.TMP_SpriteAsset
-    - TMPro.TMP_StyleSheet
     - TMPro.TextMeshPro
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
@@ -250,11 +251,11 @@ ScriptsOnlyBuild:
     fullTypeName: _Scripts.ScenesManager
     methodName: LoadScene
   - assembly: Assembly-CSharp
-    fullTypeName: _Scripts.MultiplayerScripts.LobbyScripts.RoomItemButton
-    methodName: OnClick
-  - assembly: Assembly-CSharp
     fullTypeName: _Scripts.PlayerScripts.PlayerUIUpdate
     methodName: ShowHidePressButton
+  - assembly: Assembly-CSharp
+    fullTypeName: _Scripts.MultiplayerScripts.LobbyScripts.RoomItemButton
+    methodName: OnClick
   - assembly: Assembly-CSharp
     fullTypeName: _Scripts.ScenesManager
     methodName: LoadScene
@@ -292,11 +293,11 @@ ScriptsOnlyBuild:
     fullTypeName: _Scripts.ScenesManager
     methodName: LoadScene
   - assembly: Assembly-CSharp
-    fullTypeName: _Scripts.MultiplayerScripts.LobbyScripts.RoomItemButton
-    methodName: OnClick
-  - assembly: Assembly-CSharp
     fullTypeName: _Scripts.PlayerScripts.PlayerUIUpdate
     methodName: ShowHidePressButton
+  - assembly: Assembly-CSharp
+    fullTypeName: _Scripts.MultiplayerScripts.LobbyScripts.RoomItemButton
+    methodName: OnClick
   - assembly: UnityEngine.CoreModule
     fullTypeName: UnityEngine.GameObject
     methodName: SetActive

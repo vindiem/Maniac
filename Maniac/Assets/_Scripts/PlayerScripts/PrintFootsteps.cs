@@ -22,8 +22,7 @@ public class PrintFootsteps : MonoBehaviourPun
             Vector3 forward = transform.forward;
             forward.y = 0;
             Quaternion rotation = Quaternion.LookRotation(forward) * Quaternion.Euler(90f, 11f, 0f);
-
-
+            
             string prefabName = isLeftStep ? leftFootstepPrefabName : rightFootstepPrefabName;
             isLeftStep = !isLeftStep;
 
