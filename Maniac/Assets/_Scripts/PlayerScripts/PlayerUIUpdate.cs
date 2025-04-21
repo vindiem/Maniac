@@ -59,6 +59,7 @@ namespace _Scripts.PlayerScripts
         private void Start()
         {
             highlightText.SetActive(false);
+            roleImage1.gameObject.SetActive(false);
         }
 
         public void UpdateUI(float health, PlayerRole playerRole, bool holdTrap, bool holdGun)
@@ -81,7 +82,7 @@ namespace _Scripts.PlayerScripts
 
             staminaText.text = $"CS: {MathF.Round(currentStamina, 2)}";
             staminaBarImage.fillAmount = staminaPercent;
-            staminaImage.fillAmount = staminaPercent;
+            staminaImage.fillAmount = (staminaPercent - 1) * -1;
 
             // Role-specific UI
             if (playerRole.GetRole() == PlayerRoleEnum.Murder)
@@ -98,7 +99,7 @@ namespace _Scripts.PlayerScripts
                     vignette.intensity.value = 0.4f;
                 }
                 
-                roleImage1.enabled = true;
+                roleImage1.gameObject.SetActive(true);
             }
             else if (playerRole.GetRole() == PlayerRoleEnum.Victim)
             {
