@@ -197,7 +197,7 @@ namespace _Scripts.PlayerScripts
         }
 
         [PunRPC]
-        private void TakeDamage(int targetViewID, float damageAmount)
+        public void TakeDamage(int targetViewID, float damageAmount)
         {
             // Find player by ViewID and damage him
             PhotonView targetPhotonView = PhotonView.Find(targetViewID);
