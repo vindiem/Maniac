@@ -266,20 +266,35 @@ namespace _Scripts.PlayerScripts
         }
 
         private void HandleCamera()
-        {   
+        {
+            // Get mouse input
             float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
             float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
+            // Vertical rotation with clamp
             xRotation = Mathf.Clamp(xRotation - mouseY, -75f, 75f);
-    
+
+            // Calculate tilt on Z axis based on mouse X
             float targetTiltZ = -mouseX * tiltAmount;
             Quaternion targetTiltRotation = Quaternion.Euler(xRotation, 0f, targetTiltZ);
-            cameraHolderTransform.localRotation = Quaternion.Slerp(cameraHolderTransform.localRotation, targetTiltRotation, Time.deltaTime * tiltSpeed);
-    
+
+            // Smoothly apply rotation
+            cameraHolderTransform.localRotation = Quaternion.Slerp(cameraHolderTransform.localRotation,
+                targetTiltRotation, Time.deltaTime * tiltSpeed);
+
+            // Reset tilt if it exceeds the allowed amount
+            Vector3 currentEulerAngles = cameraHolderTransform.localRotation.eulerAngles;
+            if (Mathf.Abs(Mathf.DeltaAngle(0f, currentEulerAngles.z)) > Mathf.Abs(tiltAmount))
+            {
+                // Set Z rotation to 0 while keeping X and Y as they are
+                cameraHolderTransform.localRotation = Quaternion.Euler(currentEulerAngles.x, currentEulerAngles.y, 0f);
+            }
+
+            // Handle camera bobbing when moving
             float moveX = Input.GetAxis("Horizontal");
             float moveZ = Input.GetAxis("Vertical");
             bool isMoving = moveX != 0 || moveZ != 0;
-            
+
             if (isMoving && isGrounded)
             {
                 bobTimer += Time.deltaTime * bobFrequency;
@@ -287,16 +302,20 @@ namespace _Scripts.PlayerScripts
                 float bobOffsetX = Mathf.Cos(bobTimer / 2f) * bobAmplitude;
 
                 Vector3 targetPosition = initialCameraLocalPos + new Vector3(bobOffsetX, bobOffsetY, 0f);
-                cameraHolderTransform.localPosition = Vector3.Lerp(cameraHolderTransform.localPosition, targetPosition, Time.deltaTime * bobSmoothing);
+                cameraHolderTransform.localPosition = Vector3.Lerp(cameraHolderTransform.localPosition, targetPosition,
+                    Time.deltaTime * bobSmoothing);
             }
             else
             {
                 bobTimer = 0f;
-                cameraHolderTransform.localPosition = Vector3.Lerp(cameraHolderTransform.localPosition, initialCameraLocalPos, Time.deltaTime * bobSmoothing);
+                cameraHolderTransform.localPosition = Vector3.Lerp(cameraHolderTransform.localPosition,
+                    initialCameraLocalPos, Time.deltaTime * bobSmoothing);
             }
-            
+
+            // Rotate player horizontally
             transform.Rotate(Vector3.up * mouseX);
 
+            // Adjust FOV and bob smoothing when sprinting
             if (isSprinting)
             {
                 bobSmoothing = 1.2f;

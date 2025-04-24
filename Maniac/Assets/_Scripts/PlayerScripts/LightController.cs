@@ -37,7 +37,7 @@ namespace _Scripts.PlayerScripts
         {
             if (!photonView.IsMine) return;
 
-            if (Input.GetMouseButtonDown(1) && !isOnCooldown && !isBlinking)
+            if (Input.GetKeyDown(KeyCode.Z) && !isOnCooldown && !isBlinking)
             {
                 ToggleLocalFlashlight(!isLightOn);
                 photonView.RPC("SetFlashlightState", RpcTarget.Others, isLightOn);
