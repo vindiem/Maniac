@@ -476,7 +476,7 @@ namespace _Scripts.PlayerScripts
                 StunPlayer();
                 
                 // Making sound
-                SoundManager.Instance.PlayTrapCloseSound();
+                SoundManager.Instance.PlayTrapActionSound();
             }
         }
 

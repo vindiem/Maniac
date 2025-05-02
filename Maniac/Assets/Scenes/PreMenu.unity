@@ -1254,16 +1254,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12acbd8c650479647ba609a78f86c6fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicSource: {fileID: 5535692562195631846}
-  sfxSource: {fileID: 7234262214064462057}
-  backsound: {fileID: 8300000, guid: 65bc90155ee9b684e884cead07a7ad56, type: 3}
-  doorSound: {fileID: 8300000, guid: d7dc4c4e80ff2b74488d4b0a0e83bd9a, type: 3}
-  lightSound: {fileID: 8300000, guid: 0f685b298ee62dd45a5d93fbaf75a220, type: 3}
+  GlobalMusicSource: {fileID: 5535692562195631846}
+  GlobalSfxSource: {fileID: 7234262214064462057}
+  backgroundSound: {fileID: 8300000, guid: 65bc90155ee9b684e884cead07a7ad56, type: 3}
+  doorActionSound: {fileID: 8300000, guid: d7dc4c4e80ff2b74488d4b0a0e83bd9a, type: 3}
+  lightActionSound: {fileID: 8300000, guid: 0f685b298ee62dd45a5d93fbaf75a220, type: 3}
   murderHitSound: {fileID: 8300000, guid: 555618cbc392bf0479a2e3331aa69ddf, type: 3}
-  trapCloseSound: {fileID: 8300000, guid: 297d8db84f9069d41904687ba79ffd33, type: 3}
-  trapCollectSound: {fileID: 8300000, guid: 537664aedb56d094dba2f5d2e68392d8, type: 3}
-  trapPlaceSound: {fileID: 8300000, guid: 55fa8f2e4fbca3e4bbe712e62ec77de2, type: 3}
-  shootSound: {fileID: 8300000, guid: b4f2f645932bcc44498f4868c91b2951, type: 3}
+  trapActionSound: {fileID: 8300000, guid: 297d8db84f9069d41904687ba79ffd33, type: 3}
+  trapCollectingSound: {fileID: 8300000, guid: 537664aedb56d094dba2f5d2e68392d8, type: 3}
+  trapPlacingSound: {fileID: 8300000, guid: 55fa8f2e4fbca3e4bbe712e62ec77de2, type: 3}
+  shotSound: {fileID: 8300000, guid: b4f2f645932bcc44498f4868c91b2951, type: 3}
+  backButtonPressedSound: {fileID: 8300000, guid: 77c8cfddf3e7f454eacf4da0d3e078cd, type: 3}
+  backgroundSound2: {fileID: 8300000, guid: debbf22f20787c045bc5478798bd3fe7, type: 3}
+  gameStartSound: {fileID: 8300000, guid: 00deb7db3456e964bbc63b9c7054d3d9, type: 3}
+  gameOverSound: {fileID: 8300000, guid: e88f6c44b1d14f549aa93393fa769844, type: 3}
 --- !u!4 &6790571626369969643
 Transform:
   m_ObjectHideFlags: 0

@@ -18,7 +18,7 @@ public class Weapon : MonoBehaviour
         if (Input.GetButtonDown("Fire1") && nextFire <= 0f && !PhotonNetwork.IsMasterClient)
         {
             // Making sound
-            SoundManager.Instance.PlayShootSound();
+            SoundManager.Instance.PlayShotSound();
             nextFire = fireRate;
             Fire();
         }

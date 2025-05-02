@@ -93,6 +93,13 @@ MonoBehaviour:
   - RPC_PrintFootstep
   - StartBlinkAndCooldownRPC
   - ToggleLightRPC
+  - RPC_PlayBackButtonPressedSound
+  - RPC_PlayGameOverSound
+  - RPC_PlayGameStartSound
+  - RPC_PlayShotSound
+  - RPC_PlayTrapActionSound
+  - RPC_PlayTrapCollectingSound
+  - RPC_PlayTrapPlacingSound
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

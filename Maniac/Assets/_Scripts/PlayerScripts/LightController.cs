@@ -64,8 +64,7 @@ namespace _Scripts.PlayerScripts
                 }
             }
 
-            if (isLightOn)
-                SoundManager.Instance.PlayLightSound();
+            SoundManager.Instance.PlayLightSound();
         }
 
         [PunRPC]
