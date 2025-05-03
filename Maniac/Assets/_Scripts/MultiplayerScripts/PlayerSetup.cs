@@ -50,6 +50,8 @@ namespace _Scripts.MultiplayerScripts
 
         public void SetupLocalPlayer()
         {
+            SoundManager.Instance.PlayGameStartSound();
+            
             if (!_photonView.IsMine) return;
 
             playerMovement.enabled = true;

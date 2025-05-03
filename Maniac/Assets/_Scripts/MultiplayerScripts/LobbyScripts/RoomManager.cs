@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using _Scripts.PlayerScripts;
 using Photon.Pun;
@@ -21,6 +22,8 @@ namespace _Scripts.MultiplayerScripts.LobbyScripts
         
         public GameObject winScreen;
         public Text winText;
+        public float showDuration = 0.6f;
+        
         private int victimsCount = 0, murdersCount = 0;
         
         public string roomNameToJoin = "Room";
@@ -79,15 +82,32 @@ namespace _Scripts.MultiplayerScripts.LobbyScripts
         [PunRPC]
         private void WinScreen(PlayerRoleEnum playerRoleEnum)
         {
+            SoundManager.Instance.PlayGameOverSound();
             winScreen.SetActive(true);
+            winScreen.transform.localScale = Vector3.zero;
+
             if (playerRoleEnum == PlayerRoleEnum.Victim)
-            {
                 winText.text = "Victims won!";
-            }
             else if (playerRoleEnum == PlayerRoleEnum.Murder)
-            {
                 winText.text = "Murder won!";
+
+            StartCoroutine(AnimateWinScreen());
+        }
+
+        private IEnumerator AnimateWinScreen()
+        {
+            float elapsed = 0f;
+            Vector3 startScale = Vector3.zero;
+            Vector3 endScale = Vector3.one;
+
+            while (elapsed < showDuration)
+            {
+                elapsed += Time.deltaTime;
+                winScreen.transform.localScale = Vector3.Lerp(startScale, endScale, elapsed / showDuration);
+                yield return null;
             }
+
+            winScreen.transform.localScale = endScale;
         }
         
         public void ChangeNickname(string name) => _nickname = name;
@@ -108,7 +128,6 @@ namespace _Scripts.MultiplayerScripts.LobbyScripts
                 PhotonNetwork.LeaveRoom();
                 PhotonNetwork.LeaveLobby();
                 PhotonNetwork.Disconnect();
-                throw;
             }
         }
 

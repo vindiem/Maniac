@@ -64,15 +64,21 @@ ScriptsOnlyBuild:
     Unity.2D.Animation.Editor.dll:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.Animation.Runtime.dll:
+    - UnityEngine.U2D.Animation.BufferManager
     - UnityEngine.U2D.Animation.SpriteSkinComposite
     - UnityEngine.U2D.Animation.SpriteSkinUpdateHelper
     Unity.2D.IK.Editor.dll:
     - UnityEditor.U2D.IK.IKEditorManager
     Unity.2D.Tilemap.Editor.dll:
+    - UnityEditor.Tilemaps.GridBrush
+    - UnityEditor.Tilemaps.GridBrushEditor
     - UnityEditor.Tilemaps.GridPaintingState
+    - UnityEditor.Tilemaps.GridPaletteBrushes
+    - UnityEditor.Tilemaps.GridPalettes
     - UnityEditor.Tilemaps.SceneViewGridManager
     - UnityEditor.Tilemaps.SceneViewOpenTilePaletteHelper
     - UnityEditor.Tilemaps.TileDragAndDropManager
+    - UnityEditor.Tilemaps.TilemapEditorToolPreferences
     - UnityEditor.Tilemaps.TilemapPrefabStageHelper
     Unity.Postprocessing.Runtime:
     - UnityEngine.Rendering.PostProcessing.AmbientOcclusion
@@ -108,6 +114,7 @@ ScriptsOnlyBuild:
     - UnityEngine.Rendering.PostProcessing.Vignette
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.RiderScriptEditorData
+    - Packages.Rider.Editor.RiderScriptEditorPersistedState
     - Packages.Rider.Editor.UnitTesting.CallbackData
     Unity.TextMeshPro:
     - TMPro.TMP_FontAsset
@@ -121,8 +128,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -245,6 +254,9 @@ ScriptsOnlyBuild:
     fullTypeName: _Scripts.PlayerScripts.PlayerUIUpdate
     methodName: ShowHidePressButton
   - assembly: Assembly-CSharp
+    fullTypeName: _Scripts.MultiplayerScripts.LobbyScripts.RoomItemButton
+    methodName: OnClick
+  - assembly: Assembly-CSharp
     fullTypeName: _Scripts.ScenesManager
     methodName: LoadScene
   - assembly: Assembly-CSharp
@@ -280,9 +292,6 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: _Scripts.ScenesManager
     methodName: LoadScene
-  - assembly: Assembly-CSharp
-    fullTypeName: _Scripts.MultiplayerScripts.LobbyScripts.RoomItemButton
-    methodName: OnClick
   - assembly: Assembly-CSharp
     fullTypeName: _Scripts.PlayerScripts.PlayerUIUpdate
     methodName: ShowHidePressButton
@@ -357,6 +366,10 @@ ScriptsOnlyBuild:
     - Class: 74
       Script: {instanceID: 0}
     - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
       Script: {instanceID: 0}
     - Class: 89
       Script: {instanceID: 0}
@@ -534,6 +547,10 @@ ScriptsOnlyBuild:
     - Class: 74
       Script: {instanceID: 0}
     - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
       Script: {instanceID: 0}
     - Class: 89
       Script: {instanceID: 0}
@@ -1476,7 +1493,7 @@ ScriptsOnlyBuild:
     className: UnityOnInputFieldEndEditMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 7b248616a83946a26c53183997651d92
+      Hash: 48eb7440158b840bc9f4acc7e7a5813c
     assemblyName: Assembly-CSharp
     namespaceName: _Scripts.PlayerScripts
     className: PlayerMovement
@@ -1734,7 +1751,7 @@ ScriptsOnlyBuild:
     className: SetRoomCustomPropertyUIForm
   - hash:
       serializedVersion: 2
-      Hash: e49e5c8b1fe5b4a4de4f1d24b6d8c934
+      Hash: dd465063c2d380af1176675e20412512
     assemblyName: Assembly-CSharp
     namespaceName: _Scripts.PlayerScripts
     className: PlayerUIUpdate
@@ -2016,7 +2033,7 @@ ScriptsOnlyBuild:
     className: UnityOnCancelMessageListener
   - hash:
       serializedVersion: 2
-      Hash: fd25e26b634821a4205df2bc869aed0b
+      Hash: f99bbd52f613f5e163bdbe7a11ec7a65
     assemblyName: Assembly-CSharp
     namespaceName: _Scripts.MultiplayerScripts.LobbyScripts
     className: RoomManager
@@ -2526,7 +2543,7 @@ ScriptsOnlyBuild:
     className: AnimatorMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 007635d19b9665039b38f172237e1032
+      Hash: 46c769505d398778f6824f67cbe8f30b
     assemblyName: Assembly-CSharp
     namespaceName: _Scripts
     className: SoundManager

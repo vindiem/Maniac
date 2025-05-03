@@ -24,6 +24,8 @@ namespace _Scripts
         public AudioClip backgroundSound2;
         public AudioClip gameStartSound;
         public AudioClip gameOverSound;
+        
+        public AudioClip walkingSound;
 
         private PhotonView _photonView;
 
@@ -123,6 +125,10 @@ namespace _Scripts
         // gameOverSound
         public void PlayGameOverSound() => _photonView.RPC("RPC_PlayGameOverSound", RpcTarget.All);
         [PunRPC] private void RPC_PlayGameOverSound() => GlobalSfxSource.PlayOneShot(gameOverSound);
+        
+        // walkingSound
+        public void PlayWalkingSound() => _photonView.RPC("RPC_PlayWalkingSound", RpcTarget.All);
+        [PunRPC] private void RPC_PlayWalkingSound() => GlobalSfxSource.PlayOneShot(walkingSound);
     
     }
 }

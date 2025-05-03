@@ -1268,6 +1268,7 @@ MonoBehaviour:
   backgroundSound2: {fileID: 8300000, guid: debbf22f20787c045bc5478798bd3fe7, type: 3}
   gameStartSound: {fileID: 8300000, guid: 00deb7db3456e964bbc63b9c7054d3d9, type: 3}
   gameOverSound: {fileID: 8300000, guid: e88f6c44b1d14f549aa93393fa769844, type: 3}
+  walkingSound: {fileID: 8300000, guid: b5d162fd02a68404ca5021cbcf727a8a, type: 3}
 --- !u!4 &6790571626369969643
 Transform:
   m_ObjectHideFlags: 0

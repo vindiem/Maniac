@@ -20,6 +20,7 @@ namespace _Scripts.MultiplayerScripts
         private readonly List<float> _defaultLightsIntensityValue = new List<float>();
         
         private ParticleSystem _rainParticleSystem;
+        private AudioSource _audioSource;
 
         private void Awake()
         {
@@ -29,7 +30,9 @@ namespace _Scripts.MultiplayerScripts
         private void Start()
         {
             _rainParticleSystem = GameObject.FindGameObjectWithTag("Rain").GetComponent<ParticleSystem>();
+            _audioSource = _rainParticleSystem.GetComponent<AudioSource>();
             _rainParticleSystem.Stop();
+            _audioSource.Stop();
             
             StartCoroutine(CallRandomFunctionLoop());
             FindLightsOnScene();
@@ -44,6 +47,7 @@ namespace _Scripts.MultiplayerScripts
                 light.intensity = 0.0f;
             }
             _rainParticleSystem.Play();
+            _audioSource.Play();
         }
 
         [PunRPC]
@@ -55,6 +59,7 @@ namespace _Scripts.MultiplayerScripts
                 _lightsOnScene[i].intensity = _defaultLightsIntensityValue[i];
             }
             _rainParticleSystem.Stop();
+            _audioSource.Stop();
         }
 
         [PunRPC]

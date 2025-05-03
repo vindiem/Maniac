@@ -18,6 +18,7 @@ namespace _Scripts.PlayerScripts
         [SerializeField] private Image holdTrapImage;
         [SerializeField] private Image holdGunImage;
         [SerializeField] private GameObject helpText;
+        [SerializeField] private Image murderAttackImage;
 
         [Header("Health UI")]
         [SerializeField] private Image healthBarImage;
@@ -60,6 +61,7 @@ namespace _Scripts.PlayerScripts
         {
             highlightText.SetActive(false);
             roleImage1.gameObject.SetActive(false);
+            murderAttackImage.gameObject.SetActive(false);
         }
 
         public void UpdateUI(float health, PlayerRole playerRole, bool holdTrap, bool holdGun)
@@ -100,6 +102,11 @@ namespace _Scripts.PlayerScripts
                 }
                 
                 roleImage1.gameObject.SetActive(true);
+                murderAttackImage.gameObject.SetActive(true);
+                murderAttackImage.GetComponent<Image>().color = 
+                    (playerMovement.GetAttackTimer() == 0 ? Color.green : Color.white);
+                murderAttackImage.GetComponentInChildren<Text>().text = 
+                    MathF.Round(playerMovement.GetAttackTimer(), 1).ToString();
             }
             else if (playerRole.GetRole() == PlayerRoleEnum.Victim)
             {

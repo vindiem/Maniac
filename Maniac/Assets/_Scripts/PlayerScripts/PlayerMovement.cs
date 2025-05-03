@@ -3,7 +3,10 @@ using System.Collections;
 using _Scripts.MultiplayerScripts.LobbyScripts;
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace _Scripts.PlayerScripts
 {
@@ -51,7 +54,11 @@ namespace _Scripts.PlayerScripts
         [HideInInspector] public float health = 100;
         
         // Attacking variables
+        [SerializeField] private Image damageFlashImage;
+        private float attackCooldown = 3f;
+        private float attackTimer = 0f;
         private bool isAttacking = false;
+        private bool IsAttackReady => attackTimer <= 0f;
         [HideInInspector] public float attackDistance = 2.5f;
         private float damage = 35f;
         private float highlightAllPlayersTime = 15f;
@@ -65,6 +72,7 @@ namespace _Scripts.PlayerScripts
         
         // Prefab
         [SerializeField] private GameObject stateObj;
+        [SerializeField] private GameObject particleObj;
         
         [Header("Camera Bobbing")]
         [SerializeField] private float bobFrequency = 5f;
@@ -82,11 +90,29 @@ namespace _Scripts.PlayerScripts
         
         private const float DefaultFieldOfView = 50.0f;
         private const float ChangedFieldOfView = 60.0f;
+        
+        [Header("Jump variables")]
+        [SerializeField] private float jumpCooldown = 1f;
+        private bool canJump = true;
+
+        private AudioSource footStepsAudioSource;
+        
+        // Prestart game
+        [SerializeField] private Text preGameStartedCooldown;
+        [SerializeField] private float secondsToStartGame = 50f;
 
         private void Awake()
         {
             photonView = GetComponent<PhotonView>();
             initialCameraLocalPos = cameraHolderTransform.localPosition;
+            
+            footStepsAudioSource = GetComponentInChildren<AudioSource>();
+            photonView.RPC("FootStepsAudioSource", RpcTarget.AllBuffered, false);
+
+            if (PhotonNetwork.IsMasterClient)
+            {
+                preGameStartedCooldown.gameObject.SetActive(false);
+            }
         }
 
         private void Start()
@@ -113,8 +139,8 @@ namespace _Scripts.PlayerScripts
                 CursorLockMode.None : CursorLockMode.Locked;
             
             ghostFreeMovement.SetDieState(playerRole.GetRole());
-
             bobSmoothingDefaultValue = bobSmoothing;
+            
         }
 
         private void Update()
@@ -142,11 +168,25 @@ namespace _Scripts.PlayerScripts
                     highlightAllPlayersTime = 55f;
                 }
                 highlightAllPlayersTime -= Time.deltaTime;
+                
+                //
+                if (preGameStartedCooldown != null && preGameStartedCooldown.enabled)
+                {
+                    StunPlayer(secondsToStartGame);
+                    preGameStartedCooldown.gameObject.SetActive(true);
+                    preGameStartedCooldown.text = MathF.Round((secondsToStartGame -= Time.deltaTime), 2).ToString();
+                    Destroy(preGameStartedCooldown, secondsToStartGame);
+                }
+                if (PhotonNetwork.PlayerList.Length == 1 && preGameStartedCooldown == null) SceneManager.LoadScene("Menu");
+
             }
             else if (playerRole.GetRole() == PlayerRoleEnum.Victim)
             {
                 playerTrapSystem.HandleInventory();
             }
+            
+            if (attackTimer > 0f)
+                attackTimer -= Time.deltaTime;
             
             playerUIUpdate.UpdateUI(health, playerRole, 
                 playerTrapSystem.GetTrapInHandsBool(), playerTrapSystem.GetGunInHandsBool());
@@ -167,13 +207,16 @@ namespace _Scripts.PlayerScripts
 
         private IEnumerator Attack()
         {
+            if (!IsAttackReady) yield break;
+
             isAttacking = true;
+            attackTimer = attackCooldown;
+
             StartCoroutine(SetAnimatorBool("Attack"));
 
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, attackDistance + 0.1f))
             {
-                // If object - player, and it's not current player
                 if (hit.collider.CompareTag("Player") && hit.collider.gameObject != gameObject)
                 {
                     Transform targetPlayer = hit.collider.transform;
@@ -182,24 +225,23 @@ namespace _Scripts.PlayerScripts
                     if (distanceToTarget <= attackDistance &&
                         targetPlayer.GetComponent<PlayerRole>().GetRole() == PlayerRoleEnum.Victim)
                     {
-                        // Damage player ("victim")
                         int viewId = targetPlayer.GetComponent<PhotonView>().ViewID;
                         photonView.RPC("TakeDamage", RpcTarget.AllBuffered, viewId, damage);
                     }
-                    
-                    // Making sound
+
                     SoundManager.Instance.PlayMurderHitSound();
                 }
             }
 
-            yield return new WaitForSeconds(3f);
             isAttacking = false;
         }
+
+
+        public float GetAttackTimer() => Mathf.Max(0f, attackTimer);
 
         [PunRPC]
         public void TakeDamage(int targetViewID, float damageAmount)
         {
-            // Find player by ViewID and damage him
             PhotonView targetPhotonView = PhotonView.Find(targetViewID);
             if (targetPhotonView != null)
             {
@@ -207,19 +249,118 @@ namespace _Scripts.PlayerScripts
                 targetPlayer.health -= damageAmount;
                 Debug.Log($"{targetPlayer.name} took {damageAmount} damage!");
 
+                Vector3 spawnPosition = targetPlayer.transform.position + new Vector3(0f, 0.7f, 0f);
+                GameObject particle = Instantiate(particleObj, spawnPosition, Quaternion.Euler(-90f, 0f, 0f));
+                Destroy(particle, 0.5f);
+
+                if (!targetPlayer.GetStunnedState())
+                {
+                    Vector3 knockbackDir = (targetPlayer.transform.position - transform.position).normalized;
+                    targetPlayer.ApplyKnockback(knockbackDir, 2f);
+                }
+                
+                targetPlayer.StartCoroutine(targetPlayer.CameraShake(0.25f, 0.1f));
+                targetPlayer.StartCoroutine(targetPlayer.DamageFlash());
+                targetPlayer.StartCoroutine(targetPlayer.FOVKick());
+
                 if (targetPlayer.health <= 0) targetPlayer.Die();
             }
         }
+
+        public IEnumerator CameraShake(float duration, float magnitude)
+        {
+            Vector3 originalPos = cameraHolderTransform.localPosition;
+            float elapsed = 0f;
+
+            while (elapsed < duration)
+            {
+                float x = Random.Range(-1f, 1f) * magnitude;
+                float y = Random.Range(-1f, 1f) * magnitude;
+
+                cameraHolderTransform.localPosition = originalPos + new Vector3(x, y, 0f);
+
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
+
+            cameraHolderTransform.localPosition = originalPos;
+        }
+        
+        public IEnumerator DamageFlash()
+        {
+            damageFlashImage.gameObject.SetActive(true);
+
+            float elapsed = 0f;
+            float duration = 1f;
+
+            Color startColor = new Color(1f, 0f, 0f, 0.5f);
+            Color endColor = new Color(1f, 0f, 0f, 0f);
+
+            while (elapsed < duration)
+            {
+                damageFlashImage.color = Color.Lerp(startColor, endColor, elapsed / duration);
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
+
+            damageFlashImage.gameObject.SetActive(false);
+        }
+        
+        public IEnumerator FOVKick()
+        {
+            float duration = 0.1f;
+            float targetFOV = camera.fieldOfView + 5f;
+            float startFOV = camera.fieldOfView;
+            float elapsed = 0f;
+
+            while (elapsed < duration)
+            {
+                camera.fieldOfView = Mathf.Lerp(startFOV, targetFOV, elapsed / duration);
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
+
+            camera.fieldOfView = startFOV;
+        }
+        
+        public void ApplyKnockback(Vector3 direction, float force)
+        {
+            StartCoroutine(KnockbackCoroutine(direction, force));
+        }
+
+        private IEnumerator KnockbackCoroutine(Vector3 direction, float force)
+        {
+            float knockTime = 0.2f;
+            float elapsed = 0f;
+
+            while (elapsed < knockTime)
+            {
+                controller.Move(direction * force * Time.deltaTime);
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
+        }
+
 
         private void HandleMovement()
         {
             float moveX = Input.GetAxis("Horizontal");
             float moveZ = Input.GetAxis("Vertical");
-            
+
             Vector3 move = transform.right * moveX + transform.forward * moveZ;
             controller.Move(move * speed * Time.deltaTime);
 
-            animator.SetBool(IsRunning, move.magnitude > 0.1f);
+            bool isMoving = move.magnitude >= 0.1f;
+
+            photonView.RPC("FootStepsAudioSource", RpcTarget.AllBuffered, isMoving);
+
+            animator.SetBool(IsRunning, isMoving);
+        }
+
+        [PunRPC]
+        public void FootStepsAudioSource(bool shouldUnmute)
+        {
+            footStepsAudioSource.mute = !shouldUnmute;
         }
 
         private void HandleSprint()
@@ -252,11 +393,19 @@ namespace _Scripts.PlayerScripts
         
         private void HandleJump()
         {
-            if (Input.GetButtonDown("Jump") && isGrounded)
+            if (Input.GetButtonDown("Jump") && isGrounded && canJump)
             {
                 velocity.y = Mathf.Sqrt(jumpHeight * 2f * gravity);
                 StartCoroutine(SetAnimatorBool("Jump"));
+                StartCoroutine(JumpCooldown());
             }
+        }
+
+        private IEnumerator JumpCooldown()
+        {
+            canJump = false;
+            yield return new WaitForSeconds(jumpCooldown);
+            canJump = true;
         }
 
         private void ApplyGravity()
@@ -395,7 +544,7 @@ namespace _Scripts.PlayerScripts
                 {
                     foreach (Transform obj in objects)
                     {
-                        if (obj != null && obj.gameObject != null && obj.gameObject != this.gameObject && 
+                        if (obj != null && obj.gameObject != null && obj.gameObject != gameObject && 
                             !obj.gameObject.CompareTag("MainCamera"))
                         {
                             obj.gameObject.SetActive(false);
@@ -473,17 +622,17 @@ namespace _Scripts.PlayerScripts
             {
                 int viewId = GetComponent<PhotonView>().ViewID;
                 photonView.RPC("TakeDamage", RpcTarget.AllBuffered, viewId, MathF.Round(damage / 5));
-                StunPlayer();
+                StunPlayer(3f);
                 
                 // Making sound
                 SoundManager.Instance.PlayTrapActionSound();
             }
         }
 
-        private void StunPlayer()
+        private void StunPlayer(float secs)
         {
             Debug.Log($"{gameObject.name} (player) stunned.");
-            StartCoroutine(Stun(4f));
+            StartCoroutine(Stun(secs));
         }
 
         private IEnumerator Stun(float seconds)
@@ -498,6 +647,8 @@ namespace _Scripts.PlayerScripts
             jumpHeight = defaultJumpHeight;
             speed = defaultSpeed;
         }
-        
+
+        public bool GetStunnedState() => stunned;
+
     }
 }
