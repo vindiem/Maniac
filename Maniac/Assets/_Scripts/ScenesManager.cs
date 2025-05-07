@@ -17,5 +17,18 @@ namespace _Scripts
             PhotonNetwork.LeaveLobby();
             PhotonNetwork.Disconnect();
         }
+
+        public void Quit()
+        {
+            if (!PhotonNetwork.InRoom)
+            {
+                PhotonNetwork.LeaveRoom();
+                PhotonNetwork.LeaveLobby();
+                PhotonNetwork.Disconnect();
+            }
+            
+            Application.Quit();
+            
+        }
     }
 }

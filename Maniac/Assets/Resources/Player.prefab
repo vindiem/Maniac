@@ -3164,7 +3164,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 400, y: -400}
-  m_SizeDelta: {x: 735, y: 162}
+  m_SizeDelta: {x: 735, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8083150728260380768
 CanvasRenderer:
@@ -3918,8 +3918,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 400, y: -210}
-  m_SizeDelta: {x: 735, y: 155}
+  m_AnchoredPosition: {x: 400, y: -185.5}
+  m_SizeDelta: {x: 735, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7915839848248286204
 CanvasRenderer:
@@ -4442,9 +4442,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Combat (Murderer Only):\nAttack: [Left Mouse Button] \u2013 Strike victims
+  m_Text: "Combat (Murderer Only)\nAttack: [Left Mouse Button] \u2013 Strike victims
     to eliminate them.\nReveal all victims' locations: [X] \u2013 Temporarily highlight
-    all victims, but with a cooldown."
+    all victims, but with a cooldown.\nAuto lock-on: [Right Mouse Button] \u2013
+    Automatically rotate towards the nearest visible victim while held."
 --- !u!1 &1414976326788344715
 GameObject:
   m_ObjectHideFlags: 0
@@ -5009,7 +5010,8 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "Movement:\nMove your character: [Arrow Keys] or [W, A, S, D]\nJump: [Space]
     \u2013 Avoid obstacles or reach higher areas.\nCrouch: [C] \u2013 Hide behind
-    objects or move under low obstacles."
+    objects or move under low obstacles.\nSprint: [Left Shift] \u2013 Run faster
+    at the cost of stamina. Stamina gradually regenerates when not sprinting."
 --- !u!1 &1567001792494198433
 GameObject:
   m_ObjectHideFlags: 0
@@ -13787,9 +13789,9 @@ RectTransform:
   - {fileID: 8838856795316481419}
   m_Father: {fileID: 6656180455239534728}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -75, y: -225}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -75, y: 75}
   m_SizeDelta: {x: 125, y: 125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8204771663954735454
@@ -13908,8 +13910,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Light & Vision:\nToggle flashlight on/off: [Right Mouse Button] \u2013
-    Use it to navigate dark areas but be careful\u2014it may reveal your location."
+  m_Text: "Light & Vision:\nToggle flashlight on/off: [Z] \u2013 Use it to navigate
+    dark areas but be careful\u2014it may reveal your location."
 --- !u!1 &4758479904224614004
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,8 +11,8 @@ namespace _Scripts.MultiplayerScripts
 {
     public class GameController : MonoBehaviourPunCallbacks
     {
-        private const int SECONDS_TO_ON_LIGHTS = 50;
-        private const int SECONDS_TO_TURN_OFF_ON_LIGHTS = 150;
+        private const int SECONDS_TO_ON_LIGHTS = 60;
+        private const int SECONDS_TO_TURN_OFF_ON_LIGHTS = 220;
 
         private PhotonView _photonView;
 
