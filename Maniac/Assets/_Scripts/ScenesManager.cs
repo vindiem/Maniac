@@ -10,12 +10,11 @@ namespace _Scripts
         public void LoadScene(string sceneName)
         {
             SoundManager.Instance.PlayBackButtonPressedSound();
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            
             SceneManager.LoadScene(sceneName);
             
-            if (!PhotonNetwork.InRoom) return;
-            PhotonNetwork.LeaveRoom();
-            PhotonNetwork.LeaveLobby();
-            PhotonNetwork.Disconnect();
         }
 
         public void Quit()

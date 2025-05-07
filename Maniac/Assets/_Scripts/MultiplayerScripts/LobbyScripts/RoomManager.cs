@@ -159,8 +159,6 @@ namespace _Scripts.MultiplayerScripts.LobbyScripts
         public override void OnLeftRoom()
         {
             base.OnLeftRoom();
-
-            if (!PhotonNetwork.InRoom) return;
             PhotonNetwork.LeaveRoom();
             PhotonNetwork.LeaveLobby();
             PhotonNetwork.Disconnect();

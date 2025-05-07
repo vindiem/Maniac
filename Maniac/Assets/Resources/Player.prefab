@@ -6515,9 +6515,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 6656180455239534728}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -225}
   m_SizeDelta: {x: 700, y: 450}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &988897561613115770
@@ -6541,7 +6541,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.81886786, g: 0.81886786, b: 0.81886786, a: 1}
+  m_Color: {r: 0.4037736, g: 0.4037736, b: 0.4037736, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6550,12 +6550,12 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 9d43ec39cf7ce1445992827c1248abc3, type: 3}
-    m_FontSize: 300
+    m_FontSize: 129
     m_FontStyle: 2
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 300
-    m_Alignment: 4
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -6773,7 +6773,7 @@ MonoBehaviour:
   tiltSpeed: 3
   jumpCooldown: 1
   preGameStartedCooldown: {fileID: 1494144816497595552}
-  secondsToStartGame: 50
+  secondsToStartGame: 10
 --- !u!114 &4752655829816429767
 MonoBehaviour:
   m_ObjectHideFlags: 0

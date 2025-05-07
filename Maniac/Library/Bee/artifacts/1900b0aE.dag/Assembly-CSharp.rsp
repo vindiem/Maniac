@@ -432,6 +432,7 @@
 "Assets/_Scripts/PlayerScripts/PrintFootsteps.cs"
 "Assets/_Scripts/PlayerScripts/Weapon.cs"
 "Assets/_Scripts/ScenesManager.cs"
+"Assets/_Scripts/SettingsController.cs"
 "Assets/_Scripts/SoundManager.cs"
 -langversion:9.0
 /deterministic

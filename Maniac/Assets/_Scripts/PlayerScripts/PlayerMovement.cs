@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using _Scripts.MultiplayerScripts.LobbyScripts;
 using Photon.Pun;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
@@ -46,6 +47,7 @@ namespace _Scripts.PlayerScripts
         private bool canSprint = true;
         private float currentStamina;
         private bool isSprinting;
+        private bool isCrouching;
 
         private bool stunned = false;
 
@@ -174,10 +176,21 @@ namespace _Scripts.PlayerScripts
                 {
                     StunPlayer(secondsToStartGame);
                     preGameStartedCooldown.gameObject.SetActive(true);
-                    preGameStartedCooldown.text = MathF.Round((secondsToStartGame -= Time.deltaTime), 2).ToString();
+                    preGameStartedCooldown.text = MathF.Round((secondsToStartGame -= Time.deltaTime), 1).ToString();
                     Destroy(preGameStartedCooldown, secondsToStartGame);
                 }
-                if (PhotonNetwork.PlayerList.Length == 1 && preGameStartedCooldown == null) SceneManager.LoadScene("Menu");
+
+                if (PhotonNetwork.PlayerList.Length == 1 && preGameStartedCooldown == null)
+                {
+                    PhotonNetwork.LeaveRoom();
+                    PhotonNetwork.LeaveLobby();
+                    PhotonNetwork.Disconnect();
+                    
+                    Cursor.visible = true;
+                    Cursor.lockState = CursorLockMode.None;
+                    
+                    SceneManager.LoadScene("Menu");
+                }
 
             }
             else if (playerRole.GetRole() == PlayerRoleEnum.Victim)
@@ -341,7 +354,6 @@ namespace _Scripts.PlayerScripts
             }
         }
 
-
         private void HandleMovement()
         {
             float moveX = Input.GetAxis("Horizontal");
@@ -484,8 +496,16 @@ namespace _Scripts.PlayerScripts
             else if (Input.GetKeyUp(KeyCode.C)) SetCrouchState(false);
         }
 
+        private void OnApplicationFocus(bool hasFocus)
+        {
+            if (!hasFocus && isCrouching)
+                SetCrouchState(false);
+        }
+
         private void SetCrouchState(bool isCrouching)
         {
+            this.isCrouching = isCrouching;
+            
             animator.SetBool(IsCrouching, isCrouching);
             controller.height = isCrouching ? 1.0f : defaultCharacterHeight;
             controller.center = isCrouching ? controller.center / 2.0f : controller.center * 2.0f;
@@ -515,6 +535,10 @@ namespace _Scripts.PlayerScripts
             if (photonView != null && PhotonNetwork.IsMasterClient)
             {
                 photonView.RPC("RPC_Death", RpcTarget.AllBuffered);
+                
+                //Vector3 stateSpawnPosition = new Vector3(transform.position.x, -0.5f, transform.position.z);
+                Vector3 stateSpawnPosition = transform.position - Vector3.up * 1.5f;
+                PhotonNetwork.Instantiate(stateObj.name, stateSpawnPosition, Quaternion.identity);
             }
             else
             {
@@ -545,7 +569,7 @@ namespace _Scripts.PlayerScripts
                     foreach (Transform obj in objects)
                     {
                         if (obj != null && obj.gameObject != null && obj.gameObject != gameObject && 
-                            !obj.gameObject.CompareTag("MainCamera"))
+                            !obj.gameObject.name.Contains("Camera holder") && !obj.gameObject.CompareTag("MainCamera"))
                         {
                             obj.gameObject.SetActive(false);
                         }
@@ -570,7 +594,7 @@ namespace _Scripts.PlayerScripts
                     ghostFreeMovement.SetIsDead();
                 }
         
-                PhotonNetwork.Instantiate(stateObj.name, transform.position, Quaternion.identity);
+                //PhotonNetwork.Instantiate(stateObj.name, transform.position, Quaternion.identity);
         
                 // Adjust transform positions only if objects exist
                 if (transform != null)

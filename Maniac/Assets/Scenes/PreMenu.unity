@@ -217,7 +217,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 1e376823cd7a0e14fb9ff233a785b50c, type: 3}
-    m_FontSize: 44
+    m_FontSize: 32
     m_FontStyle: 2
     m_BestFit: 0
     m_MinSize: 0
@@ -340,7 +340,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 127274258}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 5d3b0e24d0b23e44c9c80e7f7fa8fa0f, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: a80353e692e28cc41b335a4a3914a4ba, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -354,14 +354,12 @@ VideoPlayer:
   m_TimeUpdateMode: 2
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 2
-  m_TargetAudioSources:
-  - {fileID: 0}
-  m_DirectAudioVolumes:
-  - 1
+  m_TargetAudioSources: []
+  m_DirectAudioVolumes: []
   m_Url: 
-  m_EnabledAudioTracks: 01
-  m_DirectAudioMutes: 00
-  m_ControlledAudioTrackCount: 1
+  m_EnabledAudioTracks: 
+  m_DirectAudioMutes: 
+  m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
   m_Looping: 1
