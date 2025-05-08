@@ -13,6 +13,12 @@ public class SettingsController : MonoBehaviour
     
     private Resolution[] resolutions;
     
+    public Slider MusicSlider;
+    public Slider SFXSlider;
+    
+    private float musicVolume;
+    private float sfxVolume;
+    
     private void Start()
     {
         ResolutionDropdown.ClearOptions();
@@ -35,8 +41,14 @@ public class SettingsController : MonoBehaviour
         }
         
         ResolutionDropdown.AddOptions(options);
+        ResolutionDropdown.value = options.Count;
         ResolutionDropdown.RefreshShownValue();
         LoadSettings(currentResolutionIndex);
+        
+        musicVolume = PlayerPrefs.GetFloat("MusicVolume");
+        sfxVolume = PlayerPrefs.GetFloat("SoundVolume");
+        MusicSlider.value = musicVolume;
+        SFXSlider.value = sfxVolume;
     }
 
     public void SetFullscreen(bool isFullscreen)
@@ -60,11 +72,12 @@ public class SettingsController : MonoBehaviour
         PlayerPrefs.SetString("ResolutionPreference", ResolutionDropdown.options[ResolutionDropdown.value].text);
         PlayerPrefs.SetInt("QualityPreference", QualityDropdown.value);
         PlayerPrefs.SetInt("FullscreenPreference", Convert.ToInt32(Screen.fullScreen));
+        PlayerPrefs.SetFloat("MusicVolume", musicVolume);
+        PlayerPrefs.SetFloat("SoundVolume", sfxVolume);
         PlayerPrefs.Save();
-        
     }
 
-    public void LoadSettings(int currentResolutionIndex)
+    private void LoadSettings(int currentResolutionIndex)
     {
         ResolutionDropdown.value = 
             PlayerPrefs.HasKey("ResolutionPreference") ? 
@@ -82,6 +95,20 @@ public class SettingsController : MonoBehaviour
         {
             Screen.fullScreen = true;
         }
+    }
+
+    public void SetMusicVolume()
+    {
+        musicVolume = MusicSlider.value;
+        AudioSource music = GameObject.FindGameObjectWithTag("MusicAudioSource").GetComponent<AudioSource>();
+        music.volume = musicVolume;
+    }
+
+    public void SetSFXVolume()
+    {
+        sfxVolume = SFXSlider.value;
+        AudioSource sfx = GameObject.FindGameObjectWithTag("SFXAudioSource").GetComponent<AudioSource>();
+        sfx.volume = sfxVolume;
     }
     
 }

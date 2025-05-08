@@ -256,9 +256,10 @@ namespace _Scripts.PlayerScripts
         public void TakeDamage(int targetViewID, float damageAmount)
         {
             PhotonView targetPhotonView = PhotonView.Find(targetViewID);
-            if (targetPhotonView != null)
+            PlayerMovement targetPlayer = targetPhotonView.GetComponent<PlayerMovement>();
+            
+            if (targetPhotonView != null && !targetPlayer.GetStunnedState())
             {
-                PlayerMovement targetPlayer = targetPhotonView.GetComponent<PlayerMovement>();
                 targetPlayer.health -= damageAmount;
                 Debug.Log($"{targetPlayer.name} took {damageAmount} damage!");
 
@@ -266,16 +267,21 @@ namespace _Scripts.PlayerScripts
                 GameObject particle = Instantiate(particleObj, spawnPosition, Quaternion.Euler(-90f, 0f, 0f));
                 Destroy(particle, 0.5f);
 
-                if (!targetPlayer.GetStunnedState())
-                {
-                    Vector3 knockbackDir = (targetPlayer.transform.position - transform.position).normalized;
-                    targetPlayer.ApplyKnockback(knockbackDir, 2f);
-                }
+                Vector3 knockbackDir = (targetPlayer.transform.position - transform.position).normalized;
+                targetPlayer.ApplyKnockback(knockbackDir, 2f);
                 
                 targetPlayer.StartCoroutine(targetPlayer.CameraShake(0.25f, 0.1f));
                 targetPlayer.StartCoroutine(targetPlayer.DamageFlash());
-                targetPlayer.StartCoroutine(targetPlayer.FOVKick());
 
+                if (PhotonNetwork.IsMasterClient == targetPhotonView)
+                {
+                    RoomManager roomManager = FindObjectOfType<RoomManager>();
+                    if (roomManager != null)
+                    {
+                        roomManager.AddMurderMiss("shot");
+                    }
+                }
+                
                 if (targetPlayer.health <= 0) targetPlayer.Die();
             }
         }
@@ -317,23 +323,6 @@ namespace _Scripts.PlayerScripts
             }
 
             damageFlashImage.gameObject.SetActive(false);
-        }
-        
-        public IEnumerator FOVKick()
-        {
-            float duration = 0.1f;
-            float targetFOV = camera.fieldOfView + 5f;
-            float startFOV = camera.fieldOfView;
-            float elapsed = 0f;
-
-            while (elapsed < duration)
-            {
-                camera.fieldOfView = Mathf.Lerp(startFOV, targetFOV, elapsed / duration);
-                elapsed += Time.deltaTime;
-                yield return null;
-            }
-
-            camera.fieldOfView = startFOV;
         }
         
         public void ApplyKnockback(Vector3 direction, float force)
@@ -647,6 +636,12 @@ namespace _Scripts.PlayerScripts
                 int viewId = GetComponent<PhotonView>().ViewID;
                 photonView.RPC("TakeDamage", RpcTarget.AllBuffered, viewId, MathF.Round(damage / 5));
                 StunPlayer(3f);
+                
+                RoomManager roomManager = FindObjectOfType<RoomManager>();
+                if (roomManager != null)
+                {
+                    roomManager.AddMurderMiss("trap");
+                }
                 
                 // Making sound
                 SoundManager.Instance.PlayTrapActionSound();

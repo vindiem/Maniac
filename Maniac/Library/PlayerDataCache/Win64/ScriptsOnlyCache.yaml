@@ -254,6 +254,9 @@ ScriptsOnlyBuild:
     fullTypeName: _Scripts.PlayerScripts.PlayerUIUpdate
     methodName: ShowHidePressButton
   - assembly: Assembly-CSharp
+    fullTypeName: SettingsController
+    methodName: SetMusicVolume
+  - assembly: Assembly-CSharp
     fullTypeName: _Scripts.ScenesManager
     methodName: LoadScene
   - assembly: Assembly-CSharp
@@ -281,6 +284,9 @@ ScriptsOnlyBuild:
     fullTypeName: UnityEngine.GameObject
     methodName: SetActive
   - assembly: Assembly-CSharp
+    fullTypeName: SettingsController
+    methodName: SetSFXVolume
+  - assembly: Assembly-CSharp
     fullTypeName: _Scripts.MultiplayerScripts.LobbyScripts.RoomItemButton
     methodName: OnClick
   - assembly: Assembly-CSharp
@@ -358,9 +364,6 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: _Scripts.MultiplayerScripts.LobbyScripts.RoomManager
     methodName: ChangeNickname
-  - assembly: Assembly-CSharp
-    fullTypeName: _Scripts.ScenesManager
-    methodName: LoadScene
   - assembly: Assembly-CSharp
     fullTypeName: _Scripts.ScenesManager
     methodName: LoadScene
@@ -489,35 +492,35 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 6864}
     - Class: 114
-      Script: {instanceID: 7518}
+      Script: {instanceID: 7520}
     - Class: 114
-      Script: {instanceID: 7562}
+      Script: {instanceID: 7564}
     - Class: 114
-      Script: {instanceID: 7578}
+      Script: {instanceID: 7580}
     - Class: 114
-      Script: {instanceID: 8090}
+      Script: {instanceID: 8092}
     - Class: 114
-      Script: {instanceID: 8210}
+      Script: {instanceID: 8212}
     - Class: 114
-      Script: {instanceID: 8218}
+      Script: {instanceID: 8220}
     - Class: 114
-      Script: {instanceID: 8222}
+      Script: {instanceID: 8224}
     - Class: 114
-      Script: {instanceID: 8240}
+      Script: {instanceID: 8242}
     - Class: 114
-      Script: {instanceID: 8772}
+      Script: {instanceID: 8774}
     - Class: 114
-      Script: {instanceID: 9656}
+      Script: {instanceID: 9658}
     - Class: 114
-      Script: {instanceID: 9686}
+      Script: {instanceID: 9688}
     - Class: 114
-      Script: {instanceID: 10078}
+      Script: {instanceID: 10080}
     - Class: 114
-      Script: {instanceID: 10150}
+      Script: {instanceID: 10152}
     - Class: 114
-      Script: {instanceID: 10188}
+      Script: {instanceID: 10190}
     - Class: 114
-      Script: {instanceID: 10786}
+      Script: {instanceID: 10788}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -670,35 +673,35 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 6864}
     - Class: 114
-      Script: {instanceID: 7518}
+      Script: {instanceID: 7520}
     - Class: 114
-      Script: {instanceID: 7562}
+      Script: {instanceID: 7564}
     - Class: 114
-      Script: {instanceID: 7578}
+      Script: {instanceID: 7580}
     - Class: 114
-      Script: {instanceID: 8090}
+      Script: {instanceID: 8092}
     - Class: 114
-      Script: {instanceID: 8210}
+      Script: {instanceID: 8212}
     - Class: 114
-      Script: {instanceID: 8218}
+      Script: {instanceID: 8220}
     - Class: 114
-      Script: {instanceID: 8222}
+      Script: {instanceID: 8224}
     - Class: 114
-      Script: {instanceID: 8240}
+      Script: {instanceID: 8242}
     - Class: 114
-      Script: {instanceID: 8772}
+      Script: {instanceID: 8774}
     - Class: 114
-      Script: {instanceID: 9656}
+      Script: {instanceID: 9658}
     - Class: 114
-      Script: {instanceID: 9686}
+      Script: {instanceID: 9688}
     - Class: 114
-      Script: {instanceID: 10078}
+      Script: {instanceID: 10080}
     - Class: 114
-      Script: {instanceID: 10150}
+      Script: {instanceID: 10152}
     - Class: 114
-      Script: {instanceID: 10188}
+      Script: {instanceID: 10190}
     - Class: 114
-      Script: {instanceID: 10786}
+      Script: {instanceID: 10788}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -771,19 +774,19 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 6864}
     - Class: 114
-      Script: {instanceID: 7518}
+      Script: {instanceID: 7112}
     - Class: 114
-      Script: {instanceID: 8210}
+      Script: {instanceID: 7520}
     - Class: 114
-      Script: {instanceID: 8222}
+      Script: {instanceID: 8212}
     - Class: 114
-      Script: {instanceID: 8658}
+      Script: {instanceID: 8224}
     - Class: 114
-      Script: {instanceID: 9266}
+      Script: {instanceID: 8660}
     - Class: 114
-      Script: {instanceID: 9686}
+      Script: {instanceID: 9268}
     - Class: 114
-      Script: {instanceID: 1479284}
+      Script: {instanceID: 9688}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -940,41 +943,41 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 6864}
     - Class: 114
-      Script: {instanceID: 7188}
+      Script: {instanceID: 7190}
     - Class: 114
-      Script: {instanceID: 7254}
+      Script: {instanceID: 7256}
     - Class: 114
-      Script: {instanceID: 7518}
+      Script: {instanceID: 7520}
     - Class: 114
-      Script: {instanceID: 7562}
+      Script: {instanceID: 7564}
     - Class: 114
-      Script: {instanceID: 7578}
+      Script: {instanceID: 7580}
     - Class: 114
-      Script: {instanceID: 7648}
+      Script: {instanceID: 7650}
     - Class: 114
-      Script: {instanceID: 8090}
+      Script: {instanceID: 8092}
     - Class: 114
-      Script: {instanceID: 8210}
+      Script: {instanceID: 8212}
     - Class: 114
-      Script: {instanceID: 8218}
+      Script: {instanceID: 8220}
     - Class: 114
-      Script: {instanceID: 8984}
+      Script: {instanceID: 8986}
     - Class: 114
-      Script: {instanceID: 9656}
+      Script: {instanceID: 9658}
     - Class: 114
-      Script: {instanceID: 9682}
+      Script: {instanceID: 9684}
     - Class: 114
-      Script: {instanceID: 10078}
+      Script: {instanceID: 10080}
     - Class: 114
-      Script: {instanceID: 10150}
+      Script: {instanceID: 10152}
     - Class: 114
-      Script: {instanceID: 10188}
+      Script: {instanceID: 10190}
     - Class: 114
-      Script: {instanceID: 10364}
+      Script: {instanceID: 10366}
     - Class: 114
-      Script: {instanceID: 10786}
+      Script: {instanceID: 10788}
     - Class: 114
-      Script: {instanceID: 10794}
+      Script: {instanceID: 10796}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -2076,7 +2079,7 @@ ScriptsOnlyBuild:
     className: UnityOnCancelMessageListener
   - hash:
       serializedVersion: 2
-      Hash: f99bbd52f613f5e163bdbe7a11ec7a65
+      Hash: 1a9048d581bfd0675949933219a314fe
     assemblyName: Assembly-CSharp
     namespaceName: _Scripts.MultiplayerScripts.LobbyScripts
     className: RoomManager
@@ -2464,6 +2467,12 @@ ScriptsOnlyBuild:
     assemblyName: PhotonUnityNetworking.Demos
     namespaceName: Photon.Pun.Demo.Cockpit
     className: CurrentRoomAutoCleanupProperty
+  - hash:
+      serializedVersion: 2
+      Hash: c86610418f70984c18f5327417b79d85
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: SettingsController
   - hash:
       serializedVersion: 2
       Hash: bf507e4f2c90b584676778cea17e3e89
@@ -3364,12 +3373,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
-  - hash:
-      serializedVersion: 2
-      Hash: e2f1ff473401a71ac236dd78395332b0
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: SettingsController
   platform: 19
   scenePathNames:
   - Assets/Scenes/PreMenu.unity

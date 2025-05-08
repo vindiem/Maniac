@@ -27,6 +27,19 @@ namespace _Scripts.MultiplayerScripts.LobbyScripts
         private int victimsCount = 0, murdersCount = 0;
         
         public string roomNameToJoin = "Room";
+        
+        private bool stillPlaying = true;
+        private float gameDuration = 0f;
+        
+        public Text murdersText;
+        public Text shotsAtTheMurderText;
+        public Text gotTrappedText;
+
+        public Text maxTimeAlive;
+        public Text numbersOfSurvivors;
+
+        private int shotsAtMurder = 0;
+        private int murderTrapped = 0;
 
         private void Start()
         {
@@ -37,6 +50,27 @@ namespace _Scripts.MultiplayerScripts.LobbyScripts
             winScreen.SetActive(false);
         }
 
+        private void Update()
+        {
+            if (!stillPlaying)
+            {
+                gameDuration += Time.deltaTime;
+            }
+        }
+
+        public void AddMurderMiss(string miss)
+        {
+            if (miss == "trap")
+            {
+                murderTrapped++;
+            }
+            else if (miss == "shot")
+            {
+                shotsAtMurder++;
+            }
+            else Debug.LogError(miss);
+        }
+        
         public void WinCheck()
         {
             if (PhotonNetwork.PlayerList.Length >= 2)
@@ -80,8 +114,10 @@ namespace _Scripts.MultiplayerScripts.LobbyScripts
         }
 
         [PunRPC]
-        private void WinScreen(PlayerRoleEnum playerRoleEnum)
+        public void WinScreen(PlayerRoleEnum playerRoleEnum)
         {
+            stillPlaying = false;
+            
             SoundManager.Instance.PlayGameOverSound();
             winScreen.SetActive(true);
             winScreen.transform.localScale = Vector3.zero;
@@ -90,6 +126,17 @@ namespace _Scripts.MultiplayerScripts.LobbyScripts
                 winText.text = "Victims won!";
             else if (playerRoleEnum == PlayerRoleEnum.Murder)
                 winText.text = "Murder won!";
+            
+            // WinScreen UI
+            GhostFreeMovement[] ghosts = GameObject.FindObjectsOfType<GhostFreeMovement>();
+            murdersText.text = $"\tMurders: <color=red>{ghosts.Length}</color>";
+            shotsAtTheMurderText.text = $"\tShots at the killer: <color=red>{shotsAtMurder}</color>";
+            gotTrappedText.text = $"\tGetting trapped: <color=red>{murderTrapped}</color>";
+
+            maxTimeAlive.text = $"\tMax. survival time: <color=green>{MathF.Round(gameDuration, 2)}</color> seconds";
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            int number = players.Length - ghosts.Length;
+            numbersOfSurvivors.text = $"\tNumber of survivors: <color=green>{number}</color>";
 
             StartCoroutine(AnimateWinScreen());
         }

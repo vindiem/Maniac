@@ -1,6 +1,7 @@
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 namespace _Scripts
 {
@@ -29,6 +30,9 @@ namespace _Scripts
 
         private PhotonView _photonView;
 
+        private float musicVolume = 0.2f;
+        private float soundVolume = 0.2f;
+
         private void Awake()
         {
             if (Instance == null)
@@ -42,6 +46,27 @@ namespace _Scripts
                 return;
             }
             _photonView = GetComponent<PhotonView>();
+
+            if (PlayerPrefs.HasKey("MusicVolume"))
+            {
+                musicVolume = PlayerPrefs.GetFloat("MusicVolume");
+            }
+            else
+            {
+                PlayerPrefs.SetFloat("MusicVolume", musicVolume);
+            }
+            if (PlayerPrefs.HasKey("SoundVolume"))
+            {
+                soundVolume = PlayerPrefs.GetFloat("SoundVolume");
+            }
+            else
+            {
+                PlayerPrefs.SetFloat("SoundVolume", soundVolume);
+            }
+            
+            GlobalMusicSource.volume = musicVolume;
+            GlobalSfxSource.volume = soundVolume;
+            
         }
 
         private void Start()
@@ -129,6 +154,7 @@ namespace _Scripts
         // walkingSound
         public void PlayWalkingSound() => _photonView.RPC("RPC_PlayWalkingSound", RpcTarget.All);
         [PunRPC] private void RPC_PlayWalkingSound() => GlobalSfxSource.PlayOneShot(walkingSound);
-    
+        
+        
     }
 }

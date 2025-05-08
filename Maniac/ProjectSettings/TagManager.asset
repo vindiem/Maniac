@@ -10,6 +10,8 @@ TagManager:
   - Gun
   - CreateAndJoinCanvas
   - Rain
+  - MusicAudioSource
+  - SFXAudioSource
   layers:
   - Default
   - TransparentFX

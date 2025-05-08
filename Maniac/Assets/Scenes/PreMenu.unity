@@ -1127,7 +1127,7 @@ GameObject:
   - component: {fileID: 7234262214064462057}
   m_Layer: 0
   m_Name: SFX
-  m_TagString: Untagged
+  m_TagString: SFXAudioSource
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1257,7 +1257,7 @@ GameObject:
   - component: {fileID: 5535692562195631846}
   m_Layer: 0
   m_Name: Backsound
-  m_TagString: Untagged
+  m_TagString: MusicAudioSource
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
