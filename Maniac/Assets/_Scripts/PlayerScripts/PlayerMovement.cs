@@ -266,9 +266,14 @@ namespace _Scripts.PlayerScripts
                 Vector3 spawnPosition = targetPlayer.transform.position + new Vector3(0f, 0.7f, 0f);
                 GameObject particle = Instantiate(particleObj, spawnPosition, Quaternion.Euler(-90f, 0f, 0f));
                 Destroy(particle, 0.5f);
+                
+                //Vector3 knockbackDir = (targetPlayer.transform.position - transform.position).normalized;
 
-                Vector3 knockbackDir = (targetPlayer.transform.position - transform.position).normalized;
-                targetPlayer.ApplyKnockback(knockbackDir, 2f);
+                if (PhotonNetwork.IsMasterClient != targetPhotonView)
+                {
+                    targetPlayer.ApplyKnockback(Vector3.forward, 5f);
+                    targetPlayer.ApplyKnockback(Vector3.up, 3f);
+                }
                 
                 targetPlayer.StartCoroutine(targetPlayer.CameraShake(0.25f, 0.1f));
                 targetPlayer.StartCoroutine(targetPlayer.DamageFlash());
@@ -285,7 +290,7 @@ namespace _Scripts.PlayerScripts
                 if (targetPlayer.health <= 0) targetPlayer.Die();
             }
         }
-
+        
         public IEnumerator CameraShake(float duration, float magnitude)
         {
             Vector3 originalPos = cameraHolderTransform.localPosition;

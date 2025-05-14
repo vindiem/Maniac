@@ -21,6 +21,7 @@ ScriptsOnlyBuild:
     - GhostFreeMovement
     - Outline
     - PixelateEffect
+    - PressAnyButton
     - PrintFootsteps
     - SettingsController
     - Weapon
@@ -978,6 +979,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 10788}
     - Class: 114
       Script: {instanceID: 10796}
+    - Class: 114
+      Script: {instanceID: 44976}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -3373,6 +3376,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 6fb5b229da5130697866df4779c06b79
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PressAnyButton
   platform: 19
   scenePathNames:
   - Assets/Scenes/PreMenu.unity

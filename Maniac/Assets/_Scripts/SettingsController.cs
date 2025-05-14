@@ -43,7 +43,6 @@ public class SettingsController : MonoBehaviour
         ResolutionDropdown.AddOptions(options);
         ResolutionDropdown.value = options.Count;
         ResolutionDropdown.RefreshShownValue();
-        LoadSettings(currentResolutionIndex);
         
         musicVolume = PlayerPrefs.GetFloat("MusicVolume");
         sfxVolume = PlayerPrefs.GetFloat("SoundVolume");
