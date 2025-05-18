@@ -44,10 +44,16 @@ public class SettingsController : MonoBehaviour
         ResolutionDropdown.value = options.Count;
         ResolutionDropdown.RefreshShownValue();
         
-        musicVolume = PlayerPrefs.GetFloat("MusicVolume");
-        sfxVolume = PlayerPrefs.GetFloat("SoundVolume");
-        MusicSlider.value = musicVolume;
-        SFXSlider.value = sfxVolume;
+        if (PlayerPrefs.HasKey("MusicVolume"))
+        {
+            musicVolume = PlayerPrefs.GetFloat("MusicVolume");
+            MusicSlider.value = musicVolume;
+        }
+        else if (PlayerPrefs.HasKey("MusicVolume"))
+        {
+            sfxVolume = PlayerPrefs.GetFloat("SoundVolume");
+            SFXSlider.value = sfxVolume;
+        }
     }
 
     public void SetFullscreen(bool isFullscreen)

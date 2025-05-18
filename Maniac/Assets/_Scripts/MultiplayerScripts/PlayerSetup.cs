@@ -69,7 +69,15 @@ namespace _Scripts.MultiplayerScripts
         private void FindPlayersAndSetRole()
         {
             int playerCount = PhotonNetwork.PlayerList.Length;
-            SetRoleAndSkin(playerCount > 1 ? PlayerRoleEnum.Victim : PlayerRoleEnum.Murder);
+            if (PhotonNetwork.IsMasterClient)
+            {
+                SetRoleAndSkin(PlayerRoleEnum.Murder);
+            }
+            else
+            {
+                SetRoleAndSkin(PlayerRoleEnum.Victim);
+            }
+            //SetRoleAndSkin(playerCount > 1 ? PlayerRoleEnum.Victim : PlayerRoleEnum.Murder);
         }
 
         private void SetRoleAndSkin(PlayerRoleEnum newRole)

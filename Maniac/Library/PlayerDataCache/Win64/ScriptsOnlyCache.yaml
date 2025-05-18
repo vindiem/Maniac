@@ -19,10 +19,17 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - Door
     - GhostFreeMovement
+    - Launcher
+    - Menu
+    - MenuManager
     - Outline
     - PixelateEffect
+    - PlayerListItem
+    - PlayerNameManager
     - PressAnyButton
     - PrintFootsteps
+    - RoomListItem
+    - SceneHelper
     - SettingsController
     - Weapon
     - _Scripts.FollowCamera
@@ -64,17 +71,21 @@ ScriptsOnlyBuild:
     Unity.2D.Animation.Editor.dll:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.Animation.Runtime.dll:
+    - UnityEngine.U2D.Animation.BufferManager
     - UnityEngine.U2D.Animation.SpriteSkinComposite
     - UnityEngine.U2D.Animation.SpriteSkinUpdateHelper
     Unity.2D.IK.Editor.dll:
     - UnityEditor.U2D.IK.IKEditorManager
     Unity.2D.Tilemap.Editor.dll:
+    - UnityEditor.Tilemaps.GridBrush
+    - UnityEditor.Tilemaps.GridBrushEditor
     - UnityEditor.Tilemaps.GridPaintingState
     - UnityEditor.Tilemaps.GridPaletteBrushes
     - UnityEditor.Tilemaps.GridPalettes
     - UnityEditor.Tilemaps.SceneViewGridManager
     - UnityEditor.Tilemaps.SceneViewOpenTilePaletteHelper
     - UnityEditor.Tilemaps.TileDragAndDropManager
+    - UnityEditor.Tilemaps.TilemapEditorToolPreferences
     - UnityEditor.Tilemaps.TilemapPrefabStageHelper
     Unity.Postprocessing.Runtime:
     - UnityEngine.Rendering.PostProcessing.AmbientOcclusion
@@ -110,6 +121,7 @@ ScriptsOnlyBuild:
     - UnityEngine.Rendering.PostProcessing.Vignette
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.RiderScriptEditorData
+    - Packages.Rider.Editor.RiderScriptEditorPersistedState
     - Packages.Rider.Editor.UnitTesting.CallbackData
     Unity.TextMeshPro:
     - TMPro.TMP_FontAsset
@@ -123,8 +135,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -143,6 +157,7 @@ ScriptsOnlyBuild:
     - UnityEngine.EventSystems.StandaloneInputModule
     - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
+    - UnityEngine.UI.ContentSizeFitter
     - UnityEngine.UI.Dropdown
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
@@ -155,6 +170,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Slider
     - UnityEngine.UI.Text
     - UnityEngine.UI.Toggle
+    - UnityEngine.UI.VerticalLayoutGroup
   serializedClasses:
     PhotonRealtime:
     - Photon.Realtime.AppSettings
@@ -212,6 +228,7 @@ ScriptsOnlyBuild:
     - UnityEngine.Events.ArgumentCache
     - UnityEngine.Events.PersistentCallGroup
     - UnityEngine.Events.PersistentListenerMode
+    - UnityEngine.RectOffset
     UnityEngine.TextCoreFontEngineModule:
     - UnityEngine.TextCore.FaceInfo
     - UnityEngine.TextCore.Glyph
@@ -243,20 +260,59 @@ ScriptsOnlyBuild:
     fullTypeName: _Scripts.PlayerScripts.PlayerUIUpdate
     methodName: ShowHidePressButton
   - assembly: Assembly-CSharp
+    fullTypeName: RoomListItem
+    methodName: OnClick
+  - assembly: Assembly-CSharp
     fullTypeName: SettingsController
     methodName: SetMusicVolume
   - assembly: Assembly-CSharp
-    fullTypeName: _Scripts.ScenesManager
-    methodName: LoadScene
+    fullTypeName: MenuManager
+    methodName: OpenMenu
+  - assembly: Assembly-CSharp
+    fullTypeName: Launcher
+    methodName: ChooseMap
+  - assembly: Assembly-CSharp
+    fullTypeName: MenuManager
+    methodName: OpenMenu
+  - assembly: Assembly-CSharp
+    fullTypeName: MenuManager
+    methodName: OpenMenu
+  - assembly: Assembly-CSharp
+    fullTypeName: MenuManager
+    methodName: CloseMenu
+  - assembly: Assembly-CSharp
+    fullTypeName: MenuManager
+    methodName: OpenMenu
   - assembly: Assembly-CSharp
     fullTypeName: SettingsController
     methodName: SetQuality
   - assembly: Assembly-CSharp
-    fullTypeName: _Scripts.ScenesManager
-    methodName: LoadScene
+    fullTypeName: MenuManager
+    methodName: CloseMenu
+  - assembly: Assembly-CSharp
+    fullTypeName: MenuManager
+    methodName: OpenMenu
+  - assembly: Assembly-CSharp
+    fullTypeName: PlayerNameManager
+    methodName: OnUsernameInputValueChanged
+  - assembly: Assembly-CSharp
+    fullTypeName: MenuManager
+    methodName: CloseMenu
+  - assembly: Assembly-CSharp
+    fullTypeName: MenuManager
+    methodName: OpenMenu
   - assembly: UnityEngine.CoreModule
     fullTypeName: UnityEngine.GameObject
     methodName: SetActive
+  - assembly: Assembly-CSharp
+    fullTypeName: MenuManager
+    methodName: CloseMenu
+  - assembly: Assembly-CSharp
+    fullTypeName: MenuManager
+    methodName: OpenMenu
+  - assembly: Assembly-CSharp
+    fullTypeName: Launcher
+    methodName: LeaveRoom
   - assembly: Assembly-CSharp
     fullTypeName: SettingsController
     methodName: SaveSettings
@@ -264,11 +320,20 @@ ScriptsOnlyBuild:
     fullTypeName: _Scripts.ScenesManager
     methodName: Quit
   - assembly: Assembly-CSharp
+    fullTypeName: Launcher
+    methodName: ChooseMap
+  - assembly: Assembly-CSharp
     fullTypeName: SettingsController
     methodName: SetResolution
   - assembly: Assembly-CSharp
+    fullTypeName: Launcher
+    methodName: CreateRoom
+  - assembly: Assembly-CSharp
     fullTypeName: SettingsController
     methodName: SetFullscreen
+  - assembly: Assembly-CSharp
+    fullTypeName: MenuManager
+    methodName: OpenMenu
   - assembly: UnityEngine.CoreModule
     fullTypeName: UnityEngine.GameObject
     methodName: SetActive
@@ -279,29 +344,8 @@ ScriptsOnlyBuild:
     fullTypeName: _Scripts.PlayerScripts.PlayerUIUpdate
     methodName: ShowHidePressButton
   - assembly: Assembly-CSharp
-    fullTypeName: _Scripts.ScenesManager
-    methodName: LoadScene
-  - assembly: Assembly-CSharp
-    fullTypeName: _Scripts.MultiplayerScripts.LobbyScripts.RoomManager
-    methodName: JoinRoomButtonPressed
-  - assembly: Assembly-CSharp
-    fullTypeName: _Scripts.MultiplayerScripts.LobbyScripts.RoomManager
-    methodName: ChangeNickname
-  - assembly: Assembly-CSharp
-    fullTypeName: _Scripts.ScenesManager
-    methodName: LoadScene
-  - assembly: Assembly-CSharp
     fullTypeName: _Scripts.PlayerScripts.PlayerUIUpdate
     methodName: ShowHidePressButton
-  - assembly: Assembly-CSharp
-    fullTypeName: _Scripts.MultiplayerScripts.LobbyScripts.RoomManager
-    methodName: JoinRoomButtonPressed
-  - assembly: Assembly-CSharp
-    fullTypeName: _Scripts.MultiplayerScripts.LobbyScripts.RoomManager
-    methodName: ChangeNickname
-  - assembly: Assembly-CSharp
-    fullTypeName: _Scripts.ScenesManager
-    methodName: LoadScene
   sceneClasses:
     Assets/Scenes/Level1.unity:
     - Class: 1
@@ -377,8 +421,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3484}
     - Class: 114
-      Script: {instanceID: 3546}
-    - Class: 114
       Script: {instanceID: 3598}
     - Class: 114
       Script: {instanceID: 3762}
@@ -416,8 +458,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 6750}
     - Class: 114
       Script: {instanceID: 6792}
-    - Class: 114
-      Script: {instanceID: 6866}
     - Class: 114
       Script: {instanceID: 7522}
     - Class: 114
@@ -542,8 +582,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3484}
     - Class: 114
-      Script: {instanceID: 3546}
-    - Class: 114
       Script: {instanceID: 3598}
     - Class: 114
       Script: {instanceID: 3762}
@@ -581,8 +619,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 6750}
     - Class: 114
       Script: {instanceID: 6792}
-    - Class: 114
-      Script: {instanceID: 6866}
     - Class: 114
       Script: {instanceID: 7522}
     - Class: 114
@@ -646,11 +682,15 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
+    - Class: 74
+      Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
-    - Class: 84
-      Script: {instanceID: 0}
     - Class: 89
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
@@ -668,6 +708,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 3202}
     - Class: 114
       Script: {instanceID: 3484}
+    - Class: 114
+      Script: {instanceID: 3546}
+    - Class: 114
+      Script: {instanceID: 4122}
     - Class: 114
       Script: {instanceID: 4972}
     - Class: 114
@@ -687,9 +731,23 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 8662}
     - Class: 114
+      Script: {instanceID: 8776}
+    - Class: 114
       Script: {instanceID: 9270}
     - Class: 114
       Script: {instanceID: 9690}
+    - Class: 114
+      Script: {instanceID: 101918}
+    - Class: 114
+      Script: {instanceID: 101922}
+    - Class: 114
+      Script: {instanceID: 101926}
+    - Class: 114
+      Script: {instanceID: 102574}
+    - Class: 114
+      Script: {instanceID: 102580}
+    - Class: 114
+      Script: {instanceID: 102592}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -705,10 +763,6 @@ ScriptsOnlyBuild:
     - Class: 223
       Script: {instanceID: 0}
     - Class: 224
-      Script: {instanceID: 0}
-    - Class: 328
-      Script: {instanceID: 0}
-    - Class: 329
       Script: {instanceID: 0}
     Assets/Scenes/PreMenu.unity:
     - Class: 1
@@ -883,6 +937,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 10790}
     - Class: 114
       Script: {instanceID: 10798}
+    - Class: 114
+      Script: {instanceID: 483138}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1262,12 +1318,6 @@ ScriptsOnlyBuild:
     assemblyName: PhotonUnityNetworking.Utilities
     namespaceName: Photon.Pun.UtilityScripts
     className: PlayerNumbering
-  - hash:
-      serializedVersion: 2
-      Hash: c19c543520d40ea26df41c01fd12c56f
-    assemblyName: Assembly-CSharp
-    namespaceName: _Scripts.MultiplayerScripts.LobbyScripts
-    className: RoomList
   - hash:
       serializedVersion: 2
       Hash: 1321993db8249e1e05e1e0492b2bbdc3
@@ -1984,7 +2034,7 @@ ScriptsOnlyBuild:
     className: UnityOnCancelMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 1a9048d581bfd0675949933219a314fe
+      Hash: b9405a011abb41873bfff8563fe22552
     assemblyName: Assembly-CSharp
     namespaceName: _Scripts.MultiplayerScripts.LobbyScripts
     className: RoomManager
@@ -2594,12 +2644,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro
     namespaceName: TMPro
     className: TMP_SubMesh
-  - hash:
-      serializedVersion: 2
-      Hash: af44ad1f186a2066a718c35b2bcdd832
-    assemblyName: Assembly-CSharp
-    namespaceName: _Scripts.MultiplayerScripts.LobbyScripts
-    className: RoomItemButton
   - hash:
       serializedVersion: 2
       Hash: febcfbf0a0d85e37808a3740e3c2c6fa
@@ -3284,6 +3328,48 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: dbd87ee2fefc8fb2f11a8f9b1ddb4269
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: Launcher
+  - hash:
+      serializedVersion: 2
+      Hash: 4635d9f1df54a466d1191e0d5d17c2ae
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: MenuManager
+  - hash:
+      serializedVersion: 2
+      Hash: da4073d929e0bf2f53d2297d5f9a25f2
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PlayerNameManager
+  - hash:
+      serializedVersion: 2
+      Hash: 69701e284b811fb1f3cb15e0d4e7e252
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PlayerListItem
+  - hash:
+      serializedVersion: 2
+      Hash: 7414b4581f174928e740183fa9f3b16c
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: Menu
+  - hash:
+      serializedVersion: 2
+      Hash: 0056401d0cd62b39dab44352a1ec075d
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RoomListItem
+  - hash:
+      serializedVersion: 2
+      Hash: bfb27d0513c6c075ee62a8005204a8f0
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: SceneHelper
   platform: 19
   scenePathNames:
   - Assets/Scenes/PreMenu.unity

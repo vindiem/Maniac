@@ -16,17 +16,12 @@ namespace _Scripts.MultiplayerScripts.LobbyScripts
         public GameObject player;
         public Transform[] spawnPoints;
         public GameObject roomCamera;
-        public GameObject connectionScreen;
-        public GameObject nickNameScreen;
-        private string _nickname = "unnamed";
         
         public GameObject winScreen;
         public Text winText;
         public float showDuration = 0.6f;
         
         private int victimsCount = 0, murdersCount = 0;
-        
-        public string roomNameToJoin = "Room";
         
         private bool stillPlaying = true;
         private float gameDuration = 0f;
@@ -43,10 +38,7 @@ namespace _Scripts.MultiplayerScripts.LobbyScripts
 
         private void Start()
         {
-            roomCamera.SetActive(true);
-            connectionScreen.SetActive(false);
-            nickNameScreen.SetActive(true);
-            
+            roomCamera.SetActive(false);
             winScreen.SetActive(false);
         }
 
@@ -156,45 +148,18 @@ namespace _Scripts.MultiplayerScripts.LobbyScripts
 
             winScreen.transform.localScale = endScale;
         }
-        
-        public void ChangeNickname(string name) => _nickname = name;
 
-        public void JoinRoomButtonPressed()
+        public void SpawnPlayer()
         {
-            nickNameScreen.SetActive(false);
-            connectionScreen.SetActive(true);
-            Debug.Log("Connecting to photon...");
-
-            try
-            {
-                PhotonNetwork.JoinOrCreateRoom(roomNameToJoin, null, null);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                PhotonNetwork.LeaveRoom();
-                PhotonNetwork.LeaveLobby();
-                PhotonNetwork.Disconnect();
-            }
-        }
-
-        public override void OnJoinedRoom()
-        {
-            Debug.Log("Joined room");
+            Debug.Log("Spawn player!");
             
-            if (connectionScreen == null && roomCamera == null) return;
-            connectionScreen.SetActive(false);
-            roomCamera.SetActive(false);
-            SpawnPlayer();
-        }
-
-        private void SpawnPlayer()
-        {
             Random random = new Random();
             int index = random.Next(0, spawnPoints.Length);
         
             GameObject _player = PhotonNetwork.Instantiate(player.name, spawnPoints[index].position, Quaternion.identity);
             _player.GetComponent<PlayerSetup>().SetupLocalPlayer();
+            
+            string _nickname = PlayerPrefs.GetString("username");
             _player.GetComponent<PhotonView>().RPC("SetNickname_RPC", RpcTarget.AllBuffered, _nickname);
         }
 

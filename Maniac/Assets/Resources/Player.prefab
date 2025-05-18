@@ -6773,7 +6773,7 @@ MonoBehaviour:
   tiltSpeed: 3
   jumpCooldown: 1
   preGameStartedCooldown: {fileID: 1494144816497595552}
-  secondsToStartGame: 10
+  secondsToStartGame: 35
 --- !u!114 &4752655829816429767
 MonoBehaviour:
   m_ObjectHideFlags: 0
