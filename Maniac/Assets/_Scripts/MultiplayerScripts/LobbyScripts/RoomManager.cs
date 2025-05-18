@@ -198,17 +198,5 @@ namespace _Scripts.MultiplayerScripts.LobbyScripts
             _player.GetComponent<PhotonView>().RPC("SetNickname_RPC", RpcTarget.AllBuffered, _nickname);
         }
 
-        private void OnApplicationQuit()
-        {
-            OnLeftRoom();
-        }
-
-        public override void OnLeftRoom()
-        {
-            base.OnLeftRoom();
-            PhotonNetwork.LeaveRoom();
-            PhotonNetwork.LeaveLobby();
-            PhotonNetwork.Disconnect();
-        }
     }
 }

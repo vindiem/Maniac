@@ -27,8 +27,6 @@ ScriptsOnlyBuild:
     - Weapon
     - _Scripts.FollowCamera
     - _Scripts.MultiplayerScripts.GameController
-    - _Scripts.MultiplayerScripts.LobbyScripts.RoomItemButton
-    - _Scripts.MultiplayerScripts.LobbyScripts.RoomList
     - _Scripts.MultiplayerScripts.LobbyScripts.RoomManager
     - _Scripts.MultiplayerScripts.PlayerSetup
     - _Scripts.PlayerScripts.FearEffect
@@ -66,21 +64,17 @@ ScriptsOnlyBuild:
     Unity.2D.Animation.Editor.dll:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.Animation.Runtime.dll:
-    - UnityEngine.U2D.Animation.BufferManager
     - UnityEngine.U2D.Animation.SpriteSkinComposite
     - UnityEngine.U2D.Animation.SpriteSkinUpdateHelper
     Unity.2D.IK.Editor.dll:
     - UnityEditor.U2D.IK.IKEditorManager
     Unity.2D.Tilemap.Editor.dll:
-    - UnityEditor.Tilemaps.GridBrush
-    - UnityEditor.Tilemaps.GridBrushEditor
     - UnityEditor.Tilemaps.GridPaintingState
     - UnityEditor.Tilemaps.GridPaletteBrushes
     - UnityEditor.Tilemaps.GridPalettes
     - UnityEditor.Tilemaps.SceneViewGridManager
     - UnityEditor.Tilemaps.SceneViewOpenTilePaletteHelper
     - UnityEditor.Tilemaps.TileDragAndDropManager
-    - UnityEditor.Tilemaps.TilemapEditorToolPreferences
     - UnityEditor.Tilemaps.TilemapPrefabStageHelper
     Unity.Postprocessing.Runtime:
     - UnityEngine.Rendering.PostProcessing.AmbientOcclusion
@@ -116,7 +110,6 @@ ScriptsOnlyBuild:
     - UnityEngine.Rendering.PostProcessing.Vignette
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.RiderScriptEditorData
-    - Packages.Rider.Editor.RiderScriptEditorPersistedState
     - Packages.Rider.Editor.UnitTesting.CallbackData
     Unity.TextMeshPro:
     - TMPro.TMP_FontAsset
@@ -130,10 +123,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -152,7 +143,6 @@ ScriptsOnlyBuild:
     - UnityEngine.EventSystems.StandaloneInputModule
     - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
-    - UnityEngine.UI.ContentSizeFitter
     - UnityEngine.UI.Dropdown
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
@@ -165,7 +155,6 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Slider
     - UnityEngine.UI.Text
     - UnityEngine.UI.Toggle
-    - UnityEngine.UI.VerticalLayoutGroup
   serializedClasses:
     PhotonRealtime:
     - Photon.Realtime.AppSettings
@@ -223,7 +212,6 @@ ScriptsOnlyBuild:
     - UnityEngine.Events.ArgumentCache
     - UnityEngine.Events.PersistentCallGroup
     - UnityEngine.Events.PersistentListenerMode
-    - UnityEngine.RectOffset
     UnityEngine.TextCoreFontEngineModule:
     - UnityEngine.TextCore.FaceInfo
     - UnityEngine.TextCore.Glyph
@@ -288,41 +276,14 @@ ScriptsOnlyBuild:
     fullTypeName: SettingsController
     methodName: SetSFXVolume
   - assembly: Assembly-CSharp
-    fullTypeName: _Scripts.MultiplayerScripts.LobbyScripts.RoomItemButton
-    methodName: OnClick
-  - assembly: Assembly-CSharp
     fullTypeName: _Scripts.PlayerScripts.PlayerUIUpdate
     methodName: ShowHidePressButton
   - assembly: Assembly-CSharp
     fullTypeName: _Scripts.ScenesManager
     methodName: LoadScene
   - assembly: Assembly-CSharp
-    fullTypeName: _Scripts.ScenesManager
-    methodName: LoadScene
-  - assembly: UnityEngine.CoreModule
-    fullTypeName: UnityEngine.GameObject
-    methodName: SetActive
-  - assembly: UnityEngine.CoreModule
-    fullTypeName: UnityEngine.GameObject
-    methodName: SetActive
-  - assembly: Assembly-CSharp
-    fullTypeName: _Scripts.ScenesManager
-    methodName: LoadScene
-  - assembly: Assembly-CSharp
     fullTypeName: _Scripts.MultiplayerScripts.LobbyScripts.RoomManager
     methodName: JoinRoomButtonPressed
-  - assembly: UnityEngine.CoreModule
-    fullTypeName: UnityEngine.GameObject
-    methodName: SetActive
-  - assembly: Assembly-CSharp
-    fullTypeName: _Scripts.MultiplayerScripts.LobbyScripts.RoomList
-    methodName: ChangeRoomToCreateName
-  - assembly: UnityEngine.CoreModule
-    fullTypeName: UnityEngine.GameObject
-    methodName: SetActive
-  - assembly: UnityEngine.CoreModule
-    fullTypeName: UnityEngine.GameObject
-    methodName: SetActive
   - assembly: Assembly-CSharp
     fullTypeName: _Scripts.MultiplayerScripts.LobbyScripts.RoomManager
     methodName: ChangeNickname
@@ -330,38 +291,11 @@ ScriptsOnlyBuild:
     fullTypeName: _Scripts.ScenesManager
     methodName: LoadScene
   - assembly: Assembly-CSharp
-    fullTypeName: _Scripts.MultiplayerScripts.LobbyScripts.RoomItemButton
-    methodName: OnClick
-  - assembly: Assembly-CSharp
     fullTypeName: _Scripts.PlayerScripts.PlayerUIUpdate
     methodName: ShowHidePressButton
-  - assembly: UnityEngine.CoreModule
-    fullTypeName: UnityEngine.GameObject
-    methodName: SetActive
-  - assembly: UnityEngine.CoreModule
-    fullTypeName: UnityEngine.GameObject
-    methodName: SetActive
-  - assembly: UnityEngine.CoreModule
-    fullTypeName: UnityEngine.GameObject
-    methodName: SetActive
-  - assembly: UnityEngine.CoreModule
-    fullTypeName: UnityEngine.GameObject
-    methodName: SetActive
-  - assembly: Assembly-CSharp
-    fullTypeName: _Scripts.ScenesManager
-    methodName: LoadScene
-  - assembly: Assembly-CSharp
-    fullTypeName: _Scripts.ScenesManager
-    methodName: LoadScene
   - assembly: Assembly-CSharp
     fullTypeName: _Scripts.MultiplayerScripts.LobbyScripts.RoomManager
     methodName: JoinRoomButtonPressed
-  - assembly: UnityEngine.CoreModule
-    fullTypeName: UnityEngine.GameObject
-    methodName: SetActive
-  - assembly: Assembly-CSharp
-    fullTypeName: _Scripts.MultiplayerScripts.LobbyScripts.RoomList
-    methodName: ChangeRoomToCreateName
   - assembly: Assembly-CSharp
     fullTypeName: _Scripts.MultiplayerScripts.LobbyScripts.RoomManager
     methodName: ChangeNickname
@@ -433,11 +367,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2644}
     - Class: 114
-      Script: {instanceID: 2766}
-    - Class: 114
       Script: {instanceID: 2886}
-    - Class: 114
-      Script: {instanceID: 2988}
     - Class: 114
       Script: {instanceID: 3136}
     - Class: 114
@@ -455,8 +385,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 4050}
     - Class: 114
-      Script: {instanceID: 4122}
-    - Class: 114
       Script: {instanceID: 4272}
     - Class: 114
       Script: {instanceID: 4500}
@@ -464,8 +392,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 4512}
     - Class: 114
       Script: {instanceID: 4646}
-    - Class: 114
-      Script: {instanceID: 4972}
     - Class: 114
       Script: {instanceID: 5074}
     - Class: 114
@@ -483,45 +409,37 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 6284}
     - Class: 114
-      Script: {instanceID: 6334}
+      Script: {instanceID: 6336}
     - Class: 114
-      Script: {instanceID: 6724}
+      Script: {instanceID: 6726}
     - Class: 114
-      Script: {instanceID: 6748}
+      Script: {instanceID: 6750}
     - Class: 114
-      Script: {instanceID: 6790}
+      Script: {instanceID: 6792}
     - Class: 114
-      Script: {instanceID: 6864}
+      Script: {instanceID: 6866}
     - Class: 114
-      Script: {instanceID: 7520}
+      Script: {instanceID: 7522}
     - Class: 114
-      Script: {instanceID: 7564}
+      Script: {instanceID: 7566}
     - Class: 114
-      Script: {instanceID: 7580}
+      Script: {instanceID: 7582}
     - Class: 114
-      Script: {instanceID: 8092}
+      Script: {instanceID: 8094}
     - Class: 114
-      Script: {instanceID: 8212}
+      Script: {instanceID: 8214}
     - Class: 114
-      Script: {instanceID: 8220}
+      Script: {instanceID: 8222}
     - Class: 114
-      Script: {instanceID: 8224}
+      Script: {instanceID: 9660}
     - Class: 114
-      Script: {instanceID: 8242}
+      Script: {instanceID: 10082}
     - Class: 114
-      Script: {instanceID: 8774}
+      Script: {instanceID: 10154}
     - Class: 114
-      Script: {instanceID: 9658}
+      Script: {instanceID: 10192}
     - Class: 114
-      Script: {instanceID: 9688}
-    - Class: 114
-      Script: {instanceID: 10080}
-    - Class: 114
-      Script: {instanceID: 10152}
-    - Class: 114
-      Script: {instanceID: 10190}
-    - Class: 114
-      Script: {instanceID: 10788}
+      Script: {instanceID: 10790}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -614,11 +532,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2644}
     - Class: 114
-      Script: {instanceID: 2766}
-    - Class: 114
       Script: {instanceID: 2886}
-    - Class: 114
-      Script: {instanceID: 2988}
     - Class: 114
       Script: {instanceID: 3136}
     - Class: 114
@@ -636,8 +550,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 4050}
     - Class: 114
-      Script: {instanceID: 4122}
-    - Class: 114
       Script: {instanceID: 4272}
     - Class: 114
       Script: {instanceID: 4500}
@@ -645,8 +557,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 4512}
     - Class: 114
       Script: {instanceID: 4646}
-    - Class: 114
-      Script: {instanceID: 4972}
     - Class: 114
       Script: {instanceID: 5074}
     - Class: 114
@@ -664,45 +574,37 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 6284}
     - Class: 114
-      Script: {instanceID: 6334}
+      Script: {instanceID: 6336}
     - Class: 114
-      Script: {instanceID: 6724}
+      Script: {instanceID: 6726}
     - Class: 114
-      Script: {instanceID: 6748}
+      Script: {instanceID: 6750}
     - Class: 114
-      Script: {instanceID: 6790}
+      Script: {instanceID: 6792}
     - Class: 114
-      Script: {instanceID: 6864}
+      Script: {instanceID: 6866}
     - Class: 114
-      Script: {instanceID: 7520}
+      Script: {instanceID: 7522}
     - Class: 114
-      Script: {instanceID: 7564}
+      Script: {instanceID: 7566}
     - Class: 114
-      Script: {instanceID: 7580}
+      Script: {instanceID: 7582}
     - Class: 114
-      Script: {instanceID: 8092}
+      Script: {instanceID: 8094}
     - Class: 114
-      Script: {instanceID: 8212}
+      Script: {instanceID: 8214}
     - Class: 114
-      Script: {instanceID: 8220}
+      Script: {instanceID: 8222}
     - Class: 114
-      Script: {instanceID: 8224}
+      Script: {instanceID: 9660}
     - Class: 114
-      Script: {instanceID: 8242}
+      Script: {instanceID: 10082}
     - Class: 114
-      Script: {instanceID: 8774}
+      Script: {instanceID: 10154}
     - Class: 114
-      Script: {instanceID: 9658}
+      Script: {instanceID: 10192}
     - Class: 114
-      Script: {instanceID: 9688}
-    - Class: 114
-      Script: {instanceID: 10080}
-    - Class: 114
-      Script: {instanceID: 10152}
-    - Class: 114
-      Script: {instanceID: 10190}
-    - Class: 114
-      Script: {instanceID: 10788}
+      Script: {instanceID: 10790}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -769,25 +671,25 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 4972}
     - Class: 114
-      Script: {instanceID: 6546}
+      Script: {instanceID: 6548}
     - Class: 114
-      Script: {instanceID: 6628}
+      Script: {instanceID: 6630}
     - Class: 114
-      Script: {instanceID: 6864}
+      Script: {instanceID: 6866}
     - Class: 114
-      Script: {instanceID: 7112}
+      Script: {instanceID: 7114}
     - Class: 114
-      Script: {instanceID: 7520}
+      Script: {instanceID: 7522}
     - Class: 114
-      Script: {instanceID: 8212}
+      Script: {instanceID: 8214}
     - Class: 114
-      Script: {instanceID: 8224}
+      Script: {instanceID: 8226}
     - Class: 114
-      Script: {instanceID: 8660}
+      Script: {instanceID: 8662}
     - Class: 114
-      Script: {instanceID: 9268}
+      Script: {instanceID: 9270}
     - Class: 114
-      Script: {instanceID: 9688}
+      Script: {instanceID: 9690}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -932,55 +834,55 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 6334}
     - Class: 114
-      Script: {instanceID: 6628}
+      Script: {instanceID: 6336}
     - Class: 114
-      Script: {instanceID: 6652}
+      Script: {instanceID: 6630}
     - Class: 114
-      Script: {instanceID: 6724}
+      Script: {instanceID: 6654}
     - Class: 114
-      Script: {instanceID: 6748}
+      Script: {instanceID: 6726}
     - Class: 114
-      Script: {instanceID: 6790}
+      Script: {instanceID: 6750}
     - Class: 114
-      Script: {instanceID: 6864}
+      Script: {instanceID: 6792}
     - Class: 114
-      Script: {instanceID: 7190}
+      Script: {instanceID: 6866}
     - Class: 114
-      Script: {instanceID: 7256}
+      Script: {instanceID: 7192}
     - Class: 114
-      Script: {instanceID: 7520}
+      Script: {instanceID: 7258}
     - Class: 114
-      Script: {instanceID: 7564}
+      Script: {instanceID: 7522}
     - Class: 114
-      Script: {instanceID: 7580}
+      Script: {instanceID: 7566}
     - Class: 114
-      Script: {instanceID: 7650}
+      Script: {instanceID: 7582}
     - Class: 114
-      Script: {instanceID: 8092}
+      Script: {instanceID: 7652}
     - Class: 114
-      Script: {instanceID: 8212}
+      Script: {instanceID: 8094}
     - Class: 114
-      Script: {instanceID: 8220}
+      Script: {instanceID: 8214}
     - Class: 114
-      Script: {instanceID: 8986}
+      Script: {instanceID: 8222}
     - Class: 114
-      Script: {instanceID: 9658}
+      Script: {instanceID: 8988}
     - Class: 114
-      Script: {instanceID: 9684}
+      Script: {instanceID: 9660}
     - Class: 114
-      Script: {instanceID: 10080}
+      Script: {instanceID: 9686}
     - Class: 114
-      Script: {instanceID: 10152}
+      Script: {instanceID: 10082}
     - Class: 114
-      Script: {instanceID: 10190}
+      Script: {instanceID: 10154}
     - Class: 114
-      Script: {instanceID: 10366}
+      Script: {instanceID: 10192}
     - Class: 114
-      Script: {instanceID: 10788}
+      Script: {instanceID: 10368}
     - Class: 114
-      Script: {instanceID: 10796}
+      Script: {instanceID: 10790}
     - Class: 114
-      Script: {instanceID: 44976}
+      Script: {instanceID: 10798}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -2244,6 +2146,12 @@ ScriptsOnlyBuild:
     className: UnityOnEndDragMessageListener
   - hash:
       serializedVersion: 2
+      Hash: 6fb5b229da5130697866df4779c06b79
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PressAnyButton
+  - hash:
+      serializedVersion: 2
       Hash: 76aa43cc6adae8454a66255a8113266d
     assemblyName: Unity.Postprocessing.Runtime
     namespaceName: UnityEngine.Rendering.PostProcessing
@@ -3376,12 +3284,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
-  - hash:
-      serializedVersion: 2
-      Hash: 6fb5b229da5130697866df4779c06b79
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: PressAnyButton
   platform: 19
   scenePathNames:
   - Assets/Scenes/PreMenu.unity

@@ -2,13 +2,15 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
-/Maniac/[Ll]ibrary/
+#/Maniac/[Ll]ibrary/
 /Maniac/[Tt]emp/
-/Maniac/[Oo]bj/
+#/Maniac/[Oo]bj/
 /Maniac/[Bb]uild/
 /Maniac/[Bb]uilds/
 /Maniac/[Ll]ogs/
-/Maniac/[Uu]ser[Ss]ettings/
+#/Maniac/[Uu]ser[Ss]ettings/
+
+/Maniac/[Ll]ibrary/PackageCache
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
