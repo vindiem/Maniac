@@ -4,7 +4,7 @@ Maniac - README
 
 **Maniac** is a multiplayer horror game built with Unity, where a group of survivors tries to escape a terrifying maniac. The gameplay is focused on asymmetrical multiplayer mechanics, strategic teamwork, and immersive horror atmosphere.
 
-![Maniac Banner](https://img.itch.zone/aW1nLzIwMzc3NTIwLnBuZw==/original/3hs2uw.png)
+![Maniac Banner](https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3738570/a85c4dd29b58c60e3e3c800479b84cd49b31cc21/ss_a85c4dd29b58c60e3e3c800479b84cd49b31cc21.1920x1080.jpg?t=1747321979)
 
 ---
 
