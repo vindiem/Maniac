@@ -35,7 +35,9 @@ public class SceneHelper : MonoBehaviourPunCallbacks
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
-        if(scene.name == "Level1" || scene.name == "Level2") // We're in the game scene
+        PhotonNetwork.CurrentRoom.IsOpen = false;
+        
+        if(scene.name is "Level1" or "Level2") // We're in the game scene
         {
             RoomManager roomManager = FindObjectOfType<RoomManager>();
             roomManager.SpawnPlayer();

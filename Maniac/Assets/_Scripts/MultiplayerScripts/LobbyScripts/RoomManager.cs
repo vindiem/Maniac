@@ -48,6 +48,11 @@ namespace _Scripts.MultiplayerScripts.LobbyScripts
             {
                 gameDuration += Time.deltaTime;
             }
+            else if (gameDuration >= 35f)
+            {
+                ;
+            }
+            
         }
 
         public void AddMurderMiss(string miss)
@@ -120,7 +125,7 @@ namespace _Scripts.MultiplayerScripts.LobbyScripts
                 winText.text = "Murder won!";
             
             // WinScreen UI
-            GhostFreeMovement[] ghosts = GameObject.FindObjectsOfType<GhostFreeMovement>();
+            /*GhostFreeMovement[] ghosts = GameObject.FindObjectsOfType<GhostFreeMovement>();
             murdersText.text = $"\tMurders: <color=red>{ghosts.Length}</color>";
             shotsAtTheMurderText.text = $"\tShots at the killer: <color=red>{shotsAtMurder}</color>";
             gotTrappedText.text = $"\tGetting trapped: <color=red>{murderTrapped}</color>";
@@ -128,8 +133,15 @@ namespace _Scripts.MultiplayerScripts.LobbyScripts
             maxTimeAlive.text = $"\tMax. survival time: <color=green>{MathF.Round(gameDuration, 2)}</color> seconds";
             GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
             int number = players.Length - ghosts.Length;
-            numbersOfSurvivors.text = $"\tNumber of survivors: <color=green>{number}</color>";
+            numbersOfSurvivors.text = $"\tNumber of survivors: <color=green>{number}</color>";*/
 
+            // disable components (movement)
+            PlayerMovement[] playerMovements = GameObject.FindObjectsOfType<PlayerMovement>();
+            foreach (PlayerMovement pm in playerMovements)
+            {
+                pm.enabled = false;
+            }
+            
             StartCoroutine(AnimateWinScreen());
         }
 

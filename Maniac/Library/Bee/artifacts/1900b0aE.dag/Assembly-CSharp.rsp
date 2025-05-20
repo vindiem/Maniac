@@ -416,6 +416,7 @@
 "Assets/_Scripts/AutoDestroy.cs"
 "Assets/_Scripts/Door.cs"
 "Assets/_Scripts/FollowCamera.cs"
+"Assets/_Scripts/MultiplayerScripts/DeviceIDChecker.cs"
 "Assets/_Scripts/MultiplayerScripts/GameController.cs"
 "Assets/_Scripts/MultiplayerScripts/LobbyScripts/Launcher.cs"
 "Assets/_Scripts/MultiplayerScripts/LobbyScripts/Menu.cs"

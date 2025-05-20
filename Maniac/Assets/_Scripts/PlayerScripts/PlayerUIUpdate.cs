@@ -105,8 +105,15 @@ namespace _Scripts.PlayerScripts
                 murderAttackImage.gameObject.SetActive(true);
                 murderAttackImage.GetComponent<Image>().color = 
                     (playerMovement.GetAttackTimer() == 0 ? Color.green : Color.white);
-                murderAttackImage.GetComponentInChildren<Text>().text = 
-                    MathF.Round(playerMovement.GetAttackTimer(), 1).ToString();
+                if (playerMovement.GetAttackTimer() != 0)
+                {
+                    murderAttackImage.GetComponentInChildren<Text>().text = 
+                        MathF.Round(playerMovement.GetAttackTimer(), 1).ToString();
+                }
+                else
+                {
+                    murderAttackImage.GetComponentInChildren<Text>().text = "";
+                }
             }
             else if (playerRole.GetRole() == PlayerRoleEnum.Victim)
             {
@@ -127,7 +134,7 @@ namespace _Scripts.PlayerScripts
 
         public void ShowHidePressButton()
         {
-            helpText.SetActive(!helpText.activeSelf);
+            helpText.SetActive(!helpText.gameObject.activeSelf);
         }
     }
 }

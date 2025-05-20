@@ -62,6 +62,11 @@ extern void U3CRotateDoorU3Ed__12_MoveNext_mBB77D9C909235F775F03EB2A211AAA3ED4F5
 extern void U3CRotateDoorU3Ed__12_System_Collections_Generic_IEnumeratorU3CSystem_ObjectU3E_get_Current_mC0725B1403738F2614E1C1D835CCDBB6BBAD38B8 (void);
 extern void U3CRotateDoorU3Ed__12_System_Collections_IEnumerator_Reset_mFB7295EFB6414E3FA5145F1AB601ACD91246882D (void);
 extern void U3CRotateDoorU3Ed__12_System_Collections_IEnumerator_get_Current_m4E74FE3A254B1C102E4C60C7D939D7E0CF9B8A29 (void);
+extern void DeviceIDChecker_Start_m82F31E90BCC706E49E4B3A1BC7825839665CB4B3 (void);
+extern void DeviceIDChecker_OnConnectedToMaster_m22E2DB0768A44A8DC90232A999E276361F486BD4 (void);
+extern void DeviceIDChecker_OnJoinedRoom_mE5A8652BE71406F25594BAAFA92D137AB743C303 (void);
+extern void DeviceIDChecker_OnPlayerPropertiesUpdate_m893B47C754AD999BE608E462553F7ECCE880C79D (void);
+extern void DeviceIDChecker__ctor_m7D51E8447E2A7F8378E574E457E617145B86EC8A (void);
 extern void Launcher_Awake_m2846B29C9748A72044A09D18D2BBC0D51533C59F (void);
 extern void Launcher_Start_mF5DE6B389661DC323D1258BC8AF45E755194DA05 (void);
 extern void Launcher_OnConnectedToMaster_m4D4C781474E2931A6185CE5D513A29C6ACA5A843 (void);
@@ -212,6 +217,7 @@ extern void PlayerMovement_OnTriggerEnter_m9C76D7E9238E3E654BB0F0D26AD3EF4371840
 extern void PlayerMovement_StunPlayer_mBDB5C11C6EED47FD2F365317B0B2190407B166A9 (void);
 extern void PlayerMovement_Stun_m7356FDBA9EA998340047A9FB800B1CF7957BC2ED (void);
 extern void PlayerMovement_GetStunnedState_m57D15686F3671A6EDB5AB0D34141C4EDAE619375 (void);
+extern void PlayerMovement_OnApplicationQuit_m1A1CE04235F3DF22816EB5588D6D40231687B4EA (void);
 extern void PlayerMovement__ctor_m70225A2F59DA5A2958A96C9FBD0B7DE32EA9865E (void);
 extern void PlayerMovement__cctor_m449B902D845AD986198FB9BFD441E140D35067BC (void);
 extern void U3CAttackU3Ed__64__ctor_m2B425139CAC6CB7367D4572DD39F5500CD841864 (void);
@@ -435,7 +441,7 @@ extern void TextToggleIsOnTransition_OnValueChanged_m5938ADE42C6A8502F7D225F42C9
 extern void TextToggleIsOnTransition_OnPointerEnter_m94378570919CDF3B8C15622F21D0B0B7FD7956B1 (void);
 extern void TextToggleIsOnTransition_OnPointerExit_m4BB2859E42DE14373D78A2217D72EB17B3FB9D28 (void);
 extern void TextToggleIsOnTransition__ctor_m31BCC4091B72C664D8E1B13777EF1D56DFAC5CDA (void);
-static Il2CppMethodPointer s_methodPointers[423] = 
+static Il2CppMethodPointer s_methodPointers[429] = 
 {
 	Outline_get_OutlineMode_m407E90C88C66DA2B6155740D4FB9142C355A491B,
 	Outline_set_OutlineMode_m82C5D0413E7460037A2A2BF8FB60B84C9AC17C06,
@@ -487,6 +493,11 @@ static Il2CppMethodPointer s_methodPointers[423] =
 	U3CRotateDoorU3Ed__12_System_Collections_Generic_IEnumeratorU3CSystem_ObjectU3E_get_Current_mC0725B1403738F2614E1C1D835CCDBB6BBAD38B8,
 	U3CRotateDoorU3Ed__12_System_Collections_IEnumerator_Reset_mFB7295EFB6414E3FA5145F1AB601ACD91246882D,
 	U3CRotateDoorU3Ed__12_System_Collections_IEnumerator_get_Current_m4E74FE3A254B1C102E4C60C7D939D7E0CF9B8A29,
+	DeviceIDChecker_Start_m82F31E90BCC706E49E4B3A1BC7825839665CB4B3,
+	DeviceIDChecker_OnConnectedToMaster_m22E2DB0768A44A8DC90232A999E276361F486BD4,
+	DeviceIDChecker_OnJoinedRoom_mE5A8652BE71406F25594BAAFA92D137AB743C303,
+	DeviceIDChecker_OnPlayerPropertiesUpdate_m893B47C754AD999BE608E462553F7ECCE880C79D,
+	DeviceIDChecker__ctor_m7D51E8447E2A7F8378E574E457E617145B86EC8A,
 	Launcher_Awake_m2846B29C9748A72044A09D18D2BBC0D51533C59F,
 	Launcher_Start_mF5DE6B389661DC323D1258BC8AF45E755194DA05,
 	Launcher_OnConnectedToMaster_m4D4C781474E2931A6185CE5D513A29C6ACA5A843,
@@ -637,6 +648,7 @@ static Il2CppMethodPointer s_methodPointers[423] =
 	PlayerMovement_StunPlayer_mBDB5C11C6EED47FD2F365317B0B2190407B166A9,
 	PlayerMovement_Stun_m7356FDBA9EA998340047A9FB800B1CF7957BC2ED,
 	PlayerMovement_GetStunnedState_m57D15686F3671A6EDB5AB0D34141C4EDAE619375,
+	PlayerMovement_OnApplicationQuit_m1A1CE04235F3DF22816EB5588D6D40231687B4EA,
 	PlayerMovement__ctor_m70225A2F59DA5A2958A96C9FBD0B7DE32EA9865E,
 	PlayerMovement__cctor_m449B902D845AD986198FB9BFD441E140D35067BC,
 	U3CAttackU3Ed__64__ctor_m2B425139CAC6CB7367D4572DD39F5500CD841864,
@@ -861,7 +873,7 @@ static Il2CppMethodPointer s_methodPointers[423] =
 	TextToggleIsOnTransition_OnPointerExit_m4BB2859E42DE14373D78A2217D72EB17B3FB9D28,
 	TextToggleIsOnTransition__ctor_m31BCC4091B72C664D8E1B13777EF1D56DFAC5CDA,
 };
-static const int32_t s_InvokerIndices[423] = 
+static const int32_t s_InvokerIndices[429] = 
 {
 	6065,
 	4904,
@@ -913,6 +925,11 @@ static const int32_t s_InvokerIndices[423] =
 	6094,
 	6206,
 	6094,
+	6206,
+	6206,
+	6206,
+	2663,
+	6206,
 	6206,
 	6206,
 	6206,
@@ -1063,6 +1080,7 @@ static const int32_t s_InvokerIndices[423] =
 	4972,
 	4345,
 	6009,
+	6206,
 	6206,
 	11775,
 	4904,
@@ -1291,7 +1309,7 @@ IL2CPP_EXTERN_C const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule;
 const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule = 
 {
 	"Assembly-CSharp.dll",
-	423,
+	429,
 	s_methodPointers,
 	0,
 	NULL,

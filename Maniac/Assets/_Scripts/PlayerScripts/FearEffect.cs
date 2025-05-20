@@ -128,8 +128,8 @@ namespace _Scripts.PlayerScripts
                     continue;
                 }
                 
-                // Check if this player is controlled by MasterClient
-                if (photonView.Owner.IsMasterClient)
+                // Check if this player is controlled by MasterClient (murderer)
+                if (photonView.Owner.IsMasterClient && !photonView.IsMine)
                 {
                     float distance = Vector3.Distance(transform.position, col.transform.position);
                     if (distance < closestDistance)

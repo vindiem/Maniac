@@ -184,7 +184,6 @@ namespace _Scripts.PlayerScripts
                 {
                     PhotonNetwork.LeaveRoom();
                     PhotonNetwork.LeaveLobby();
-                    PhotonNetwork.Disconnect();
                     
                     Cursor.visible = true;
                     Cursor.lockState = CursorLockMode.None;
@@ -674,5 +673,17 @@ namespace _Scripts.PlayerScripts
 
         public bool GetStunnedState() => stunned;
 
+        private void OnApplicationQuit()
+        {
+            GameObject ghost = PhotonNetwork.Instantiate("Ghost", new Vector3(45, 0, 0), Quaternion.identity);
+            ghost.gameObject.GetComponent<GhostFreeMovement>().SetIsDead();;
+            // win check
+            RoomManager roomManager = FindObjectOfType<RoomManager>();
+            if (roomManager != null)
+            {
+                roomManager.WinCheck();
+            }
+            PhotonNetwork.LeaveRoom();
+        }
     }
 }
