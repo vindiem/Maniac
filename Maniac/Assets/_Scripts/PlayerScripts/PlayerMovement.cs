@@ -675,13 +675,17 @@ namespace _Scripts.PlayerScripts
 
         private void OnApplicationQuit()
         {
-            GameObject ghost = PhotonNetwork.Instantiate("Ghost", new Vector3(45, 0, 0), Quaternion.identity);
-            ghost.gameObject.GetComponent<GhostFreeMovement>().SetIsDead();;
+            GameObject ghost = PhotonNetwork.Instantiate("Ghost", new Vector3(45, 45, 45), Quaternion.identity);
+            ghost.gameObject.GetComponent<GhostFreeMovement>().SetIsDead();
+            
+            ghost.gameObject.GetComponent<GhostFreeMovement>().SetDieState(PhotonNetwork.IsMasterClient ? 
+                PlayerRoleEnum.Murder : PlayerRoleEnum.Victim);
+            
             // win check
             RoomManager roomManager = FindObjectOfType<RoomManager>();
             if (roomManager != null)
             {
-                roomManager.WinCheck();
+                roomManager.WinCheck(true);
             }
             PhotonNetwork.LeaveRoom();
         }

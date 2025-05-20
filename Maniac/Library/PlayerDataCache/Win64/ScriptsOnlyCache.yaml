@@ -63,6 +63,7 @@ ScriptsOnlyBuild:
     - Photon.Pun.Demo.SlotRacer.PlayerControl
     - Photon.Pun.Demo.SlotRacer.Utils.SplineWalker
     PhotonUnityNetworking.Editor.dll:
+    - Photon.Pun.PhotonViewInspector
     - Photon.Pun.PunSceneSettings
     PhotonUnityNetworking.dll:
     - Photon.Pun.PhotonAnimatorView
@@ -486,9 +487,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10200}
     - Class: 114
-      Script: {instanceID: 10800}
+      Script: {instanceID: 10288}
     - Class: 114
-      Script: {instanceID: 79986}
+      Script: {instanceID: 10802}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -651,9 +652,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10200}
     - Class: 114
-      Script: {instanceID: 10800}
+      Script: {instanceID: 10288}
     - Class: 114
-      Script: {instanceID: 79986}
+      Script: {instanceID: 10802}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -760,7 +761,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9978}
     - Class: 114
-      Script: {instanceID: 10406}
+      Script: {instanceID: 10408}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -947,11 +948,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10200}
     - Class: 114
-      Script: {instanceID: 10376}
+      Script: {instanceID: 10378}
     - Class: 114
-      Script: {instanceID: 10800}
+      Script: {instanceID: 10802}
     - Class: 114
-      Script: {instanceID: 10808}
+      Script: {instanceID: 10810}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -3235,6 +3236,12 @@ ScriptsOnlyBuild:
     className: SpriteLibrarySourceAsset
   - hash:
       serializedVersion: 2
+      Hash: 1b262fd1710b1210b69fc19166fdb6b2
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: DeviceIDChecker
+  - hash:
+      serializedVersion: 2
       Hash: 837e4cd9aff1f9700e130a4dfc31a524
     assemblyName: PhotonUnityNetworking.Demos
     namespaceName: Photon.Pun.Demo.Procedural
@@ -3383,12 +3390,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
-  - hash:
-      serializedVersion: 2
-      Hash: 1b262fd1710b1210b69fc19166fdb6b2
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: DeviceIDChecker
   platform: 19
   scenePathNames:
   - Assets/Scenes/PreMenu.unity

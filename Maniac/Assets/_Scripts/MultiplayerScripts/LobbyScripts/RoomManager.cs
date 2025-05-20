@@ -68,46 +68,45 @@ namespace _Scripts.MultiplayerScripts.LobbyScripts
             else Debug.LogError(miss);
         }
         
-        public void WinCheck()
+        public void WinCheck(bool k = false)
         {
-            if (PhotonNetwork.PlayerList.Length >= 2)
+            if (PhotonNetwork.PlayerList.Length < 2 && k != true) return;
+            
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            List<GhostFreeMovement> deadGhosts = new List<GhostFreeMovement>();
+            foreach (var t in players)
             {
-                GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-                List<GhostFreeMovement> deadGhosts = new List<GhostFreeMovement>();
-                foreach (var t in players)
+                if (t.GetComponent<GhostFreeMovement>().isDead)
+                    deadGhosts.Add(t.GetComponent<GhostFreeMovement>());
+            }
+            Debug.Log($"Players: {players.Length} dead ghosts: {deadGhosts.Count}");
+
+            if (deadGhosts.Count >= 1)
+            {
+                foreach (GhostFreeMovement ghost in deadGhosts)
                 {
-                    if (t.GetComponent<GhostFreeMovement>().isDead)
-                        deadGhosts.Add(t.GetComponent<GhostFreeMovement>());
+                    bool c = ghost.GetDieState() == PlayerRoleEnum.Victim;
+                    bool v = ghost.GetDieState() == PlayerRoleEnum.Murder;
+                    if (c) victimsCount++;
+                    if (v) murdersCount++;
                 }
-                Debug.Log($"Players: {players.Length} dead ghosts: {deadGhosts.Count}");
+                Debug.Log($"{deadGhosts.Count} dead ghosts, " +
+                          $"({victimsCount} victims, {murdersCount} murders, players: {players.Length})");
 
-                if (deadGhosts.Count >= 1)
+                if (victimsCount == players.Length - 1)
                 {
-                    foreach (GhostFreeMovement ghost in deadGhosts)
-                    {
-                        bool c = ghost.GetDieState() == PlayerRoleEnum.Victim;
-                        bool v = ghost.GetDieState() == PlayerRoleEnum.Murder;
-                        if (c) victimsCount++;
-                        if (v) murdersCount++;
-                    }
-                    Debug.Log($"{deadGhosts.Count} dead ghosts, " +
-                              $"({victimsCount} victims, {murdersCount} murders, players: {players.Length})");
-
-                    if (victimsCount == players.Length - 1)
-                    {
-                        //WinScreen(PlayerRoleEnum.Murder);
-                        GetComponent<PhotonView>().RPC("WinScreen", RpcTarget.AllBuffered, PlayerRoleEnum.Murder);
-                        Debug.Log($"Murder win");
-                    }
-                    else if (murdersCount == 1)
-                    {
-                       //WinScreen(PlayerRoleEnum.Victim);
-                       GetComponent<PhotonView>().RPC("WinScreen", RpcTarget.AllBuffered, PlayerRoleEnum.Victim);
-                       Debug.Log($"Victim win");
-                    }
+                    //WinScreen(PlayerRoleEnum.Murder);
+                    GetComponent<PhotonView>().RPC("WinScreen", RpcTarget.AllBuffered, PlayerRoleEnum.Murder);
+                    Debug.Log($"Murder win");
+                }
+                else if (murdersCount == 1)
+                {
+                    //WinScreen(PlayerRoleEnum.Victim);
+                    GetComponent<PhotonView>().RPC("WinScreen", RpcTarget.AllBuffered, PlayerRoleEnum.Victim);
+                    Debug.Log($"Victim win");
                 }
             }
-            
+
         }
 
         [PunRPC]
