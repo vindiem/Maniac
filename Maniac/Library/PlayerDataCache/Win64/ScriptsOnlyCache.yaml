@@ -63,7 +63,6 @@ ScriptsOnlyBuild:
     - Photon.Pun.Demo.SlotRacer.PlayerControl
     - Photon.Pun.Demo.SlotRacer.Utils.SplineWalker
     PhotonUnityNetworking.Editor.dll:
-    - Photon.Pun.PhotonViewInspector
     - Photon.Pun.PunSceneSettings
     PhotonUnityNetworking.dll:
     - Photon.Pun.PhotonAnimatorView
@@ -344,14 +343,14 @@ ScriptsOnlyBuild:
     fullTypeName: _Scripts.PlayerScripts.PlayerUIUpdate
     methodName: ShowHidePressButton
   - assembly: Assembly-CSharp
-    fullTypeName: _Scripts.ScenesManager
-    methodName: LoadScene
+    fullTypeName: _Scripts.MultiplayerScripts.LobbyScripts.RoomManager
+    methodName: BackToMainMenu
   - assembly: Assembly-CSharp
     fullTypeName: _Scripts.PlayerScripts.PlayerUIUpdate
     methodName: ShowHidePressButton
   - assembly: Assembly-CSharp
-    fullTypeName: _Scripts.ScenesManager
-    methodName: LoadScene
+    fullTypeName: _Scripts.MultiplayerScripts.LobbyScripts.RoomManager
+    methodName: BackToMainMenu
   sceneClasses:
     Assets/Scenes/Level1.unity:
     - Class: 1

@@ -5,6 +5,7 @@ using _Scripts.PlayerScripts;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = System.Random;
@@ -174,5 +175,14 @@ namespace _Scripts.MultiplayerScripts.LobbyScripts
             _player.GetComponent<PhotonView>().RPC("SetNickname_RPC", RpcTarget.AllBuffered, _nickname);
         }
 
+        public void BackToMainMenu()
+        {
+            PhotonNetwork.LeaveRoom();
+            PhotonNetwork.LeaveLobby();
+            PhotonNetwork.Disconnect();
+
+            SceneManager.LoadScene("Menu");
+        }
+        
     }
 }

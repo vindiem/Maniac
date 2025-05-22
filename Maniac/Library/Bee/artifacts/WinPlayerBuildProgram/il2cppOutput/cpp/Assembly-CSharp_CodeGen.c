@@ -347,6 +347,7 @@ extern void RoomManager_WinCheck_m21C0E75F227E065BF852B006D37DA7993E07A513 (void
 extern void RoomManager_WinScreen_mA7D8246359646ED5C58F22711AD6998D34601FB5 (void);
 extern void RoomManager_AnimateWinScreen_m9E974B279A69B93BD38D045B17732334C1FDCDC2 (void);
 extern void RoomManager_SpawnPlayer_m27EF817AF6319860E0913A600449E14BF4B542CA (void);
+extern void RoomManager_BackToMainMenu_m69AFCD5722C96A265F30260435F4615C79FD9AB5 (void);
 extern void RoomManager__ctor_m0C93BEB8939A50AF88511519DA676C57A14F103E (void);
 extern void U3CAnimateWinScreenU3Ed__22__ctor_m8E32C5A6C8BEE2F6D76AB07109CF4FBAE3658C4D (void);
 extern void U3CAnimateWinScreenU3Ed__22_System_IDisposable_Dispose_mC93A73850AF9492045B3590D32252CD48FCC8219 (void);
@@ -441,7 +442,7 @@ extern void TextToggleIsOnTransition_OnValueChanged_m5938ADE42C6A8502F7D225F42C9
 extern void TextToggleIsOnTransition_OnPointerEnter_m94378570919CDF3B8C15622F21D0B0B7FD7956B1 (void);
 extern void TextToggleIsOnTransition_OnPointerExit_m4BB2859E42DE14373D78A2217D72EB17B3FB9D28 (void);
 extern void TextToggleIsOnTransition__ctor_m31BCC4091B72C664D8E1B13777EF1D56DFAC5CDA (void);
-static Il2CppMethodPointer s_methodPointers[429] = 
+static Il2CppMethodPointer s_methodPointers[430] = 
 {
 	Outline_get_OutlineMode_m407E90C88C66DA2B6155740D4FB9142C355A491B,
 	Outline_set_OutlineMode_m82C5D0413E7460037A2A2BF8FB60B84C9AC17C06,
@@ -778,6 +779,7 @@ static Il2CppMethodPointer s_methodPointers[429] =
 	RoomManager_WinScreen_mA7D8246359646ED5C58F22711AD6998D34601FB5,
 	RoomManager_AnimateWinScreen_m9E974B279A69B93BD38D045B17732334C1FDCDC2,
 	RoomManager_SpawnPlayer_m27EF817AF6319860E0913A600449E14BF4B542CA,
+	RoomManager_BackToMainMenu_m69AFCD5722C96A265F30260435F4615C79FD9AB5,
 	RoomManager__ctor_m0C93BEB8939A50AF88511519DA676C57A14F103E,
 	U3CAnimateWinScreenU3Ed__22__ctor_m8E32C5A6C8BEE2F6D76AB07109CF4FBAE3658C4D,
 	U3CAnimateWinScreenU3Ed__22_System_IDisposable_Dispose_mC93A73850AF9492045B3590D32252CD48FCC8219,
@@ -873,7 +875,7 @@ static Il2CppMethodPointer s_methodPointers[429] =
 	TextToggleIsOnTransition_OnPointerExit_m4BB2859E42DE14373D78A2217D72EB17B3FB9D28,
 	TextToggleIsOnTransition__ctor_m31BCC4091B72C664D8E1B13777EF1D56DFAC5CDA,
 };
-static const int32_t s_InvokerIndices[429] = 
+static const int32_t s_InvokerIndices[430] = 
 {
 	6065,
 	4904,
@@ -1211,6 +1213,7 @@ static const int32_t s_InvokerIndices[429] =
 	6094,
 	6206,
 	6206,
+	6206,
 	4904,
 	6206,
 	6009,
@@ -1309,7 +1312,7 @@ IL2CPP_EXTERN_C const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule;
 const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule = 
 {
 	"Assembly-CSharp.dll",
-	429,
+	430,
 	s_methodPointers,
 	0,
 	NULL,
